@@ -527,67 +527,88 @@
     .sol-step h3{font-size:.86rem;font-weight:700;color:rgba(255,255,255,.88);margin-bottom:.25rem;line-height:1.35}
     .sol-step p{font-size:.77rem;color:rgba(242,244,245,.35);line-height:1.72;font-weight:300}
 
-    /* right: full-height image composition — absolute overlap */
+    /* right: full-height overlapping image composition */
     .sol-right{
       position:relative;z-index:3;
-      height:100%; /* stretch to match left column height via align-items:stretch on grid */
+      height:100%; /* fills grid cell — same height as left column including CTA */
     }
-    .sol-photo{
-      position:absolute;overflow:hidden;border-radius:4px;
-    }
-    /* primary: top-left, full width, ~68% of column height */
+    .sol-photo{position:absolute;overflow:hidden;border-radius:4px}
+
+    /*
+     * Composition: diagonal stagger
+     *   Primary  → top-right anchor, leaves a left breathing margin
+     *   Accent   → bottom-left anchor, slides behind primary's right edge
+     *   Badge    → sits at the overlap junction on the right edge of accent / bottom of primary
+     */
+
+    /* primary: anchored top-right, wide but not full-width — left margin shows dark bg */
     .sol-photo-main{
-      top:0;left:0;right:0;
-      height:68%;
+      top:0;left:6%;right:0;
+      height:66%;
     }
-    /* accent: bottom-right, inset left by 8%, overhangs primary by ~22% overlap */
+    /* accent: anchored bottom-left, narrower right edge — creates visible diagonal step */
     .sol-photo-accent{
-      bottom:0;left:8%;right:0;
-      height:52%;
+      bottom:0;left:0;right:12%;
+      height:50%;
       z-index:2;
-      /* dark ink gap + drop shadow to lift accent off the primary */
-      box-shadow:-6px -6px 0 4px var(--ink), 0 16px 40px rgba(0,0,0,.55);
+      /* ink-coloured border-gap + drop shadow separates it cleanly from primary */
+      box-shadow:6px -6px 0 4px var(--ink), 0 20px 44px rgba(0,0,0,.52);
+      border:1px solid rgba(255,255,255,.07);
     }
+
     .sol-photo img{
       display:block;width:100%;height:100%;object-fit:cover;
-      filter:brightness(0.80) contrast(1.14) saturate(0.55);
+      filter:brightness(0.82) contrast(1.14) saturate(0.55);
       transition:transform .7s cubic-bezier(.22,.61,.36,1);
     }
-    .sol-photo-accent img{filter:brightness(0.74) contrast(1.18) saturate(0.32)}
+    .sol-photo-accent img{filter:brightness(0.76) contrast(1.18) saturate(0.32)}
     .sol-photo:hover img{transform:scale(1.04)}
-    /* light bottom fade */
+
+    /* subtle bottom vignette on each photo */
     .sol-photo::after{
       content:'';position:absolute;inset:0;pointer-events:none;z-index:1;
-      background:linear-gradient(180deg,transparent 65%,rgba(18,16,13,.38) 100%);
+      background:linear-gradient(180deg,transparent 60%,rgba(18,16,13,.42) 100%);
     }
-    /* orange accent line at base of primary */
+    /* orange accent line at the bottom edge of the primary — marks the separation */
     .sol-photo-main::before{
       content:'';position:absolute;bottom:0;left:0;right:0;height:3px;z-index:2;
       background:linear-gradient(90deg,var(--or),var(--chili));
     }
-    /* inset border frame on accent photo */
+    /* inset border frame inside accent for depth */
+    .sol-photo-accent::after{
+      background:none; /* override the vignette ::after — use ::before for frame instead */
+    }
     .sol-photo-accent::before{
       content:'';position:absolute;inset:7px;z-index:3;pointer-events:none;
-      border:1px solid rgba(255,255,255,.10);border-radius:2px;
+      border:1px solid rgba(255,255,255,.09);border-radius:2px;
     }
 
-    /* studio location badge */
+    /*
+     * Badge: at the overlap junction — bottom-right of primary, top-right of accent area.
+     * This is where the eye naturally lands when moving between the two images.
+     * Positioned on the primary photo so it sits just above the accent overlap.
+     */
     .sol-badge{
-      position:absolute;bottom:1.1rem;left:1.1rem;z-index:3;
-      background:rgba(10,8,6,.80);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+      position:absolute;
+      /* sits at bottom-right of primary, inside the overlap zone */
+      bottom:calc(34% + 1.1rem); /* 34% = 100% - 66% primary height */
+      right:1.1rem;
+      z-index:4;
+      background:rgba(10,8,6,.84);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
       border:1px solid rgba(255,255,255,.08);border-left:2px solid var(--or);
-      padding:.42rem .78rem;border-radius:2px;
+      padding:.44rem .82rem;border-radius:2px;
       font-size:.57rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;
-      color:rgba(255,255,255,.62);line-height:1;
+      color:rgba(255,255,255,.65);line-height:1;
     }
 
     @media(max-width:960px){
       .sol-in{grid-template-columns:1fr;gap:3rem;align-items:start}
-      /* on single-col, right column needs an explicit height since height:100% loses reference */
       .sol-right{height:380px}
+      .sol-badge{bottom:calc(50% + .8rem);right:.8rem}
     }
     @media(max-width:560px){
       .sol-right{height:300px}
+      .sol-badge{bottom:calc(50% + .6rem);right:.6rem}
     }
 
     /* ── AREE ─────────────────────────────────────────────────────── */
@@ -1153,22 +1174,24 @@
     <!-- Right: full-height image column — two photos stacked proportionally via flex -->
     <div class="sol-right fu d2">
 
-      <!-- Primary photo: meeting room, ~60% of column height -->
+      <!-- Primary: meeting room — top-right anchor -->
       <div class="sol-photo sol-photo-main">
         <img src="Foto%20sezione%20%22la%20soluzione%22/1-be46e5db.webp"
              alt="Sala riunioni Studio Legale Bortolotti"
              loading="lazy" decoding="async"
              style="object-position:center 38%"/>
-        <div class="sol-badge" aria-hidden="true">Studio Bortolotti · Milano</div>
       </div>
 
-      <!-- Accent photo: office interior, ~40% of column height -->
+      <!-- Accent: office interior — bottom-left anchor, overlaps primary -->
       <div class="sol-photo sol-photo-accent">
         <img src="Foto%20sezione%20%22la%20soluzione%22/5-dcedac4b.webp"
              alt="Interno dello studio"
              loading="lazy" decoding="async"
              style="object-position:center 44%"/>
       </div>
+
+      <!-- Badge at the overlap junction between the two photos -->
+      <div class="sol-badge" aria-hidden="true">Studio Bortolotti · Milano</div>
 
     </div>
   </div>
