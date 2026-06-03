@@ -152,7 +152,7 @@
     }
 
     /* ── BUTTONS ────────────────────────────────────────────────── */
-    .btn-primary{
+    .btn-primary,.btn-or{
       display:inline-flex;align-items:center;gap:.5rem;
       padding:1rem 2.25rem;
       background:var(--or);color:#F2F4F5;
@@ -160,9 +160,12 @@
       border:2px solid var(--or);border-radius:var(--radius);
       transition:background .2s,border-color .2s,transform .15s,box-shadow .2s;
     }
-    .btn-primary:hover{
+    .btn-primary:hover,.btn-or:hover{
       background:var(--chili);border-color:var(--chili);
       transform:translateY(-2px);box-shadow:0 10px 30px rgba(236,102,8,.35);
+    }
+    .btn-primary:focus-visible,.btn-or:focus-visible{
+      outline:2px solid var(--or);outline-offset:3px;
     }
     .btn-outline-wh{
       display:inline-flex;align-items:center;gap:.5rem;
@@ -524,6 +527,7 @@
       position:relative;z-index:3;
       display:flex;flex-direction:column;
       gap:1.25rem;
+      height:100%; /* fill the grid cell so images match left column height */
     }
     .sol-photo{
       position:relative;overflow:hidden;border-radius:4px;
@@ -549,6 +553,15 @@
       content:'';position:absolute;bottom:0;left:0;right:0;height:3px;z-index:2;
       background:linear-gradient(90deg,var(--or),var(--chili));
     }
+    /* accent photo: inset border frame for premium depth */
+    .sol-photo-accent{
+      box-shadow:0 0 0 1px rgba(255,255,255,.06),0 24px 48px rgba(0,0,0,.4);
+    }
+    .sol-photo-accent::before{
+      content:'';position:absolute;inset:8px;z-index:2;pointer-events:none;
+      border:1px solid rgba(255,255,255,.08);border-radius:2px;
+    }
+
     /* studio location badge */
     .sol-badge{
       position:absolute;bottom:1.1rem;left:1.1rem;z-index:3;
@@ -1126,7 +1139,10 @@
           <div><h3>Per PMI e grandi imprese</h3><p>Il servizio si adatta alla dimensione aziendale. Ogni perimetro è personalizzato.</p></div>
         </div>
       </div>
-      <a href="#contatti" class="btn-or fu d4">Richiedi una consulenza</a>
+      <a href="#contatti" class="btn-or fu d4" style="margin-top:auto;align-self:flex-start">
+        Richiedi una consulenza
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
     </div>
 
     <!-- Right: full-height image column — two photos stacked proportionally via flex -->
