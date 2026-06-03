@@ -4,17 +4,36 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>AgiLex – Consulenza Legale Aziendale Continuativa | Studio Legale Bortolotti</title>
-  <meta name="description" content="AgiLex: il servizio di consulenza legale aziendale annuale dello Studio Legale Bortolotti. Costo concordato, supporto 7/7, in italiano e inglese."/>
+  <meta name="description" content="AgiLex è il servizio di consulenza legale aziendale annuale dello Studio Legale Bortolotti. Costo concordato, supporto 7/7, in italiano e inglese. Sede a Milano."/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://www.studiobortolotti.it/agilex"/>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website"/>
+  <meta property="og:title" content="AgiLex – Il partner legale continuativo per la tua azienda"/>
+  <meta property="og:description" content="Uno studio legale d'impresa sempre al tuo fianco. Costo annuale concordato, supporto 7/7, italiano e inglese. Studio Legale Bortolotti – Milano."/>
+  <meta property="og:image" content="Skyline milano per hero section.webp"/>
+  <meta property="og:locale" content="it_IT"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+
+  <!-- Preconnect + font -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,700;1,900&display=swap" rel="stylesheet"/>
+
+  <!-- Preload hero image -->
+  <link rel="preload" as="image" href="Skyline milano per hero section.webp" fetchpriority="high"/>
+
   <style>
+    /* ── RESET & BASE ───────────────────────────────────────────── */
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth}
+    html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
     body{font-family:'Lato',system-ui,sans-serif;background:#12100D;color:#fff;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
     a{color:inherit;text-decoration:none}
     ul{list-style:none}
     img{max-width:100%;display:block}
+    button{font-family:inherit;cursor:pointer}
+    :focus-visible{outline:2px solid #EC6608;outline-offset:3px}
 
     :root{
       --or:#EC6608;
@@ -26,15 +45,26 @@
       --platinum:#D5DCDC;
       --px:clamp(1.5rem,6vw,4rem);
       --py:clamp(4rem,8vw,7rem);
+      --radius:3px;
     }
 
-    /* RIBBON */
+    /* ── SKIP TO CONTENT ────────────────────────────────────────── */
+    .skip-link{
+      position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;
+    }
+    .skip-link:focus{
+      position:fixed;top:1rem;left:1rem;width:auto;height:auto;
+      background:var(--or);color:#fff;padding:.5rem 1rem;
+      font-size:.8rem;font-weight:700;border-radius:var(--radius);z-index:9999;
+    }
+
+    /* ── RIBBON ─────────────────────────────────────────────────── */
     .rib{position:absolute;pointer-events:none;overflow:visible}
     .rib svg{overflow:visible}
 
-    /* FADE-UP */
+    /* ── FADE-UP ─────────────────────────────────────────────────── */
     .fu{opacity:1;transform:none}
-    .js-ready .fu{opacity:0;transform:translateY(24px);transition:opacity .55s ease,transform .55s ease}
+    .js-ready .fu{opacity:0;transform:translateY(20px);transition:opacity .6s cubic-bezier(.22,.61,.36,1),transform .6s cubic-bezier(.22,.61,.36,1)}
     .js-ready .fu.in{opacity:1;transform:none}
     .js-ready .fu.d1{transition-delay:.08s}
     .js-ready .fu.d2{transition-delay:.16s}
@@ -45,246 +75,561 @@
     .js-ready .fu.d7{transition-delay:.56s}
     .js-ready .fu.d8{transition-delay:.64s}
 
-    /* NAV */
-    #nav{position:fixed;top:0;left:0;right:0;z-index:300;background:rgba(18,16,13,.97);backdrop-filter:blur(16px);border-bottom:1px solid transparent;transition:border-color .3s,box-shadow .3s}
-    #nav.on{border-color:rgba(255,255,255,.06);box-shadow:0 2px 40px rgba(0,0,0,.7)}
-    .nw{max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:68px;padding:0 var(--px)}
-    .nlogo img{height:36px;width:auto}
-    .nlinks{display:flex;align-items:center;gap:2rem;font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.38)}
+    /* ── NAV ─────────────────────────────────────────────────────── */
+    #nav{
+      position:fixed;top:0;left:0;right:0;z-index:300;
+      background:rgba(18,16,13,.0);
+      backdrop-filter:blur(0);
+      border-bottom:1px solid transparent;
+      transition:background .35s ease,backdrop-filter .35s ease,border-color .35s ease,box-shadow .35s ease;
+    }
+    #nav.on{
+      background:rgba(18,16,13,.96);
+      backdrop-filter:blur(20px);
+      border-color:rgba(255,255,255,.06);
+      box-shadow:0 2px 40px rgba(0,0,0,.6);
+    }
+    .nw{
+      max-width:1280px;margin:0 auto;
+      display:flex;align-items:center;justify-content:space-between;
+      height:72px;padding:0 var(--px);
+    }
+    .nlogo img{height:34px;width:auto;display:block}
+    .nlinks{
+      display:flex;align-items:center;gap:2.25rem;
+      font-size:.63rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+      color:rgba(255,255,255,.42);
+    }
     .nlinks a{transition:color .2s}
     .nlinks a:hover{color:#fff}
-    .ncta{display:inline-flex;align-items:center;gap:.45rem;padding:.65rem 1.4rem;background:var(--or);color:#fff;font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;border:2px solid var(--or);border-radius:4px;transition:all .2s}
-    .ncta:hover{background:var(--chili);border-color:var(--chili)}
-    .nburg{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
-    .nburg span{display:block;width:22px;height:2px;background:#fff;border-radius:4px;transition:all .25s}
-    .mmenu{display:none;position:fixed;top:68px;left:0;right:0;background:var(--ink);border-top:1px solid rgba(255,255,255,.05);flex-direction:column;z-index:299;padding-bottom:1.5rem}
+    .ncta{
+      display:inline-flex;align-items:center;gap:.4rem;
+      padding:.6rem 1.3rem;
+      background:var(--or);color:#fff;
+      font-size:.63rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+      border:2px solid var(--or);border-radius:var(--radius);
+      transition:background .2s,border-color .2s,transform .15s,box-shadow .2s;
+    }
+    .ncta:hover{background:var(--chili);border-color:var(--chili);transform:translateY(-1px);box-shadow:0 6px 20px rgba(236,102,8,.3)}
+    .nburg{
+      display:none;flex-direction:column;gap:5px;
+      background:none;border:none;padding:6px;
+    }
+    .nburg span{
+      display:block;width:22px;height:2px;
+      background:rgba(255,255,255,.8);border-radius:4px;
+      transition:transform .25s,opacity .25s;
+    }
+    .nburg[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .nburg[aria-expanded="true"] span:nth-child(2){opacity:0;transform:scaleX(0)}
+    .nburg[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+    .mmenu{
+      display:none;position:fixed;top:72px;left:0;right:0;
+      background:var(--ink);border-top:1px solid rgba(255,255,255,.05);
+      flex-direction:column;z-index:299;padding-bottom:1.5rem;
+      box-shadow:0 20px 40px rgba(0,0,0,.6);
+    }
     .mmenu.open{display:flex}
-    .mmenu a{display:block;padding:.9rem var(--px);font-size:.85rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:rgba(255,255,255,.5);border-bottom:1px solid rgba(255,255,255,.04);transition:color .2s}
-    .mmenu a:hover{color:var(--or)}
+    .mmenu a{
+      display:block;padding:.9rem var(--px);
+      font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;
+      color:rgba(255,255,255,.5);border-bottom:1px solid rgba(255,255,255,.04);
+      transition:color .2s,background .2s;
+    }
+    .mmenu a:hover{color:var(--or);background:rgba(255,255,255,.02)}
     .mmenu .ncta{margin:1rem var(--px) 0;justify-content:center}
-    @media(max-width:900px){.nlinks,.ncta{display:none}.nburg{display:flex}}
 
-    /* SECTION LABEL */
-    .slabel{font-size:.62rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--or);display:block;margin-bottom:.9rem}
+    @media(max-width:900px){
+      .nlinks,.ncta{display:none}
+      .nburg{display:flex}
+    }
 
-    /* BUTTONS */
-    .btn-primary{display:inline-flex;align-items:center;gap:.5rem;padding:1rem 2.2rem;background:var(--or);color:#F2F4F5;font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border:2px solid var(--or);border-radius:4px;transition:all .2s}
-    .btn-primary:hover{background:var(--chili);border-color:var(--chili);transform:translateY(-1px);box-shadow:0 8px 28px rgba(236,102,8,.35)}
-    .btn-outline-wh{display:inline-flex;align-items:center;gap:.5rem;padding:1rem 2rem;background:transparent;color:#F2F4F5;font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border:2px solid rgba(242,244,245,.3);border-radius:4px;transition:all .2s}
-    .btn-outline-wh:hover{background:#F2F4F5;color:#12100D;border-color:#F2F4F5}
-    .btn-outline-dk{display:inline-flex;align-items:center;gap:.5rem;padding:1rem 2rem;background:transparent;color:var(--ink);font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border:2px solid rgba(18,16,13,.22);border-radius:4px;transition:all .2s}
-    .btn-outline-dk:hover{background:var(--ink);color:#fff}
-    .btn-wh-solid{display:inline-flex;align-items:center;gap:.5rem;padding:1rem 2.2rem;background:#fff;color:var(--or);font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border:2px solid #fff;border-radius:4px;transition:all .2s}
-    .btn-wh-solid:hover{background:transparent;color:#fff}
+    /* ── SECTION LABEL ──────────────────────────────────────────── */
+    .slabel{
+      font-size:.6rem;font-weight:700;letter-spacing:.24em;
+      text-transform:uppercase;color:var(--or);display:block;margin-bottom:.85rem;
+    }
 
-    /* HERO */
-    #hero{position:relative;overflow:hidden;background:var(--ink);padding-top:68px;min-height:100svh;display:flex;flex-direction:column}
+    /* ── BUTTONS ────────────────────────────────────────────────── */
+    .btn-primary{
+      display:inline-flex;align-items:center;gap:.5rem;
+      padding:1rem 2.25rem;
+      background:var(--or);color:#F2F4F5;
+      font-size:.75rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;
+      border:2px solid var(--or);border-radius:var(--radius);
+      transition:background .2s,border-color .2s,transform .15s,box-shadow .2s;
+    }
+    .btn-primary:hover{
+      background:var(--chili);border-color:var(--chili);
+      transform:translateY(-2px);box-shadow:0 10px 30px rgba(236,102,8,.35);
+    }
+    .btn-outline-wh{
+      display:inline-flex;align-items:center;gap:.5rem;
+      padding:1rem 2rem;background:transparent;color:#F2F4F5;
+      font-size:.75rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;
+      border:2px solid rgba(242,244,245,.28);border-radius:var(--radius);
+      transition:background .2s,color .2s,border-color .2s,transform .15s;
+    }
+    .btn-outline-wh:hover{background:#F2F4F5;color:#12100D;border-color:#F2F4F5;transform:translateY(-2px)}
+    .btn-outline-dk{
+      display:inline-flex;align-items:center;gap:.5rem;
+      padding:1rem 2rem;background:transparent;color:var(--ink);
+      font-size:.75rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;
+      border:2px solid rgba(18,16,13,.2);border-radius:var(--radius);
+      transition:background .2s,color .2s,border-color .2s,transform .15s;
+    }
+    .btn-outline-dk:hover{background:var(--ink);color:#fff;border-color:var(--ink);transform:translateY(-2px)}
+    .btn-wh-solid{
+      display:inline-flex;align-items:center;gap:.5rem;
+      padding:1rem 2.25rem;background:#fff;color:var(--or);
+      font-size:.75rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;
+      border:2px solid #fff;border-radius:var(--radius);
+      transition:background .2s,color .2s,border-color .2s,transform .15s,box-shadow .2s;
+    }
+    .btn-wh-solid:hover{background:transparent;color:#fff;transform:translateY(-2px)}
+
+    /* ── HERO ─────────────────────────────────────────────────────── */
+    #hero{
+      position:relative;overflow:hidden;background:var(--ink);
+      padding-top:72px;min-height:100svh;
+      display:flex;flex-direction:column;
+    }
     .hero-photo{position:absolute;inset:0;z-index:0}
-    .hero-photo img{width:100%;height:100%;object-fit:cover;filter:brightness(0.22) contrast(1.1) saturate(0.5)}
-    .hero-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(160deg,rgba(18,16,13,.92) 0%,rgba(18,16,13,.75) 50%,rgba(18,16,13,.55) 100%)}
-    .hero-main{flex:1;display:flex;align-items:center;max-width:1280px;margin:0 auto;width:100%;padding:clamp(3rem,6vw,5rem) var(--px) clamp(6rem,12vw,10rem);position:relative;z-index:3}
-    .hero-txt{max-width:740px}
-    .hero-kicker{display:inline-block;font-size:.62rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--or);margin-bottom:1.6rem}
-    .hero-h1{font-size:clamp(3rem,6.5vw,5.8rem);font-weight:900;line-height:.98;letter-spacing:-.03em;color:#fff;margin-bottom:1.75rem}
+    .hero-photo img{
+      width:100%;height:100%;object-fit:cover;
+      filter:brightness(0.38) contrast(1.12) saturate(0.55);
+    }
+    /* multi-layer overlay: dark vignette left + bottom for text, subtle right reveal */
+    .hero-overlay{
+      position:absolute;inset:0;z-index:1;
+      background:
+        linear-gradient(180deg, rgba(18,16,13,.55) 0%, rgba(18,16,13,.18) 45%, rgba(18,16,13,.75) 100%),
+        linear-gradient(105deg, rgba(18,16,13,.85) 0%, rgba(18,16,13,.6) 40%, rgba(18,16,13,.2) 100%);
+    }
+    .hero-main{
+      flex:1;display:flex;align-items:center;
+      max-width:1280px;margin:0 auto;width:100%;
+      padding:clamp(3.5rem,7vw,6rem) var(--px) clamp(5rem,10vw,9rem);
+      position:relative;z-index:3;
+    }
+    .hero-txt{max-width:760px}
+    .hero-kicker{
+      display:inline-flex;align-items:center;gap:.65rem;
+      font-size:.6rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+      color:var(--or);margin-bottom:1.75rem;
+    }
+    .hero-kicker-dot{
+      width:6px;height:6px;border-radius:50%;background:var(--or);flex-shrink:0;
+    }
+    .hero-h1{
+      font-size:clamp(3.2rem,7vw,6.2rem);font-weight:900;
+      line-height:.96;letter-spacing:-.035em;color:#fff;
+      margin-bottom:1.85rem;
+    }
     .hero-h1 em{font-style:italic;color:var(--or)}
-    .hero-sub{font-size:.92rem;font-weight:300;color:rgba(242,244,245,.65);max-width:560px;line-height:1.8;margin-bottom:2.5rem}
-    .hero-ctas{display:flex;gap:.9rem;flex-wrap:wrap;margin-bottom:3rem}
-    .hero-stats{display:flex;gap:0;border-top:1px solid rgba(255,255,255,.08);padding-top:2rem}
-    .hst{padding-right:2.5rem;margin-right:2.5rem;border-right:1px solid rgba(255,255,255,.07)}
-    .hst:last-child{border-right:none}
-    .hst-n{font-size:2.2rem;font-weight:900;color:var(--or);line-height:1}
-    .hst-l{font-size:.7rem;color:rgba(255,255,255,.35);margin-top:.2rem;letter-spacing:.04em}
-    @media(max-width:600px){.hero-stats{flex-direction:column;gap:1.2rem}.hst{border-right:none;border-bottom:1px solid rgba(255,255,255,.07);padding-bottom:1.2rem;margin-right:0}.hst:last-child{border-bottom:none}}
+    .hero-sub{
+      font-size:.95rem;font-weight:300;
+      color:rgba(242,244,245,.62);max-width:540px;
+      line-height:1.85;margin-bottom:2.75rem;
+    }
+    .hero-ctas{display:flex;gap:.9rem;flex-wrap:wrap;margin-bottom:3.25rem}
 
-    /* PROBLEMA */
+    /* Trust strip */
+    .hero-trust{
+      display:flex;align-items:center;gap:1.5rem;
+      font-size:.68rem;font-weight:400;color:rgba(255,255,255,.36);
+      margin-bottom:3rem;
+    }
+    .hero-trust-sep{width:1px;height:14px;background:rgba(255,255,255,.15);flex-shrink:0}
+
+    .hero-stats{
+      display:flex;gap:0;
+      border-top:1px solid rgba(255,255,255,.1);padding-top:2.25rem;
+    }
+    .hst{padding-right:2.5rem;margin-right:2.5rem;border-right:1px solid rgba(255,255,255,.08)}
+    .hst:last-child{border-right:none;padding-right:0;margin-right:0}
+    .hst-n{font-size:2.4rem;font-weight:900;color:var(--or);line-height:1;letter-spacing:-.03em}
+    .hst-l{font-size:.68rem;color:rgba(255,255,255,.36);margin-top:.25rem;letter-spacing:.04em;line-height:1.4}
+
+    /* Hero bottom ribbon */
+    .hero-rib-wrap{position:absolute;bottom:-4px;left:0;width:100%;height:300px;z-index:2;pointer-events:none;overflow:hidden}
+
+    @media(max-width:760px){
+      .hero-stats{flex-wrap:wrap;gap:1.5rem}
+      .hst{border-right:none;padding-right:0;margin-right:0;min-width:calc(50% - .75rem)}
+      .hero-trust{flex-wrap:wrap;gap:.6rem}
+    }
+
+    /* ── PROBLEMA ──────────────────────────────────────────────────── */
     #problema{background:var(--afw);padding:var(--py) var(--px);position:relative;overflow:hidden}
     .prob-in{max-width:1280px;margin:0 auto}
-    .prob-h2{font-size:clamp(2rem,4vw,3.5rem);font-weight:900;color:rgba(18,16,13,.92);line-height:1.05;letter-spacing:-.02em;max-width:820px;margin-bottom:clamp(2.5rem,5vw,4rem)}
+    .prob-header{display:flex;align-items:flex-end;justify-content:space-between;gap:2rem;margin-bottom:clamp(2.5rem,5vw,4rem);flex-wrap:wrap}
+    .prob-h2{
+      font-size:clamp(2rem,4.5vw,3.8rem);font-weight:900;
+      color:rgba(18,16,13,.9);line-height:1.02;letter-spacing:-.025em;
+      max-width:680px;
+    }
     .prob-h2 em{font-style:italic;color:var(--or)}
-    .prob-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:0;border:1px solid var(--platinum);border-radius:4px;overflow:hidden}
-    .pc{padding:2rem 1.75rem;border-right:1px solid var(--platinum);border-bottom:1px solid var(--platinum);background:var(--afw);transition:background .2s}
-    .pc:hover{background:#E8EAEB}
-    .pc-ico{color:var(--or);margin-bottom:1rem}
-    .pc h3{font-size:.92rem;font-weight:700;color:rgba(18,16,13,.88);margin-bottom:.45rem;line-height:1.3}
-    .pc p{font-size:.82rem;color:rgba(18,16,13,.55);line-height:1.8;font-weight:300}
+    .prob-aside{
+      font-size:.82rem;font-weight:300;color:rgba(18,16,13,.45);
+      max-width:300px;line-height:1.75;flex-shrink:0;
+    }
+    .prob-grid{
+      display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));
+      gap:0;border:1px solid var(--platinum);border-radius:var(--radius);overflow:hidden;
+    }
+    .pc{
+      padding:2.1rem 1.85rem;
+      border-right:1px solid var(--platinum);border-bottom:1px solid var(--platinum);
+      background:var(--afw);transition:background .25s,box-shadow .25s;
+      position:relative;
+    }
+    .pc::before{
+      content:'';position:absolute;top:0;left:0;width:2px;height:0;
+      background:var(--or);transition:height .35s ease;
+    }
+    .pc:hover{background:#eceef0}
+    .pc:hover::before{height:100%}
+    .pc-ico{color:var(--or);margin-bottom:1.1rem;opacity:.9}
+    .pc h3{font-size:.9rem;font-weight:700;color:rgba(18,16,13,.88);margin-bottom:.5rem;line-height:1.35}
+    .pc p{font-size:.8rem;color:rgba(18,16,13,.5);line-height:1.85;font-weight:300}
+    @media(max-width:680px){.prob-header{flex-direction:column;align-items:flex-start}.prob-aside{max-width:100%}}
 
-    /* SOLUZIONE */
+    /* ── SOLUZIONE ────────────────────────────────────────────────── */
     #soluzione{background:var(--ink);padding:var(--py) var(--px);position:relative;overflow:hidden}
     .sol-in{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
-    .sol-left{}
-    .sol-h2{font-size:clamp(2rem,4vw,3.5rem);font-weight:900;color:#fff;line-height:1.05;letter-spacing:-.02em;margin-bottom:1rem}
+    .sol-h2{font-size:clamp(2rem,4.5vw,3.8rem);font-weight:900;color:#fff;line-height:1.02;letter-spacing:-.025em;margin-bottom:1rem}
     .sol-h2 em{font-style:italic;color:var(--or)}
-    .sol-sub{color:rgba(242,244,245,.5);max-width:520px;margin-bottom:2.5rem;font-size:.92rem;font-weight:300;line-height:1.8}
+    .sol-sub{color:rgba(242,244,245,.48);max-width:500px;margin-bottom:2.75rem;font-size:.9rem;font-weight:300;line-height:1.85}
     .sol-features{display:flex;flex-direction:column}
-    .sf{display:flex;gap:1.25rem;padding:1.5rem 0;border-bottom:1px solid rgba(255,255,255,.06)}
+    .sf{display:flex;gap:1.35rem;padding:1.5rem 0;border-bottom:1px solid rgba(255,255,255,.06)}
     .sf:last-child{border-bottom:none}
-    .sf-n{font-size:2rem;font-weight:900;font-style:italic;color:rgba(236,102,8,.3);flex-shrink:0;line-height:1;width:36px;text-align:right;padding-top:2px}
-    .sf h3{font-size:.92rem;font-weight:700;color:#fff;margin-bottom:.3rem}
-    .sf p{font-size:.82rem;color:rgba(242,244,245,.42);line-height:1.7;font-weight:300}
-    /* collage right */
-    .collage{position:relative;height:500px}
-    .col-a{position:absolute;top:0;left:0;width:62%;height:68%;overflow:hidden;z-index:2}
-    .col-b{position:absolute;bottom:0;right:0;width:56%;height:65%;overflow:hidden;z-index:2}
-    .col-c{position:absolute;top:38%;left:42%;width:35%;height:42%;overflow:hidden;z-index:4;outline:4px solid var(--ink)}
-    .collage img{width:100%;height:100%;object-fit:cover;filter:brightness(0.8) contrast(1.1) saturate(0.65)}
-    .col-rib{position:absolute;inset:0;z-index:3;pointer-events:none;overflow:visible}
-    @media(max-width:900px){.sol-in{grid-template-columns:1fr}.collage{display:none}}
+    .sf-n{
+      font-size:1.9rem;font-weight:900;font-style:italic;
+      color:rgba(236,102,8,.25);flex-shrink:0;line-height:1;
+      width:38px;text-align:right;padding-top:3px;
+      transition:color .25s;
+    }
+    .sf:hover .sf-n{color:rgba(236,102,8,.6)}
+    .sf h3{font-size:.9rem;font-weight:700;color:#fff;margin-bottom:.35rem}
+    .sf p{font-size:.8rem;color:rgba(242,244,245,.4);line-height:1.75;font-weight:300}
 
-    /* AREE */
+    /* editorial collage */
+    .collage{position:relative;height:520px}
+    .col-a{position:absolute;top:0;left:0;width:62%;height:68%;overflow:hidden;z-index:2;border-radius:2px}
+    .col-b{position:absolute;bottom:0;right:0;width:56%;height:65%;overflow:hidden;z-index:2;border-radius:2px}
+    .col-c{
+      position:absolute;top:36%;left:40%;width:36%;height:43%;
+      overflow:hidden;z-index:4;
+      outline:3px solid var(--ink);border-radius:2px;
+    }
+    .collage img{width:100%;height:100%;object-fit:cover;filter:brightness(0.78) contrast(1.12) saturate(0.62)}
+    .col-rib{position:absolute;inset:0;z-index:3;pointer-events:none;overflow:visible}
+
+    @media(max-width:900px){
+      .sol-in{grid-template-columns:1fr}
+      .collage{display:none}
+    }
+
+    /* ── AREE ─────────────────────────────────────────────────────── */
     #aree{background:var(--afw);padding:var(--py) var(--px);position:relative;overflow:hidden}
     .aree-in{max-width:1280px;margin:0 auto}
-    .aree-h2{font-size:clamp(2rem,4vw,3.5rem);font-weight:900;color:var(--ink);line-height:1.05;letter-spacing:-.02em;max-width:800px;margin-bottom:clamp(2.5rem,5vw,4rem)}
+    .aree-header{display:flex;align-items:flex-end;justify-content:space-between;gap:2rem;margin-bottom:clamp(2.5rem,5vw,4rem);flex-wrap:wrap}
+    .aree-h2{
+      font-size:clamp(2rem,4.5vw,3.8rem);font-weight:900;
+      color:var(--ink);line-height:1.02;letter-spacing:-.025em;max-width:700px;
+    }
     .aree-h2 em{font-style:italic;color:var(--or)}
-    .aree-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--platinum);border-radius:4px;overflow:hidden}
-    .ac{padding:2rem 1.5rem;border-right:1px solid var(--platinum);border-bottom:1px solid var(--platinum);display:flex;flex-direction:column;gap:.9rem;transition:background .2s;background:var(--afw)}
-    .ac:hover{background:#E8EAEB}
-    .ac-ico{color:var(--or)}
-    .ac h3{font-size:.86rem;font-weight:700;color:rgba(18,16,13,.88);line-height:1.4}
-    @media(max-width:760px){.aree-grid{grid-template-columns:1fr}}
+    .aree-grid{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:0;
+      border:1px solid var(--platinum);border-radius:var(--radius);overflow:hidden;
+    }
+    .ac{
+      padding:2rem 1.6rem;
+      border-right:1px solid var(--platinum);border-bottom:1px solid var(--platinum);
+      display:flex;flex-direction:column;gap:.85rem;
+      transition:background .25s;background:var(--afw);
+      position:relative;
+    }
+    .ac::after{
+      content:'';position:absolute;bottom:0;left:0;width:0;height:2px;
+      background:var(--or);transition:width .35s ease;
+    }
+    .ac:hover{background:#eceef0}
+    .ac:hover::after{width:100%}
+    .ac-ico{color:var(--or);opacity:.9}
+    .ac h3{font-size:.84rem;font-weight:700;color:rgba(18,16,13,.88);line-height:1.45}
+    @media(max-width:760px){.aree-grid{grid-template-columns:1fr 1fr}}
+    @media(max-width:480px){.aree-grid{grid-template-columns:1fr}}
 
-    /* COME FUNZIONA */
+    /* ── COME FUNZIONA ─────────────────────────────────────────────── */
     #cf{background:var(--ink2);padding:var(--py) 0;position:relative;overflow:hidden}
-    .cf-wrap{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:55% 45%;min-height:580px}
+    .cf-wrap{
+      max-width:1280px;margin:0 auto;
+      display:grid;grid-template-columns:50% 50%;min-height:600px;
+    }
     .cf-photo{position:relative;overflow:hidden}
-    .cf-photo img{width:100%;height:100%;object-fit:cover;filter:brightness(0.8) contrast(1.1) saturate(0.65);display:block}
-    .cf-photo-overlay{position:absolute;inset:0;background:linear-gradient(90deg,transparent 60%,var(--ink2) 100%)}
-    .cf-content{padding:clamp(3rem,5vw,5rem) var(--px) clamp(3rem,5vw,5rem) clamp(2rem,3vw,3rem);display:flex;flex-direction:column;justify-content:center}
-    .cf-h2{font-size:clamp(2rem,4vw,3.5rem);font-weight:900;color:#fff;line-height:1.05;letter-spacing:-.02em;margin-bottom:.8rem}
+    .cf-photo img{
+      width:100%;height:100%;object-fit:cover;
+      filter:brightness(0.75) contrast(1.12) saturate(0.62);display:block;
+    }
+    .cf-photo-overlay{
+      position:absolute;inset:0;
+      background:linear-gradient(90deg,transparent 55%,var(--ink2) 100%),
+                 linear-gradient(0deg,var(--ink2) 0%,transparent 20%);
+    }
+    .cf-content{
+      padding:clamp(3rem,5vw,5rem) var(--px) clamp(3rem,5vw,5rem) clamp(2rem,3vw,3.5rem);
+      display:flex;flex-direction:column;justify-content:center;
+    }
+    .cf-h2{font-size:clamp(2rem,4vw,3.5rem);font-weight:900;color:#fff;line-height:1.02;letter-spacing:-.025em;margin-bottom:.85rem}
     .cf-h2 em{font-style:italic;color:var(--or)}
-    .cf-sub{font-size:.92rem;font-weight:300;color:rgba(242,244,245,.45);line-height:1.8;margin-bottom:2rem}
-    .cf-steps{display:flex;flex-direction:column;margin-bottom:2rem}
-    .cfs{display:flex;gap:1.25rem;padding:1.5rem 0;border-bottom:1px solid rgba(255,255,255,.06)}
+    .cf-sub{font-size:.9rem;font-weight:300;color:rgba(242,244,245,.42);line-height:1.85;margin-bottom:2.25rem}
+    .cf-steps{display:flex;flex-direction:column;margin-bottom:2.5rem}
+    .cfs{display:flex;gap:1.35rem;padding:1.5rem 0;border-bottom:1px solid rgba(255,255,255,.06)}
     .cfs:last-child{border-bottom:none}
-    .cfs-n{font-size:2.5rem;font-weight:900;font-style:italic;color:rgba(236,102,8,.4);flex-shrink:0;line-height:1;width:44px;text-align:right;padding-top:2px}
-    .cfs h3{font-size:.92rem;font-weight:700;color:#fff;margin-bottom:.3rem}
-    .cfs p{font-size:.82rem;color:rgba(242,244,245,.4);line-height:1.7;font-weight:300}
-    @media(max-width:900px){.cf-wrap{grid-template-columns:1fr}.cf-photo{height:300px}.cf-content{padding:2.5rem var(--px)}}
+    .cfs-n{
+      font-size:2.6rem;font-weight:900;font-style:italic;
+      color:rgba(236,102,8,.35);flex-shrink:0;line-height:1;
+      width:46px;text-align:right;padding-top:2px;
+      transition:color .25s;
+    }
+    .cfs:hover .cfs-n{color:rgba(236,102,8,.7)}
+    .cfs h3{font-size:.9rem;font-weight:700;color:#fff;margin-bottom:.35rem}
+    .cfs p{font-size:.8rem;color:rgba(242,244,245,.38);line-height:1.75;font-weight:300}
 
-    /* CTA ORANGE */
-    #ctamid{background:linear-gradient(135deg,var(--burgundy) 0%,var(--chili) 35%,var(--or) 70%,#F07818 100%);padding:clamp(4rem,9vw,7rem) var(--px);text-align:center;position:relative;overflow:hidden}
-    .ctamid-in{position:relative;z-index:3;max-width:700px;margin:0 auto}
-    .ctamid-kicker{font-size:.62rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:1rem;display:block}
-    #ctamid h2{font-size:clamp(2rem,4.5vw,3.6rem);font-weight:900;color:#fff;line-height:1.05;letter-spacing:-.02em;margin-bottom:1.25rem}
+    @media(max-width:900px){
+      .cf-wrap{grid-template-columns:1fr}
+      .cf-photo{height:280px}
+      .cf-content{padding:2.5rem var(--px)}
+    }
+
+    /* ── CTA ORANGE ───────────────────────────────────────────────── */
+    #ctamid{
+      background:linear-gradient(135deg,var(--burgundy) 0%,var(--chili) 30%,var(--or) 65%,#F07818 100%);
+      padding:clamp(4.5rem,10vw,8rem) var(--px);
+      text-align:center;position:relative;overflow:hidden;
+    }
+    /* subtle radial glow */
+    #ctamid::before{
+      content:'';position:absolute;inset:0;
+      background:radial-gradient(ellipse 70% 80% at 50% 50%,rgba(255,255,255,.1) 0%,transparent 70%);
+      pointer-events:none;
+    }
+    .ctamid-in{position:relative;z-index:3;max-width:720px;margin:0 auto}
+    .ctamid-kicker{
+      font-size:.6rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;
+      color:rgba(255,255,255,.55);margin-bottom:1rem;display:block;
+    }
+    #ctamid h2{font-size:clamp(2rem,5vw,3.8rem);font-weight:900;color:#fff;line-height:1.02;letter-spacing:-.025em;margin-bottom:1.35rem}
     #ctamid h2 em{font-style:italic}
-    #ctamid p{color:rgba(255,255,255,.75);margin-bottom:2.5rem;font-size:.92rem;font-weight:300;line-height:1.8}
+    #ctamid p{color:rgba(255,255,255,.72);margin-bottom:2.75rem;font-size:.92rem;font-weight:300;line-height:1.85}
     .ctamid-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
 
-    /* PERCHÉ */
+    /* ── PERCHÉ ───────────────────────────────────────────────────── */
     #diff{background:var(--afw);padding:var(--py) var(--px);position:relative;overflow:hidden}
     .diff-in{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
-    .diff-h2{font-size:clamp(2rem,4vw,3.5rem);font-weight:900;color:var(--ink);line-height:1.05;letter-spacing:-.02em;margin-bottom:2.5rem}
+    .diff-h2{
+      font-size:clamp(2rem,4.5vw,3.8rem);font-weight:900;
+      color:var(--ink);line-height:1.02;letter-spacing:-.025em;margin-bottom:2.5rem;
+    }
     .diff-h2 em{font-style:italic;color:var(--or)}
     .diff-list{display:flex;flex-direction:column}
-    .di{display:flex;gap:1.25rem;padding:1.5rem 0;border-bottom:1px solid var(--platinum)}
+    .di{
+      display:flex;gap:1.35rem;padding:1.5rem 0;
+      border-bottom:1px solid var(--platinum);
+      transition:background .2s;
+    }
     .di:last-child{border-bottom:none}
-    .di-n{font-size:1.5rem;font-weight:900;font-style:italic;color:rgba(236,102,8,.3);flex-shrink:0;line-height:1;width:28px;text-align:right;padding-top:2px}
-    .di h3{font-size:.92rem;font-weight:700;color:rgba(18,16,13,.88);margin-bottom:.3rem}
+    .di-n{
+      font-size:1.4rem;font-weight:900;font-style:italic;
+      color:rgba(236,102,8,.25);flex-shrink:0;line-height:1;
+      width:28px;text-align:right;padding-top:3px;
+      transition:color .25s;
+    }
+    .di:hover .di-n{color:rgba(236,102,8,.6)}
+    .di h3{font-size:.9rem;font-weight:700;color:rgba(18,16,13,.88);margin-bottom:.35rem}
     .di h3 .hl{color:var(--or)}
-    .di p{font-size:.82rem;color:rgba(18,16,13,.55);line-height:1.7;font-weight:300}
-    /* perche collage */
-    .perc-collage{position:relative;height:520px;margin-bottom:2rem}
-    .perc-a{position:absolute;top:0;left:0;width:65%;height:65%;overflow:hidden;z-index:2}
-    .perc-b{position:absolute;bottom:0;right:0;width:58%;height:62%;overflow:hidden;z-index:2}
-    .perc-c{position:absolute;top:35%;left:38%;width:38%;height:44%;overflow:hidden;z-index:4;outline:4px solid var(--afw)}
-    .perc-collage img{width:100%;height:100%;object-fit:cover;filter:brightness(0.9) contrast(1.05) saturate(0.75)}
-    .diff-card{background:var(--ink);border-radius:3px;padding:2.5rem 2rem}
-    .dr-kicker{font-size:.62rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--or);margin-bottom:1rem;display:block}
-    .dr-big{font-size:clamp(1.8rem,3vw,2.6rem);font-weight:900;font-style:italic;color:#fff;line-height:1.05;margin-bottom:1rem}
-    .dr-sub{font-size:.88rem;color:rgba(255,255,255,.42);line-height:1.75;margin-bottom:1.75rem;font-weight:300}
-    .dr-list{display:flex;flex-direction:column;gap:.65rem;margin-bottom:2rem}
-    .drl{display:flex;align-items:center;gap:.75rem;font-size:.82rem;color:rgba(255,255,255,.7);font-weight:600}
-    .drl svg{color:var(--or);flex-shrink:0}
-    @media(max-width:900px){.diff-in{grid-template-columns:1fr}.perc-collage{display:none}}
+    .di p{font-size:.8rem;color:rgba(18,16,13,.5);line-height:1.75;font-weight:300}
 
-    /* TARGET */
+    /* perché collage */
+    .perc-collage{position:relative;height:520px;margin-bottom:2rem}
+    .perc-a{position:absolute;top:0;left:0;width:65%;height:63%;overflow:hidden;z-index:2;border-radius:2px}
+    .perc-b{position:absolute;bottom:0;right:0;width:58%;height:60%;overflow:hidden;z-index:2;border-radius:2px}
+    .perc-c{
+      position:absolute;top:33%;left:37%;width:38%;height:45%;
+      overflow:hidden;z-index:4;
+      outline:3px solid var(--afw);border-radius:2px;
+    }
+    .perc-collage img{width:100%;height:100%;object-fit:cover;filter:brightness(0.88) contrast(1.06) saturate(0.72)}
+
+    .diff-card{background:var(--ink);border-radius:var(--radius);padding:2.5rem 2.25rem}
+    .dr-kicker{font-size:.6rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--or);margin-bottom:1rem;display:block}
+    .dr-big{font-size:clamp(1.8rem,3vw,2.8rem);font-weight:900;font-style:italic;color:#fff;line-height:1.02;margin-bottom:.85rem}
+    .dr-sub{font-size:.85rem;color:rgba(255,255,255,.38);line-height:1.8;margin-bottom:1.75rem;font-weight:300}
+    .dr-list{display:flex;flex-direction:column;gap:.7rem;margin-bottom:2.25rem}
+    .drl{display:flex;align-items:center;gap:.8rem;font-size:.8rem;color:rgba(255,255,255,.68);font-weight:600}
+    .drl svg{color:var(--or);flex-shrink:0}
+
+    @media(max-width:900px){
+      .diff-in{grid-template-columns:1fr}
+      .perc-collage{display:none}
+    }
+
+    /* ── TARGET ───────────────────────────────────────────────────── */
     #target{background:var(--ink);padding:var(--py) var(--px);position:relative;overflow:hidden}
     .tgt-in{max-width:1280px;margin:0 auto}
-    .tgt-h2{font-size:clamp(2rem,4vw,3.5rem);font-weight:900;color:#fff;line-height:1.05;letter-spacing:-.02em;max-width:760px;margin-bottom:clamp(2.5rem,5vw,4rem)}
+    .tgt-h2{
+      font-size:clamp(2rem,4.5vw,3.8rem);font-weight:900;
+      color:#fff;line-height:1.02;letter-spacing:-.025em;
+      max-width:760px;margin-bottom:clamp(2.5rem,5vw,4rem);
+    }
     .tgt-h2 em{font-style:italic;color:var(--or)}
-    .tgt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.05);border-radius:4px;overflow:hidden}
-    .tc{background:var(--ink);padding:1.75rem;display:flex;gap:.9rem;align-items:flex-start;transition:background .2s}
-    .tc:hover{background:#1E1B17}
-    .tc-dot{width:8px;height:8px;border-radius:50%;background:var(--or);flex-shrink:0;margin-top:.55rem}
-    .tc h3{font-size:.92rem;font-weight:700;color:rgba(242,244,245,.88);margin-bottom:.28rem}
-    .tc p{font-size:.8rem;color:rgba(255,255,255,.38);line-height:1.65;font-weight:300}
+    .tgt-grid{
+      display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));
+      gap:1px;background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.05);border-radius:var(--radius);overflow:hidden;
+    }
+    .tc{
+      background:var(--ink);padding:1.85rem;
+      display:flex;gap:.95rem;align-items:flex-start;
+      transition:background .25s;
+    }
+    .tc:hover{background:#1D1A16}
+    .tc-dot{width:7px;height:7px;border-radius:50%;background:var(--or);flex-shrink:0;margin-top:.6rem}
+    .tc h3{font-size:.9rem;font-weight:700;color:rgba(242,244,245,.88);margin-bottom:.3rem}
+    .tc p{font-size:.78rem;color:rgba(255,255,255,.35);line-height:1.7;font-weight:300}
 
-    /* CONTATTI */
+    /* ── CONTATTI ─────────────────────────────────────────────────── */
     #contatti{background:var(--ink2);padding:var(--py) var(--px);position:relative;overflow:hidden}
-    .cont-in{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 1.3fr;gap:5rem;align-items:start}
-    .cont-h2{font-size:clamp(2rem,4vw,3rem);font-weight:900;color:#fff;line-height:1.05;letter-spacing:-.02em;margin-bottom:1.25rem}
+    .cont-in{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 1.4fr;gap:5rem;align-items:start}
+    .cont-h2{font-size:clamp(2rem,4vw,3.2rem);font-weight:900;color:#fff;line-height:1.02;letter-spacing:-.025em;margin-bottom:1.35rem}
     .cont-h2 em{font-style:italic;color:var(--or)}
-    .cont-sub{font-size:.92rem;font-weight:300;color:rgba(242,244,245,.45);line-height:1.8;margin-bottom:2.5rem}
-    .cinfo{display:flex;flex-direction:column;gap:1rem}
-    .crow{display:flex;align-items:flex-start;gap:.85rem;font-size:.83rem;color:rgba(255,255,255,.42)}
-    .cico{width:36px;height:36px;border-radius:4px;border:1px solid rgba(255,255,255,.1);color:var(--or);display:flex;align-items:center;justify-content:center;flex-shrink:0}
-    .crow strong{display:block;color:#fff;font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.05rem}
-    .crow a{color:rgba(255,255,255,.42);transition:color .2s}
+    .cont-sub{font-size:.9rem;font-weight:300;color:rgba(242,244,245,.42);line-height:1.85;margin-bottom:2.75rem}
+    .cinfo{display:flex;flex-direction:column;gap:1.1rem}
+    .crow{display:flex;align-items:flex-start;gap:.9rem;font-size:.82rem;color:rgba(255,255,255,.4)}
+    .cico{
+      width:38px;height:38px;border-radius:var(--radius);
+      border:1px solid rgba(255,255,255,.1);color:var(--or);
+      display:flex;align-items:center;justify-content:center;flex-shrink:0;
+    }
+    .crow strong{display:block;color:#fff;font-size:.62rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.05rem}
+    .crow a{color:rgba(255,255,255,.4);transition:color .2s}
     .crow a:hover{color:var(--or)}
-    .cont-note{margin-top:2.5rem;padding:1.25rem 1.5rem;border-left:2px solid var(--or);font-size:.82rem;color:rgba(255,255,255,.42);line-height:1.7;font-weight:300}
-    .cont-note strong{color:#fff}
-    .cf-form{display:flex;flex-direction:column;gap:.85rem}
-    .frow{display:grid;grid-template-columns:1fr 1fr;gap:.85rem}
-    .ff{display:flex;flex-direction:column;gap:.4rem}
-    .ff label{font-size:.64rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.32)}
-    .ff input,.ff select,.ff textarea{width:100%;padding:.8rem 1rem;border:1.5px solid rgba(242,244,245,.12);border-radius:4px;background:rgba(242,244,245,.05);font-family:'Lato',sans-serif;font-size:.87rem;color:#fff;transition:border-color .2s;outline:none;appearance:none}
-    .ff input::placeholder,.ff textarea::placeholder{color:rgba(255,255,255,.18)}
-    .ff select{color:rgba(255,255,255,.42)}
+    .cont-note{
+      margin-top:2.75rem;padding:1.35rem 1.6rem;
+      border-left:2px solid var(--or);
+      font-size:.8rem;color:rgba(255,255,255,.38);line-height:1.8;font-weight:300;
+    }
+    .cont-note strong{color:rgba(255,255,255,.8)}
+
+    /* form */
+    .contact-form{display:flex;flex-direction:column;gap:.9rem}
+    .frow{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
+    .ff{display:flex;flex-direction:column;gap:.45rem}
+    .ff label{font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:rgba(255,255,255,.3)}
+    .ff input,.ff select,.ff textarea{
+      width:100%;padding:.85rem 1rem;
+      border:1.5px solid rgba(242,244,245,.1);border-radius:var(--radius);
+      background:rgba(242,244,245,.04);
+      font-family:'Lato',sans-serif;font-size:.87rem;color:#fff;
+      transition:border-color .2s,background .2s;outline:none;appearance:none;
+    }
+    .ff input::placeholder,.ff textarea::placeholder{color:rgba(255,255,255,.16)}
+    .ff select{color:rgba(255,255,255,.38)}
     .ff select option{background:var(--ink2);color:#fff}
-    .ff input:focus,.ff select:focus,.ff textarea:focus{border-color:var(--or)}
-    .ff textarea{resize:vertical;min-height:120px}
-    .fcheck{display:flex;align-items:flex-start;gap:.7rem;font-size:.78rem;color:rgba(255,255,255,.32);line-height:1.55}
-    .fcheck input{width:15px;height:15px;margin-top:2px;flex-shrink:0;accent-color:var(--or);cursor:pointer}
+    .ff input:focus,.ff select:focus,.ff textarea:focus{
+      border-color:var(--or);background:rgba(242,244,245,.06);
+    }
+    .ff textarea{resize:vertical;min-height:110px}
+    .fcheck{
+      display:flex;align-items:flex-start;gap:.75rem;
+      font-size:.76rem;color:rgba(255,255,255,.3);line-height:1.6;
+    }
+    .fcheck input{width:16px;height:16px;margin-top:2px;flex-shrink:0;accent-color:var(--or);cursor:pointer}
     .fcheck a{color:var(--or);text-decoration:underline}
-    .fsub{padding:1rem;font-size:.82rem;width:100%;justify-content:center;border-radius:4px}
-    .fok{display:none;padding:1.25rem 1.5rem;border:1.5px solid var(--or);border-radius:4px;text-align:center;font-size:.88rem;color:rgba(255,255,255,.78);line-height:1.65}
-    @media(max-width:760px){.cont-in{grid-template-columns:1fr;gap:3rem}.frow{grid-template-columns:1fr}}
+    .fsub{padding:1rem;font-size:.78rem;width:100%;justify-content:center;border-radius:var(--radius)}
+    .fok{
+      display:none;padding:1.35rem 1.6rem;
+      border:1.5px solid var(--or);border-radius:var(--radius);
+      text-align:center;font-size:.88rem;color:rgba(255,255,255,.75);line-height:1.7;
+    }
+    .ferr{border-color:var(--chili) !important;background:rgba(206,57,32,.06) !important}
 
-    /* OR LINE */
-    .or-line{height:1px;background:linear-gradient(90deg,transparent,var(--or),transparent)}
+    @media(max-width:760px){.cont-in{grid-template-columns:1fr;gap:3.5rem}.frow{grid-template-columns:1fr}}
 
-    /* FOOTER */
-    footer{background:#080706;color:rgba(255,255,255,.32);padding:3.5rem var(--px) 1.75rem}
+    /* ── OR LINE ──────────────────────────────────────────────────── */
+    .or-line{height:1px;background:linear-gradient(90deg,transparent,var(--or) 30%,var(--or) 70%,transparent)}
+
+    /* ── FOOTER ───────────────────────────────────────────────────── */
+    footer{background:#060504;color:rgba(255,255,255,.3);padding:4rem var(--px) 2rem}
     .fw{max-width:1280px;margin:0 auto}
-    .ft{display:grid;grid-template-columns:1.8fr 1fr 1fr;gap:3rem;padding-bottom:2.5rem;border-bottom:1px solid rgba(255,255,255,.05);margin-bottom:1.75rem}
-    .fbn{font-size:.9rem;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--or)}
-    .fbs{font-size:.48rem;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.2);margin-top:.1rem}
-    .fbrand p{font-size:.78rem;line-height:1.7;margin-top:1rem;font-weight:300}
-    .fcol h4{font-size:.58rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--or);margin-bottom:.9rem}
-    .fcol ul{display:flex;flex-direction:column;gap:.45rem}
-    .fcol ul a{font-size:.78rem;transition:color .2s}
-    .fcol ul a:hover{color:#fff}
-    .fb{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem;font-size:.7rem}
-    .fb a{transition:color .2s}.fb a:hover{color:#fff}
-    @media(max-width:680px){.ft{grid-template-columns:1fr;gap:2rem}}
+    .ft{
+      display:grid;grid-template-columns:1.8fr 1fr 1fr;gap:3rem;
+      padding-bottom:2.75rem;border-bottom:1px solid rgba(255,255,255,.05);
+      margin-bottom:1.75rem;
+    }
+    .fbn{font-size:.88rem;font-weight:900;letter-spacing:.16em;text-transform:uppercase;color:var(--or)}
+    .fbs{font-size:.5rem;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.18);margin-top:.12rem}
+    .fbrand p{font-size:.76rem;line-height:1.75;margin-top:1rem;font-weight:300}
+    .fbrand-contact{margin-top:1.2rem;font-size:.74rem;display:flex;flex-direction:column;gap:.3rem;font-weight:300}
+    .fbrand-contact a{transition:color .2s}
+    .fbrand-contact a:hover{color:rgba(255,255,255,.7)}
+    .fcol h4{font-size:.55rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--or);margin-bottom:1rem}
+    .fcol ul{display:flex;flex-direction:column;gap:.5rem}
+    .fcol ul a{font-size:.76rem;transition:color .2s}
+    .fcol ul a:hover{color:rgba(255,255,255,.7)}
+    .fb{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem;font-size:.68rem}
+    .fb a{transition:color .2s}.fb a:hover{color:rgba(255,255,255,.6)}
+    .footer-logo{margin-bottom:.5rem}
+    .footer-logo img{height:28px;width:auto;opacity:.6}
 
-    /* MOBILE STICKY CTA */
-    .scta{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--ink);border-top:1px solid rgba(255,255,255,.07);padding:.85rem var(--px);z-index:200}
-    .scta a{display:flex;align-items:center;justify-content:center;gap:.5rem;width:100%;padding:.9rem 1.5rem;background:var(--or);color:#fff;font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border-radius:4px}
-    @media(max-width:900px){.scta{display:block}body{padding-bottom:66px}}
+    @media(max-width:680px){.ft{grid-template-columns:1fr;gap:2.5rem}}
+
+    /* ── MOBILE STICKY CTA ─────────────────────────────────────────── */
+    .scta{
+      display:none;position:fixed;bottom:0;left:0;right:0;
+      background:var(--ink);border-top:1px solid rgba(255,255,255,.07);
+      padding:.9rem var(--px);z-index:200;
+    }
+    .scta a{
+      display:flex;align-items:center;justify-content:center;gap:.5rem;width:100%;
+      padding:.95rem 1.5rem;background:var(--or);color:#fff;
+      font-size:.75rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;
+      border-radius:var(--radius);
+      transition:background .2s;
+    }
+    .scta a:hover{background:var(--chili)}
+    @media(max-width:900px){.scta{display:block}body{padding-bottom:70px}}
   </style>
 </head>
 <body>
 
-<!-- ══ NAV ══════════════════════════════════════════════════════ -->
-<nav id="nav">
+<a href="#main" class="skip-link">Vai al contenuto principale</a>
+
+<!-- ══ NAV ══════════════════════════════════════════════════════════ -->
+<nav id="nav" aria-label="Navigazione principale">
   <div class="nw">
-    <a href="#" class="nlogo" aria-label="Studio Legale Bortolotti">
-      <img src="data:image/png;base64,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" alt="Studio Legale Bortolotti" height="36"/>
+    <a href="#" class="nlogo" aria-label="Studio Legale Bortolotti – Home">
+      <img src="logo-bortolotti-white.png" alt="Studio Legale Bortolotti" height="34"/>
     </a>
-    <ul class="nlinks">
+    <ul class="nlinks" role="list">
       <li><a href="#problema">Il problema</a></li>
       <li><a href="#aree">Servizi</a></li>
       <li><a href="#cf">Come funziona</a></li>
       <li><a href="#diff">Perché AgiLex</a></li>
     </ul>
     <a href="#contatti" class="ncta">Richiedi consulenza</a>
-    <button class="nburg" id="burg" aria-label="Menu" aria-expanded="false">
+    <button class="nburg" id="burg" aria-label="Apri menu" aria-expanded="false" aria-controls="mmenu">
       <span></span><span></span><span></span>
     </button>
   </div>
 </nav>
-<div class="mmenu" id="mmenu">
+
+<div class="mmenu" id="mmenu" role="navigation" aria-label="Menu mobile">
   <a href="#problema">Il problema</a>
+  <a href="#soluzione">La soluzione</a>
   <a href="#aree">Servizi</a>
   <a href="#cf">Come funziona</a>
   <a href="#diff">Perché AgiLex</a>
@@ -292,223 +637,294 @@
   <a href="#contatti" class="ncta">Richiedi consulenza</a>
 </div>
 
-<!-- ══ HERO (dark) ════════════════════════════════════════════ -->
-<section id="hero">
-  <div class="hero-photo">
-    <img src="https://images.unsplash.com/photo-1560472355-536de3962603?auto=format&fit=crop&w=1800&q=80" alt="Professional office environment" loading="eager"/>
-  </div>
-  <div class="hero-overlay"></div>
 
-  <!-- Ribbon bottom -->
-  <div class="rib" style="bottom:-60px;left:0;width:100%;height:420px;z-index:2">
-    <svg viewBox="0 0 1440 420" xmlns="http://www.w3.org/2000/svg" fill="none" preserveAspectRatio="xMidYMax meet" style="width:100%;height:100%">
-      <path d="M -80,380 C 80,300 180,190 255,168 C 330,146 404,172 418,222 C 432,272 400,322 358,332 C 316,342 274,318 270,286 C 266,254 294,232 330,236 C 395,244 520,298 720,358 C 900,410 1100,440 1500,450"
-            stroke="#EC6608" stroke-width="36" stroke-linecap="round" fill="none" opacity=".9"/>
+<!-- ══ HERO ═════════════════════════════════════════════════════════ -->
+<section id="hero" aria-label="Hero">
+  <div class="hero-photo" aria-hidden="true">
+    <img
+      src="Skyline milano per hero section.webp"
+      alt="Skyline di Milano"
+      fetchpriority="high"
+      decoding="async"
+    />
+  </div>
+  <div class="hero-overlay" aria-hidden="true"></div>
+
+  <!-- Decorative ribbon -->
+  <div class="rib" style="bottom:-6px;left:0;width:100%;height:280px;z-index:2" aria-hidden="true">
+    <svg viewBox="0 0 1440 280" xmlns="http://www.w3.org/2000/svg" fill="none" preserveAspectRatio="xMidYMax meet" style="width:100%;height:100%">
+      <path d="M -80,260 C 80,200 180,120 260,102 C 340,84 414,108 428,152 C 442,196 410,236 368,246 C 326,256 284,232 280,202 C 276,172 304,152 340,156 C 400,164 530,212 730,262 C 910,304 1110,322 1500,332"
+            stroke="#EC6608" stroke-width="30" stroke-linecap="round" fill="none" opacity=".85"/>
     </svg>
   </div>
 
-  <div class="hero-main">
+  <div class="hero-main" id="main">
     <div class="hero-txt">
-      <span class="hero-kicker fu">AgiLex · Studio Legale Bortolotti · Milano</span>
+      <span class="hero-kicker fu">
+        <span class="hero-kicker-dot"></span>
+        AgiLex · Studio Legale Bortolotti · Milano
+      </span>
       <h1 class="hero-h1 fu d1">
         Il partner legale<br>
         delle imprese.<br>
         <em>Sempre.</em>
       </h1>
-      <p class="hero-sub fu d2">Con AgiLex hai uno studio legale d'impresa sempre al tuo fianco. Costo annuale concordato, supporto 7/7, in italiano e inglese. Nessuna sorpresa.</p>
+      <p class="hero-sub fu d2">Con AgiLex hai uno studio legale d'impresa sempre al tuo fianco. Costo annuale concordato, supporto 7/7, in italiano e in inglese. Nessuna sorpresa.</p>
       <div class="hero-ctas fu d3">
         <a href="#contatti" class="btn-primary">
           Richiedi consulenza gratuita
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </a>
         <a href="tel:+390239562104" class="btn-outline-wh">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12 19.79 19.79 0 0 1 2.04 3.39 2 2 0 0 1 4 1.21h3a2 2 0 0 1 2 1.72 19.79 19.79 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 19.79 19.79 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12 19.79 19.79 0 0 1 2.04 3.39 2 2 0 0 1 4 1.21h3a2 2 0 0 1 2 1.72 19.79 19.79 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 19.79 19.79 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
           02 39562104
         </a>
       </div>
-      <div class="hero-stats fu d4">
-        <div class="hst"><div class="hst-n">7/7</div><div class="hst-l">Disponibilità continua</div></div>
-        <div class="hst"><div class="hst-n">15+</div><div class="hst-l">Anni di esperienza</div></div>
-        <div class="hst"><div class="hst-n">2</div><div class="hst-l">Lingue: IT &amp; EN</div></div>
-        <div class="hst" style="border-right:none"><div class="hst-n">9+</div><div class="hst-l">Aree del diritto</div></div>
+      <!-- Trust signals -->
+      <div class="hero-trust fu d4" aria-label="Trust signals">
+        <span>✓ Costo concordato in anticipo</span>
+        <span class="hero-trust-sep" aria-hidden="true"></span>
+        <span>✓ Nessun rinnovo automatico</span>
+        <span class="hero-trust-sep" aria-hidden="true"></span>
+        <span>✓ Primo confronto gratuito</span>
+      </div>
+      <div class="hero-stats fu d5" role="list" aria-label="Numeri chiave">
+        <div class="hst" role="listitem">
+          <div class="hst-n">7/7</div>
+          <div class="hst-l">Disponibilità<br>365 giorni l'anno</div>
+        </div>
+        <div class="hst" role="listitem">
+          <div class="hst-n">15+</div>
+          <div class="hst-l">Anni di<br>esperienza</div>
+        </div>
+        <div class="hst" role="listitem">
+          <div class="hst-n">2</div>
+          <div class="hst-l">Lingue<br>IT &amp; EN</div>
+        </div>
+        <div class="hst" role="listitem">
+          <div class="hst-n">9+</div>
+          <div class="hst-l">Aree del<br>diritto aziendale</div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 
-<!-- ══ PROBLEMA (light) ═══════════════════════════════════════ -->
-<section id="problema">
+<!-- ══ PROBLEMA ══════════════════════════════════════════════════════ -->
+<section id="problema" aria-labelledby="problema-h2">
   <div class="prob-in">
-    <span class="slabel fu">Il problema</span>
-    <h2 class="prob-h2 fu d1">Il tuo avvocato non è<br><em>mai disponibile</em> quando serve.</h2>
-    <div class="prob-grid">
-      <div class="pc fu">
-        <div class="pc-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+    <div class="prob-header">
+      <div>
+        <span class="slabel fu">Il problema</span>
+        <h2 class="prob-h2 fu d1" id="problema-h2">
+          Il tuo avvocato non è<br><em>mai disponibile</em> quando serve.
+        </h2>
+      </div>
+      <p class="prob-aside fu d2">Ogni giorno le imprese affrontano situazioni legali che richiedono risposte immediate. Senza un avvocato di riferimento, ogni problema diventa un'emergenza costosa.</p>
+    </div>
+    <div class="prob-grid" role="list">
+      <div class="pc fu" role="listitem">
+        <div class="pc-ico" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        </div>
         <h3>Contratti da revisionare</h3>
         <p>Firmare senza leggere bene può costare caro. Ogni accordo nasconde rischi che solo un esperto sa individuare prima.</p>
       </div>
-      <div class="pc fu d1">
-        <div class="pc-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+      <div class="pc fu d1" role="listitem">
+        <div class="pc-ico" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
         <h3>Clienti e fornitori problematici</h3>
         <p>Inadempienze, contestazioni, ritardi nei pagamenti: gestire rapporti commerciali richiede supporto legale costante.</p>
       </div>
-      <div class="pc fu d2">
-        <div class="pc-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
-        <h3>Dipendenti e controversie</h3>
+      <div class="pc fu d2" role="listitem">
+        <div class="pc-ico" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+        </div>
+        <h3>Dipendenti e controversie di lavoro</h3>
         <p>Licenziamenti, contratti, infortuni: il diritto del lavoro è un campo minato senza un avvocato dedicato.</p>
       </div>
-      <div class="pc fu d3">
-        <div class="pc-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+      <div class="pc fu d3" role="listitem">
+        <div class="pc-ico" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
         <h3>Recupero crediti</h3>
         <p>Fatture non pagate, debitori irreperibili: ogni euro non riscosso è una perdita diretta per la tua azienda.</p>
       </div>
-      <div class="pc fu d4">
-        <div class="pc-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
-        <h3>Rischi sottovalutati</h3>
+      <div class="pc fu d4" role="listitem">
+        <div class="pc-ico" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        </div>
+        <h3>Rischi legali sottovalutati</h3>
         <p>Molti problemi nascono da situazioni che sembravano irrilevanti. Prevenire è sempre più economico che rimediare.</p>
       </div>
-      <div class="pc fu d5">
-        <div class="pc-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
+      <div class="pc fu d5" role="listitem">
+        <div class="pc-ico" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+        </div>
         <h3>Costi legali imprevedibili</h3>
         <p>Parcelle a consumo e tariffe orarie non dichiarate: pianificare il budget aziendale diventa impossibile.</p>
+      </div>
+      <div class="pc fu d6" role="listitem">
+        <div class="pc-ico" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        </div>
+        <h3>Nessun referente legale stabile</h3>
+        <p>Ogni volta da zero, ogni volta un avvocato diverso: perdita di tempo, contesto e di efficacia operativa.</p>
       </div>
     </div>
   </div>
 </section>
 
 
-<!-- ══ SOLUZIONE (dark) ════════════════════════════════════════ -->
-<section id="soluzione">
+<!-- ══ SOLUZIONE ═════════════════════════════════════════════════════ -->
+<section id="soluzione" aria-labelledby="soluzione-h2">
 
-  <!-- Ribbon opposite direction -->
-  <div class="rib" style="bottom:-50px;left:0;width:100%;height:380px;z-index:2">
-    <svg viewBox="0 0 1440 380" xmlns="http://www.w3.org/2000/svg" fill="none" preserveAspectRatio="xMidYMax meet" style="width:100%;height:100%">
-      <path d="M 1520,360 C 1360,280 1260,170 1185,148 C 1110,126 1036,152 1022,202 C 1008,252 1040,302 1082,312 C 1124,322 1166,298 1170,266 C 1174,234 1146,212 1110,216 C 1045,224 920,278 720,338 C 540,390 340,420 -60,430"
-            stroke="rgba(236,102,8,0.5)" stroke-width="34" stroke-linecap="round" fill="none"/>
+  <div class="rib" style="bottom:-40px;left:0;width:100%;height:320px;z-index:2" aria-hidden="true">
+    <svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg" fill="none" preserveAspectRatio="xMidYMax meet" style="width:100%;height:100%">
+      <path d="M 1520,300 C 1360,240 1260,148 1180,128 C 1100,108 1026,130 1012,176 C 998,222 1030,262 1072,272 C 1114,282 1156,258 1160,228 C 1164,198 1136,178 1100,182 C 1035,190 910,238 710,288 C 530,332 330,352 -60,362"
+            stroke="rgba(236,102,8,0.45)" stroke-width="28" stroke-linecap="round" fill="none"/>
     </svg>
   </div>
 
   <div class="sol-in">
     <div class="sol-left">
       <span class="slabel fu">La soluzione</span>
-      <h2 class="sol-h2 fu d1"><em>AgiLex</em>: il tuo studio legale<br>presente ogni giorno.</h2>
+      <h2 class="sol-h2 fu d1" id="soluzione-h2"><em>AgiLex</em>: il tuo studio legale<br>presente ogni giorno.</h2>
       <p class="sol-sub fu d2">Un contratto di consulenza legale annuale, senza rinnovo automatico. Un avvocato d'impresa che conosce la tua azienda e risponde quando ne hai bisogno.</p>
-      <div class="sol-features">
-        <div class="sf fu d2"><div class="sf-n">01</div><div><h3>Assistenza legale annuale</h3><p>Un anno di supporto completo su misura. Non un servizio generico, ma un affiancamento reale.</p></div></div>
-        <div class="sf fu d3"><div class="sf-n">02</div><div><h3>Costo concordato in anticipo</h3><p>Nessuna sorpresa. Il costo annuale viene definito prima di iniziare, in base al perimetro di assistenza.</p></div></div>
-        <div class="sf fu d4"><div class="sf-n">03</div><div><h3>Nessun rinnovo automatico</h3><p>La relazione si rinnova solo se entrambe le parti lo ritengono opportuno. Massima trasparenza.</p></div></div>
-        <div class="sf fu d5"><div class="sf-n">04</div><div><h3>Disponibilità continuativa 7/7</h3><p>Il tuo referente legale è raggiungibile quando ne hai bisogno, senza aspettare settimane.</p></div></div>
-        <div class="sf fu d6"><div class="sf-n">05</div><div><h3>Da remoto o presso di te</h3><p>Consulenza telefonica, video-call o presenza diretta in azienda quando la situazione lo richiede.</p></div></div>
-        <div class="sf fu d7"><div class="sf-n">06</div><div><h3>Per PMI e grandi imprese</h3><p>Il servizio si adatta alla dimensione aziendale. Ogni perimetro è personalizzato.</p></div></div>
+      <div class="sol-features" role="list">
+        <div class="sf fu d2" role="listitem"><div class="sf-n">01</div><div><h3>Assistenza legale annuale</h3><p>Un anno di supporto completo su misura. Non un servizio generico, ma un affiancamento reale.</p></div></div>
+        <div class="sf fu d3" role="listitem"><div class="sf-n">02</div><div><h3>Costo concordato in anticipo</h3><p>Nessuna sorpresa. Il costo annuale viene definito prima di iniziare, in base al perimetro di assistenza.</p></div></div>
+        <div class="sf fu d4" role="listitem"><div class="sf-n">03</div><div><h3>Nessun rinnovo automatico</h3><p>La relazione si rinnova solo se entrambe le parti lo ritengono opportuno. Massima trasparenza.</p></div></div>
+        <div class="sf fu d5" role="listitem"><div class="sf-n">04</div><div><h3>Disponibilità continuativa 7/7</h3><p>Il tuo referente legale è raggiungibile quando ne hai bisogno, senza aspettare settimane.</p></div></div>
+        <div class="sf fu d6" role="listitem"><div class="sf-n">05</div><div><h3>Da remoto o direttamente da te</h3><p>Consulenza telefonica, video-call o presenza diretta in azienda quando la situazione lo richiede.</p></div></div>
+        <div class="sf fu d7" role="listitem"><div class="sf-n">06</div><div><h3>Per PMI e grandi imprese</h3><p>Il servizio si adatta alla dimensione aziendale. Ogni perimetro è personalizzato.</p></div></div>
       </div>
     </div>
     <!-- Editorial photo collage -->
-    <div style="position:relative;z-index:3" class="fu d3">
+    <div style="position:relative;z-index:3" class="fu d3" aria-hidden="true">
       <div class="collage">
-        <!-- Ribbon behind collage -->
         <svg class="col-rib" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" fill="none" style="position:absolute;inset:0;z-index:3;pointer-events:none;overflow:visible">
           <path d="M -40,480 C 60,380 120,260 140,190 C 160,120 148,60 180,30 C 210,0 255,0 280,28 C 305,56 298,102 272,120 C 246,138 212,126 204,102 C 196,78 218,52 248,50 C 298,48 380,90 480,150"
-                stroke="rgba(236,102,8,0.45)" stroke-width="28" stroke-linecap="round" fill="none"/>
+                stroke="rgba(236,102,8,0.4)" stroke-width="24" stroke-linecap="round" fill="none"/>
         </svg>
         <div class="col-a">
-          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80" alt="Professional portrait"/>
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=75" alt="" loading="lazy" decoding="async"/>
         </div>
         <div class="col-b">
-          <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=600&q=80" alt="Glass architecture"/>
+          <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=600&q=75" alt="" loading="lazy" decoding="async"/>
         </div>
         <div class="col-c">
-          <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=400&q=80" alt="Premium office"/>
+          <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=400&q=75" alt="" loading="lazy" decoding="async"/>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<div class="or-line"></div>
+<div class="or-line" aria-hidden="true"></div>
 
 
-<!-- ══ AREE (light) ════════════════════════════════════════════ -->
-<section id="aree">
+<!-- ══ AREE ══════════════════════════════════════════════════════════ -->
+<section id="aree" aria-labelledby="aree-h2">
   <div class="aree-in">
-    <span class="slabel fu">Aree di intervento</span>
-    <h2 class="aree-h2 fu d1">Copertura legale <em>completa</em><br>per le imprese.</h2>
-    <div class="aree-grid">
-      <div class="ac fu">
-        <div class="ac-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+    <div class="aree-header">
+      <div>
+        <span class="slabel fu">Aree di intervento</span>
+        <h2 class="aree-h2 fu d1" id="aree-h2">Copertura legale <em>completa</em><br>per le imprese.</h2>
+      </div>
+      <p class="prob-aside fu d2" style="color:rgba(18,16,13,.42)">Lo Studio Legale Bortolotti mette a disposizione avvocati d'impresa in grado di offrire assistenza in tutte le principali aree del diritto civile e commerciale.</p>
+    </div>
+    <div class="aree-grid" role="list">
+      <div class="ac fu" role="listitem">
+        <div class="ac-ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
         <h3>Diritto civile e contrattualistica</h3>
       </div>
-      <div class="ac fu d1">
-        <div class="ac-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-        <h3>Responsabilità civile e risarcimento</h3>
+      <div class="ac fu d1" role="listitem">
+        <div class="ac-ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <h3>Responsabilità civile e risarcimento del danno</h3>
       </div>
-      <div class="ac fu d2">
-        <div class="ac-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+      <div class="ac fu d2" role="listitem">
+        <div class="ac-ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
         <h3>Recupero crediti ed esecuzioni</h3>
       </div>
-      <div class="ac fu d3">
-        <div class="ac-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
+      <div class="ac fu d3" role="listitem">
+        <div class="ac-ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
         <h3>Diritto bancario ed assicurativo</h3>
       </div>
-      <div class="ac fu d4">
-        <div class="ac-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="2" x2="22" y2="6"/><path d="M7.5 20.5L19 9l-4-4L3.5 16.5 2 22z"/></svg></div>
+      <div class="ac fu d4" role="listitem">
+        <div class="ac-ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="2" x2="22" y2="6"/><path d="M7.5 20.5L19 9l-4-4L3.5 16.5 2 22z"/></svg></div>
         <h3>Diritto commerciale e societario</h3>
       </div>
-      <div class="ac fu d5">
-        <div class="ac-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+      <div class="ac fu d5" role="listitem">
+        <div class="ac-ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
         <h3>Diritto immobiliare e locazioni</h3>
       </div>
-      <div class="ac fu d6">
-        <div class="ac-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
-        <h3>E-commerce, licenze e distribuzione</h3>
+      <div class="ac fu d6" role="listitem">
+        <div class="ac-ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+        <h3>E-commerce, licenze, distribuzione e trasporti</h3>
       </div>
-      <div class="ac fu d7">
-        <div class="ac-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M16.24 7.76a6 6 0 0 1 0 8.49m-8.48-.01a6 6 0 0 1 0-8.49m-2.83-2.82a10 10 0 0 0 0 14.14"/></svg></div>
+      <div class="ac fu d7" role="listitem">
+        <div class="ac-ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M16.24 7.76a6 6 0 0 1 0 8.49m-8.48-.01a6 6 0 0 1 0-8.49m-2.83-2.82a10 10 0 0 0 0 14.14"/></svg></div>
         <h3>Marchi, brevetti e proprietà intellettuale</h3>
       </div>
-      <div class="ac fu d8">
-        <div class="ac-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+      <div class="ac fu d8" role="listitem">
+        <div class="ac-ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
         <h3>Diritto del lavoro</h3>
       </div>
     </div>
   </div>
 </section>
 
-<div class="or-line"></div>
+<div class="or-line" aria-hidden="true"></div>
 
 
-<!-- ══ COME FUNZIONA (dark) ════════════════════════════════════ -->
-<section id="cf">
+<!-- ══ COME FUNZIONA ════════════════════════════════════════════════ -->
+<section id="cf" aria-labelledby="cf-h2">
   <div class="cf-wrap">
-    <div class="cf-photo">
-      <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=900&q=80" alt="Office interior" loading="lazy"/>
+    <div class="cf-photo" aria-hidden="true">
+      <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=900&q=75" alt="" loading="lazy" decoding="async"/>
       <div class="cf-photo-overlay"></div>
     </div>
     <div class="cf-content">
       <span class="slabel fu">Come funziona</span>
-      <h2 class="cf-h2 fu d1">Come funziona<br><em>AgiLex?</em></h2>
+      <h2 class="cf-h2 fu d1" id="cf-h2">Come funziona<br><em>AgiLex?</em></h2>
       <p class="cf-sub fu d2">Un contratto di consulenza legale e assistenza annuale, senza rinnovo automatico. Un rapporto strutturato con costi che conosci in anticipo.</p>
-      <div class="cf-steps">
-        <div class="cfs fu d2">
-          <div class="cfs-n">1</div>
-          <div><h3>Analisi delle esigenze aziendali</h3><p>Un primo confronto per capire la struttura, le attività e le necessità legali della tua azienda. Senza impegno.</p></div>
+      <div class="cf-steps" role="list">
+        <div class="cfs fu d2" role="listitem">
+          <div class="cfs-n" aria-hidden="true">1</div>
+          <div>
+            <h3>Analisi delle esigenze aziendali</h3>
+            <p>Un primo confronto per capire la struttura, le attività e le necessità legali della tua azienda. Senza impegno.</p>
+          </div>
         </div>
-        <div class="cfs fu d3">
-          <div class="cfs-n">2</div>
-          <div><h3>Definizione del perimetro</h3><p>Insieme definiamo le aree coperte, la frequenza del supporto e le modalità operative più adatte.</p></div>
+        <div class="cfs fu d3" role="listitem">
+          <div class="cfs-n" aria-hidden="true">2</div>
+          <div>
+            <h3>Definizione del perimetro</h3>
+            <p>Insieme definiamo le aree coperte, la frequenza del supporto e le modalità operative più adatte alla tua realtà.</p>
+          </div>
         </div>
-        <div class="cfs fu d4">
-          <div class="cfs-n">3</div>
-          <div><h3>Costo annuale concordato</h3><p>Ricevi una proposta chiara, senza costi nascosti. Accetti solo se ti convince. Nessun automatismo.</p></div>
+        <div class="cfs fu d4" role="listitem">
+          <div class="cfs-n" aria-hidden="true">3</div>
+          <div>
+            <h3>Costo annuale concordato</h3>
+            <p>Ricevi una proposta chiara, senza costi nascosti. Accetti solo se ti convince. Nessun automatismo.</p>
+          </div>
         </div>
-        <div class="cfs fu d5">
-          <div class="cfs-n">4</div>
-          <div><h3>Supporto legale continuativo</h3><p>Da quel momento hai un avvocato d'impresa al tuo fianco per tutto l'anno, pronto quando ne hai bisogno.</p></div>
+        <div class="cfs fu d5" role="listitem">
+          <div class="cfs-n" aria-hidden="true">4</div>
+          <div>
+            <h3>Supporto legale continuativo</h3>
+            <p>Da quel momento hai un avvocato d'impresa al tuo fianco per tutto l'anno, pronto quando ne hai bisogno.</p>
+          </div>
         </div>
       </div>
       <div class="fu d6">
-        <a href="#contatti" class="btn-primary">Inizia ora
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        <a href="#contatti" class="btn-primary">
+          Inizia ora
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </a>
       </div>
     </div>
@@ -516,14 +932,13 @@
 </section>
 
 
-<!-- ══ CTA ORANGE ══════════════════════════════════════════════ -->
-<section id="ctamid">
+<!-- ══ CTA ORANGE ════════════════════════════════════════════════════ -->
+<section id="ctamid" aria-label="Chiamata all'azione">
 
-  <!-- Ribbon white over gradient -->
-  <div class="rib" style="top:-80px;left:0;width:100%;height:420px;z-index:1">
-    <svg viewBox="0 0 1440 420" xmlns="http://www.w3.org/2000/svg" fill="none" preserveAspectRatio="xMidYMid meet" style="width:100%;height:100%">
-      <path d="M -80,380 C 80,300 180,190 255,168 C 330,146 404,172 418,222 C 432,272 400,322 358,332 C 316,342 274,318 270,286 C 266,254 294,232 330,236 C 395,244 520,298 720,358 C 900,410 1100,440 1500,450"
-            stroke="rgba(255,255,255,0.15)" stroke-width="38" stroke-linecap="round" fill="none"/>
+  <div class="rib" style="top:-60px;left:0;width:100%;height:380px;z-index:1" aria-hidden="true">
+    <svg viewBox="0 0 1440 380" xmlns="http://www.w3.org/2000/svg" fill="none" preserveAspectRatio="xMidYMid meet" style="width:100%;height:100%">
+      <path d="M -80,340 C 80,268 180,168 255,148 C 330,128 404,152 418,198 C 432,244 400,288 358,298 C 316,308 274,284 270,254 C 266,224 294,204 330,208 C 395,216 520,268 720,320 C 900,366 1100,390 1500,398"
+            stroke="rgba(255,255,255,0.12)" stroke-width="34" stroke-linecap="round" fill="none"/>
     </svg>
   </div>
 
@@ -534,10 +949,10 @@
     <div class="ctamid-btns fu d3">
       <a href="#contatti" class="btn-wh-solid">
         Prenota un confronto gratuito
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </a>
       <a href="tel:+390239562104" class="btn-outline-wh">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12 19.79 19.79 0 0 1 2.04 3.39 2 2 0 0 1 4 1.21h3a2 2 0 0 1 2 1.72 19.79 19.79 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 19.79 19.79 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12 19.79 19.79 0 0 1 2.04 3.39 2 2 0 0 1 4 1.21h3a2 2 0 0 1 2 1.72 19.79 19.79 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 19.79 19.79 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
         02 39562104
       </a>
     </div>
@@ -545,150 +960,182 @@
 </section>
 
 
-<!-- ══ PERCHÉ (light) ══════════════════════════════════════════ -->
-<section id="diff">
+<!-- ══ PERCHÉ ════════════════════════════════════════════════════════ -->
+<section id="diff" aria-labelledby="diff-h2">
   <div class="diff-in">
     <div>
       <span class="slabel fu">Perché scegliere AgiLex</span>
-      <h2 class="diff-h2 fu d1">Non aspettiamo le emergenze.<br><em>Le preveniamo.</em></h2>
-      <div class="diff-list">
-        <div class="di fu"><div class="di-n">1</div><div><h3><span class="hl">Risposta</span> garantita in 48 ore</h3><p>Ogni richiesta riceve risposta qualificata entro due giorni. Nessuna attesa.</p></div></div>
-        <div class="di fu d1"><div class="di-n">2</div><div><h3><span class="hl">Focus</span> esclusivo sulle imprese</h3><p>AgiLex è progettato per le aziende. Capiamo le pressioni del business.</p></div></div>
-        <div class="di fu d2"><div class="di-n">3</div><div><h3><span class="hl">Costo</span> prevedibile e trasparente</h3><p>Abbonamento annuale fisso. Niente sorprese in fattura.</p></div></div>
-        <div class="di fu d3"><div class="di-n">4</div><div><h3><span class="hl">Integrazione</span> con il tuo team</h3><p>Operiamo come ufficio legale interno, coordinati con CEO e CFO.</p></div></div>
-        <div class="di fu d4"><div class="di-n">5</div><div><h3><span class="hl">Visione</span> strategica</h3><p>Anticipiamo i rischi e contribuiamo attivamente alle decisioni di business.</p></div></div>
-        <div class="di fu d5"><div class="di-n">6</div><div><h3><span class="hl">15+</span> anni di esperienza</h3><p>Al servizio di PMI e grandi aziende. Esperienza che fa la differenza.</p></div></div>
+      <h2 class="diff-h2 fu d1" id="diff-h2">Non aspettiamo le emergenze.<br><em>Le preveniamo.</em></h2>
+      <div class="diff-list" role="list">
+        <div class="di fu" role="listitem"><div class="di-n">1</div><div><h3><span class="hl">Cura</span> per la tua impresa</h3><p>I nostri avvocati d'impresa sono al tuo fianco 7 giorni su 7, 365 giorni l'anno, in italiano e in inglese.</p></div></div>
+        <div class="di fu d1" role="listitem"><div class="di-n">2</div><div><h3><span class="hl">Affidabilità</span> garantita</h3><p>Lo studio risponde tutte le volte che ne hai bisogno. Un referente stabile che conosce la tua azienda.</p></div></div>
+        <div class="di fu d2" role="listitem"><div class="di-n">3</div><div><h3><span class="hl">Agilità</span> operativa</h3><p>Veniamo noi da te quando necessario. Risparmi tempo ed energie. Supporto operativo, non solo pareri teorici.</p></div></div>
+        <div class="di fu d3" role="listitem"><div class="di-n">4</div><div><h3><span class="hl">Costo</span> prevedibile e trasparente</h3><p>Abbonamento annuale fisso. Nessuna sorpresa in fattura. Pianifica il budget in anticipo.</p></div></div>
+        <div class="di fu d4" role="listitem"><div class="di-n">5</div><div><h3><span class="hl">Multilingue</span> per chi opera a livello internazionale</h3><p>Assistenza in italiano e inglese per partner internazionali o strutture cross-border.</p></div></div>
+        <div class="di fu d5" role="listitem"><div class="di-n">6</div><div><h3><span class="hl">Intervento diretto</span> in azienda</h3><p>Riunioni, negoziazioni, formazione del personale: intervento diretto presso la sede del cliente.</p></div></div>
       </div>
     </div>
     <div class="fu d2">
-      <!-- Editorial photo collage for Perché -->
-      <div class="perc-collage">
+      <!-- Editorial photo collage -->
+      <div class="perc-collage" aria-hidden="true">
         <div class="perc-a">
-          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80" alt="Professional woman"/>
+          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=75" alt="" loading="lazy" decoding="async"/>
         </div>
         <div class="perc-b">
-          <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=600&q=80" alt="Documents and contracts"/>
+          <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=600&q=75" alt="" loading="lazy" decoding="async"/>
         </div>
         <div class="perc-c">
-          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80" alt="Professional portrait"/>
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=75" alt="" loading="lazy" decoding="async"/>
         </div>
       </div>
       <div class="diff-card fu d3">
         <span class="dr-kicker">Perché scegliere</span>
         <div class="dr-big">AgiLex<br>funziona.</div>
         <p class="dr-sub">Non siamo uno studio legale che aspetta le emergenze. Siamo il partner che aiuta a prevenirle — ogni giorno, con costi che conosci in anticipo.</p>
-        <div class="dr-list">
-          <div class="drl"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Costo annuale chiaro e concordato</div>
-          <div class="drl"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Assistenza continuativa 7 giorni su 7</div>
-          <div class="drl"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Supporto in italiano e in inglese</div>
-          <div class="drl"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Nessun rinnovo automatico</div>
-          <div class="drl"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Intervento diretto in azienda</div>
+        <div class="dr-list" role="list">
+          <div class="drl" role="listitem"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Costo annuale chiaro e concordato</div>
+          <div class="drl" role="listitem"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Assistenza continuativa 7 giorni su 7</div>
+          <div class="drl" role="listitem"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Supporto in italiano e in inglese</div>
+          <div class="drl" role="listitem"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Nessun rinnovo automatico</div>
+          <div class="drl" role="listitem"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Intervento diretto in azienda</div>
         </div>
-        <a href="#contatti" class="btn-primary" style="width:100%;justify-content:center">Prenota un confronto</a>
+        <a href="#contatti" class="btn-primary" style="width:100%;justify-content:center">
+          Prenota un confronto gratuito
+        </a>
       </div>
     </div>
   </div>
 </section>
 
-<div class="or-line"></div>
+<div class="or-line" aria-hidden="true"></div>
 
 
-<!-- ══ TARGET (dark) ═══════════════════════════════════════════ -->
-<section id="target">
+<!-- ══ TARGET ════════════════════════════════════════════════════════ -->
+<section id="target" aria-labelledby="target-h2">
   <div class="tgt-in">
     <span class="slabel fu">A chi è pensato</span>
-    <h2 class="tgt-h2 fu d1">AgiLex è pensato per chi<br>fa impresa sul <em>serio.</em></h2>
-    <div class="tgt-grid">
-      <div class="tc fu"><div class="tc-dot"></div><div><h3>PMI in crescita</h3><p>Aziende che stanno scalando e hanno bisogno di strutturare la gestione legale in modo professionale.</p></div></div>
-      <div class="tc fu d1"><div class="tc-dot"></div><div><h3>Imprenditori</h3><p>Chi gestisce un'attività in proprio e vuole un avvocato di riferimento senza ingaggiare uno studio fisso.</p></div></div>
-      <div class="tc fu d2"><div class="tc-dot"></div><div><h3>Aziende strutturate</h3><p>Imprese di medie dimensioni che hanno bisogno di un affiancamento legale esterno complementare.</p></div></div>
-      <div class="tc fu d3"><div class="tc-dot"></div><div><h3>Startup e scaleup</h3><p>Realtà in rapida crescita che devono strutturare accordi, proteggere l'IP e gestire investitori.</p></div></div>
-      <div class="tc fu d4"><div class="tc-dot"></div><div><h3>Realtà con dipendenti</h3><p>Chi lavora con più fornitori, clienti e collaboratori ha bisogno di presidio legale costante.</p></div></div>
-      <div class="tc fu d5"><div class="tc-dot"></div><div><h3>Chi vuole prevenire</h3><p>Il costo di un buon avvocato è sempre inferiore al costo di una controversia.</p></div></div>
+    <h2 class="tgt-h2 fu d1" id="target-h2">AgiLex è pensato per chi<br>fa impresa sul <em>serio.</em></h2>
+    <div class="tgt-grid" role="list">
+      <div class="tc fu" role="listitem"><div class="tc-dot" aria-hidden="true"></div><div><h3>PMI in crescita</h3><p>Aziende che stanno scalando e hanno bisogno di strutturare la gestione legale in modo professionale.</p></div></div>
+      <div class="tc fu d1" role="listitem"><div class="tc-dot" aria-hidden="true"></div><div><h3>Imprenditori</h3><p>Chi gestisce un'attività in proprio e vuole un avvocato di riferimento senza ingaggiare uno studio fisso.</p></div></div>
+      <div class="tc fu d2" role="listitem"><div class="tc-dot" aria-hidden="true"></div><div><h3>Aziende strutturate</h3><p>Imprese di medie dimensioni che hanno bisogno di un affiancamento legale esterno complementare.</p></div></div>
+      <div class="tc fu d3" role="listitem"><div class="tc-dot" aria-hidden="true"></div><div><h3>Startup e scaleup</h3><p>Realtà in rapida crescita che devono strutturare accordi, proteggere l'IP e gestire investitori.</p></div></div>
+      <div class="tc fu d4" role="listitem"><div class="tc-dot" aria-hidden="true"></div><div><h3>Realtà con dipendenti e contratti</h3><p>Chi lavora con più fornitori, clienti e collaboratori ha bisogno di presidio legale costante su ogni rapporto.</p></div></div>
+      <div class="tc fu d5" role="listitem"><div class="tc-dot" aria-hidden="true"></div><div><h3>Chi vuole prevenire, non solo curare</h3><p>Il costo di un buon avvocato è sempre inferiore al costo di una controversia. Investire nella prevenzione conviene.</p></div></div>
     </div>
   </div>
 </section>
 
 
-<!-- ══ CONTATTI (dark) ═════════════════════════════════════════ -->
-<section id="contatti">
+<!-- ══ CONTATTI ══════════════════════════════════════════════════════ -->
+<section id="contatti" aria-labelledby="contatti-h2">
 
-  <!-- Ribbon top right -->
-  <div class="rib" style="top:-60px;right:0;width:600px;height:400px;z-index:1">
-    <svg viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg" fill="none" preserveAspectRatio="xMaxYMid meet" style="width:100%;height:100%">
-      <path d="M 680,380 C 560,300 460,190 385,168 C 310,146 236,172 222,222 C 208,272 240,322 282,332 C 324,342 366,318 370,286 C 374,254 346,232 310,236 C 245,244 120,298 -80,360"
-            stroke="rgba(236,102,8,0.2)" stroke-width="32" stroke-linecap="round" fill="none"/>
+  <div class="rib" style="top:-50px;right:0;width:550px;height:360px;z-index:1" aria-hidden="true">
+    <svg viewBox="0 0 550 360" xmlns="http://www.w3.org/2000/svg" fill="none" preserveAspectRatio="xMaxYMid meet" style="width:100%;height:100%">
+      <path d="M 630,340 C 510,268 410,168 335,148 C 260,128 186,152 172,198 C 158,244 190,288 232,298 C 274,308 316,284 320,254 C 324,224 296,204 260,208 C 195,216 70,268 -130,330"
+            stroke="rgba(236,102,8,0.18)" stroke-width="28" stroke-linecap="round" fill="none"/>
     </svg>
   </div>
 
   <div class="cont-in">
     <div>
       <span class="slabel fu">Contatti</span>
-      <h2 class="cont-h2 fu d1">Iniziamo a<br>lavorare <em>insieme.</em></h2>
+      <h2 class="cont-h2 fu d1" id="contatti-h2">Iniziamo a<br>lavorare <em>insieme.</em></h2>
       <p class="cont-sub fu d2">Compila il modulo e ti ricontatteremo entro 24 ore per fissare un primo confronto senza impegno.</p>
-      <div class="cinfo fu d3">
+      <address class="cinfo fu d3" style="font-style:normal">
         <div class="crow">
-          <div class="cico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div class="cico" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
           <div><strong>Sede</strong>Corso Buenos Aires 45, 20124 Milano</div>
         </div>
         <div class="crow">
-          <div class="cico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12 19.79 19.79 0 0 1 2.04 3.39 2 2 0 0 1 4 1.21h3a2 2 0 0 1 2 1.72 19.79 19.79 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 19.79 19.79 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+          <div class="cico" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12 19.79 19.79 0 0 1 2.04 3.39 2 2 0 0 1 4 1.21h3a2 2 0 0 1 2 1.72 19.79 19.79 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 19.79 19.79 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
           <div><strong>Telefono</strong><a href="tel:+390239562104">02 39562104</a> · <a href="tel:+393477188684">347 7188684</a></div>
         </div>
         <div class="crow">
-          <div class="cico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+          <div class="cico" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
           <div><strong>Email</strong><a href="mailto:amministrazione.bortolottilex@gmail.com">amministrazione.bortolottilex@gmail.com</a></div>
         </div>
+      </address>
+      <div class="cont-note fu d4">
+        <strong>Cosa succede dopo l'invio?</strong> Entro 24 ore un avvocato dello studio ti contatterà per un primo confronto telefonico gratuito, senza impegno.
       </div>
-      <div class="cont-note fu d4"><strong>Cosa succede dopo l'invio?</strong> Entro 24 ore un avvocato dello studio ti contatterà per un primo confronto telefonico gratuito, senza impegno.</div>
     </div>
     <div class="fu d2">
-      <form class="cf-form" id="cForm" novalidate>
+      <form class="contact-form" id="cForm" novalidate aria-label="Modulo di contatto">
         <div class="frow">
-          <div class="ff"><label for="nome">Nome e cognome *</label><input type="text" id="nome" name="nome" placeholder="Mario Rossi" required/></div>
-          <div class="ff"><label for="azienda">Azienda *</label><input type="text" id="azienda" name="azienda" placeholder="Rossi S.r.l." required/></div>
+          <div class="ff">
+            <label for="nome">Nome e cognome <abbr title="campo obbligatorio">*</abbr></label>
+            <input type="text" id="nome" name="nome" placeholder="Mario Rossi" required autocomplete="name"/>
+          </div>
+          <div class="ff">
+            <label for="azienda">Azienda <abbr title="campo obbligatorio">*</abbr></label>
+            <input type="text" id="azienda" name="azienda" placeholder="Rossi S.r.l." required autocomplete="organization"/>
+          </div>
         </div>
         <div class="frow">
-          <div class="ff"><label for="dip">Dipendenti</label>
+          <div class="ff">
+            <label for="dip">Numero dipendenti</label>
             <select id="dip" name="dip">
               <option value="">Seleziona</option>
-              <option>1–5</option><option>6–15</option><option>16–50</option><option>51–200</option><option>Oltre 200</option>
+              <option>1–5</option>
+              <option>6–15</option>
+              <option>16–50</option>
+              <option>51–200</option>
+              <option>Oltre 200</option>
             </select>
           </div>
-          <div class="ff"><label for="tel">Telefono *</label><input type="tel" id="tel" name="tel" placeholder="+39 02 1234567" required/></div>
+          <div class="ff">
+            <label for="tel">Telefono <abbr title="campo obbligatorio">*</abbr></label>
+            <input type="tel" id="tel" name="tel" placeholder="+39 02 1234567" required autocomplete="tel"/>
+          </div>
         </div>
-        <div class="ff"><label for="em">Email *</label><input type="email" id="em" name="em" placeholder="mario@rossi.it" required/></div>
-        <div class="ff"><label for="msg">La tua esigenza</label><textarea id="msg" name="msg" placeholder="Es. PMI con 20 dipendenti, ho bisogno di supporto su contrattualistica e gestione fornitori..."></textarea></div>
+        <div class="ff">
+          <label for="em">Email <abbr title="campo obbligatorio">*</abbr></label>
+          <input type="email" id="em" name="em" placeholder="mario@rossi.it" required autocomplete="email"/>
+        </div>
+        <div class="ff">
+          <label for="msg">La tua esigenza</label>
+          <textarea id="msg" name="msg" placeholder="Es. PMI con 20 dipendenti, ho bisogno di supporto su contrattualistica e gestione fornitori..."></textarea>
+        </div>
         <div class="fcheck">
           <input type="checkbox" id="priv" name="priv" required/>
-          <label for="priv">Ho letto e accetto la <a href="#">Privacy Policy</a>. Acconsento al trattamento dei dati personali ai sensi del GDPR per essere ricontattato dallo Studio Legale Bortolotti. *</label>
+          <label for="priv">Ho letto e accetto la <a href="#" rel="noopener">Privacy Policy</a>. Acconsento al trattamento dei dati personali ai sensi del GDPR per essere ricontattato dallo Studio Legale Bortolotti. <abbr title="campo obbligatorio">*</abbr></label>
         </div>
         <button type="submit" class="btn-primary fsub">
           Richiedi una consulenza gratuita
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </button>
-        <div class="fok" id="fok"><strong>Richiesta inviata.</strong><br>Un avvocato ti contatterà entro 24 ore per un primo confronto gratuito.</div>
+        <div class="fok" id="fok" role="status" aria-live="polite">
+          <strong>Richiesta inviata.</strong><br>
+          Un avvocato ti contatterà entro 24 ore per un primo confronto gratuito.
+        </div>
       </form>
     </div>
   </div>
 </section>
 
 
-<!-- ══ FOOTER ══════════════════════════════════════════════════ -->
+<!-- ══ FOOTER ════════════════════════════════════════════════════════ -->
 <footer>
   <div class="fw">
     <div class="ft">
       <div class="fbrand">
-        <div style="margin-bottom:.2rem"><span class="fbn">BORTOLOTTI</span></div>
+        <div class="footer-logo" aria-hidden="true">
+          <img src="logo-bortolotti-white.png" alt="Studio Legale Bortolotti" height="28"/>
+        </div>
         <div class="fbs">Studio Legale · AgiLex</div>
         <p>Partner legale continuativo per aziende, PMI e imprenditori che vogliono operare con sicurezza e costi prevedibili.</p>
-        <div style="margin-top:1.1rem;font-size:.76rem;display:flex;flex-direction:column;gap:.28rem;font-weight:300">
+        <div class="fbrand-contact">
           <span>Corso Buenos Aires 45, 20124 Milano</span>
-          <span><a href="tel:+390239562104">02 39562104</a> · <a href="tel:+393477188684">347 7188684</a></span>
+          <span>
+            <a href="tel:+390239562104">02 39562104</a>
+            &nbsp;·&nbsp;
+            <a href="tel:+393477188684">347 7188684</a>
+          </span>
           <span><a href="mailto:amministrazione.bortolottilex@gmail.com">amministrazione.bortolottilex@gmail.com</a></span>
         </div>
       </div>
-      <div class="fcol">
+      <nav class="fcol" aria-label="Sezioni del sito">
         <h4>Il Servizio</h4>
         <ul>
           <li><a href="#problema">Il problema</a></li>
@@ -698,64 +1145,119 @@
           <li><a href="#diff">Perché AgiLex</a></li>
           <li><a href="#target">A chi è pensato</a></li>
         </ul>
-      </div>
-      <div class="fcol">
+      </nav>
+      <nav class="fcol" aria-label="Studio e informazioni legali">
         <h4>Studio</h4>
         <ul>
           <li><a href="#contatti">Contatti</a></li>
-          <li><a href="#">Privacy Policy</a></li>
-          <li><a href="#">Cookie Policy</a></li>
-          <li><a href="#">Note legali</a></li>
+          <li><a href="#" rel="noopener">Privacy Policy</a></li>
+          <li><a href="#" rel="noopener">Cookie Policy</a></li>
+          <li><a href="#" rel="noopener">Note legali</a></li>
         </ul>
-      </div>
+      </nav>
     </div>
     <div class="fb">
       <span>© 2025 Studio Legale Bortolotti · P.IVA 05336870968</span>
-      <span><a href="#">Privacy</a> · <a href="#">Cookie</a> · Tutti i diritti riservati</span>
+      <span>
+        <a href="#" rel="noopener">Privacy</a>
+        &nbsp;·&nbsp;
+        <a href="#" rel="noopener">Cookie</a>
+        &nbsp;· Tutti i diritti riservati
+      </span>
     </div>
   </div>
 </footer>
 
-<div class="scta"><a href="#contatti">Richiedi consulenza gratuita →</a></div>
+<!-- Mobile sticky CTA -->
+<div class="scta" aria-label="Azione principale mobile">
+  <a href="#contatti">Richiedi consulenza gratuita →</a>
+</div>
 
 
-<!-- ══ JS ══════════════════════════════════════════════════════ -->
+<!-- ══ JS ════════════════════════════════════════════════════════════ -->
 <script>
-  // Nav scroll effect
-  const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => nav.classList.toggle('on', scrollY > 40), {passive:true});
+(function(){
+  'use strict';
 
-  // Burger menu
-  const burg = document.getElementById('burg');
-  const mm = document.getElementById('mmenu');
-  burg.addEventListener('click', () => {
-    const o = mm.classList.toggle('open');
-    burg.setAttribute('aria-expanded', String(o));
+  /* Nav scroll effect — transparent over hero, solid when scrolled */
+  var nav = document.getElementById('nav');
+  function onScroll(){ nav.classList.toggle('on', window.scrollY > 60); }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  /* Burger menu */
+  var burg = document.getElementById('burg');
+  var mm   = document.getElementById('mmenu');
+  burg.addEventListener('click', function(){
+    var open = mm.classList.toggle('open');
+    burg.setAttribute('aria-expanded', String(open));
+    burg.setAttribute('aria-label', open ? 'Chiudi menu' : 'Apri menu');
   });
-  mm.querySelectorAll('a').forEach(l => l.addEventListener('click', () => {
-    mm.classList.remove('open'); burg.setAttribute('aria-expanded','false');
-  }));
-
-  // Fade-up animation — JS enables, fallback after 2.5s
-  document.documentElement.classList.add('js-ready');
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
-  }, {threshold:0.05});
-  document.querySelectorAll('.fu').forEach(el => io.observe(el));
-  setTimeout(() => document.querySelectorAll('.fu').forEach(el => el.classList.add('in')), 2500);
-
-  // Contact form
-  document.getElementById('cForm').addEventListener('submit', function(e){
-    e.preventDefault();
-    const req = ['nome','azienda','tel','em','priv'];
-    let ok = true;
-    req.forEach(id => {
-      const el = document.getElementById(id);
-      if(!el.checkValidity()){ el.style.borderColor='#EC6608'; ok=false; }
-      else { el.style.borderColor=''; }
+  mm.querySelectorAll('a').forEach(function(l){
+    l.addEventListener('click', function(){
+      mm.classList.remove('open');
+      burg.setAttribute('aria-expanded','false');
+      burg.setAttribute('aria-label','Apri menu');
     });
-    if(ok){ this.style.display='none'; document.getElementById('fok').style.display='block'; }
   });
+
+  /* Close menu on outside click */
+  document.addEventListener('click', function(e){
+    if(mm.classList.contains('open') && !mm.contains(e.target) && !burg.contains(e.target)){
+      mm.classList.remove('open');
+      burg.setAttribute('aria-expanded','false');
+      burg.setAttribute('aria-label','Apri menu');
+    }
+  });
+
+  /* Fade-up — enabled via rAF to avoid FOUC */
+  requestAnimationFrame(function(){
+    document.documentElement.classList.add('js-ready');
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, {threshold: 0.06, rootMargin: '0px 0px -40px 0px'});
+    document.querySelectorAll('.fu').forEach(function(el){ io.observe(el); });
+    /* Safety fallback */
+    setTimeout(function(){
+      document.querySelectorAll('.fu').forEach(function(el){ el.classList.add('in'); });
+    }, 2800);
+  });
+
+  /* Contact form validation */
+  var form = document.getElementById('cForm');
+  var fok  = document.getElementById('fok');
+  var requiredIds = ['nome','azienda','tel','em','priv'];
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var valid = true;
+    requiredIds.forEach(function(id){
+      var el = document.getElementById(id);
+      if(!el.checkValidity()){
+        el.classList.add('ferr');
+        valid = false;
+      } else {
+        el.classList.remove('ferr');
+      }
+    });
+    if(valid){
+      form.style.display = 'none';
+      fok.style.display  = 'block';
+      fok.focus();
+    }
+  });
+
+  /* Remove error state on input */
+  requiredIds.forEach(function(id){
+    var el = document.getElementById(id);
+    if(el){
+      el.addEventListener('input', function(){ el.classList.remove('ferr'); });
+      el.addEventListener('change', function(){ el.classList.remove('ferr'); });
+    }
+  });
+})();
 </script>
 </body>
 </html>
