@@ -1,0 +1,9 @@
+{
+  "name": "agilex-landing",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "npx serve . --listen 3000 --single",
+    "dev": "npx serve . --listen 3000 --single"
+  }
+}
