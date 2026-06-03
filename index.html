@@ -527,20 +527,27 @@
     .sol-step h3{font-size:.86rem;font-weight:700;color:rgba(255,255,255,.88);margin-bottom:.25rem;line-height:1.35}
     .sol-step p{font-size:.77rem;color:rgba(242,244,245,.35);line-height:1.72;font-weight:300}
 
-    /* right: full-height image panel — flex column, images fill all space proportionally */
+    /* right: full-height image composition — absolute overlap */
     .sol-right{
       position:relative;z-index:3;
-      display:flex;flex-direction:column;
-      gap:1.25rem;
-      height:100%; /* fill the grid cell so images match left column height */
+      height:100%; /* stretch to match left column height via align-items:stretch on grid */
     }
     .sol-photo{
-      position:relative;overflow:hidden;border-radius:4px;
-      min-height:0; /* critical: allows flex children to shrink below intrinsic size */
+      position:absolute;overflow:hidden;border-radius:4px;
     }
-    /* proportional flex heights — main gets 3 shares, accent gets 2 */
-    .sol-photo-main{flex:3;min-height:240px}
-    .sol-photo-accent{flex:2;min-height:160px}
+    /* primary: top-left, full width, ~68% of column height */
+    .sol-photo-main{
+      top:0;left:0;right:0;
+      height:68%;
+    }
+    /* accent: bottom-right, inset left by 8%, overhangs primary by ~22% overlap */
+    .sol-photo-accent{
+      bottom:0;left:8%;right:0;
+      height:52%;
+      z-index:2;
+      /* dark ink gap + drop shadow to lift accent off the primary */
+      box-shadow:-6px -6px 0 4px var(--ink), 0 16px 40px rgba(0,0,0,.55);
+    }
     .sol-photo img{
       display:block;width:100%;height:100%;object-fit:cover;
       filter:brightness(0.80) contrast(1.14) saturate(0.55);
@@ -548,23 +555,20 @@
     }
     .sol-photo-accent img{filter:brightness(0.74) contrast(1.18) saturate(0.32)}
     .sol-photo:hover img{transform:scale(1.04)}
-    /* light bottom fade — kept light so image stays visible */
+    /* light bottom fade */
     .sol-photo::after{
       content:'';position:absolute;inset:0;pointer-events:none;z-index:1;
-      background:linear-gradient(180deg,transparent 65%,rgba(18,16,13,.40) 100%);
+      background:linear-gradient(180deg,transparent 65%,rgba(18,16,13,.38) 100%);
     }
-    /* orange accent line at bottom edge of primary photo */
+    /* orange accent line at base of primary */
     .sol-photo-main::before{
       content:'';position:absolute;bottom:0;left:0;right:0;height:3px;z-index:2;
       background:linear-gradient(90deg,var(--or),var(--chili));
     }
-    /* accent photo: inset border frame for premium depth */
-    .sol-photo-accent{
-      box-shadow:0 0 0 1px rgba(255,255,255,.06),0 24px 48px rgba(0,0,0,.4);
-    }
+    /* inset border frame on accent photo */
     .sol-photo-accent::before{
-      content:'';position:absolute;inset:8px;z-index:2;pointer-events:none;
-      border:1px solid rgba(255,255,255,.08);border-radius:2px;
+      content:'';position:absolute;inset:7px;z-index:3;pointer-events:none;
+      border:1px solid rgba(255,255,255,.10);border-radius:2px;
     }
 
     /* studio location badge */
@@ -579,15 +583,11 @@
 
     @media(max-width:960px){
       .sol-in{grid-template-columns:1fr;gap:3rem;align-items:start}
-      .sol-right{flex-direction:row;min-height:260px}
-      .sol-photo-main{flex:3;min-height:240px}
-      .sol-photo-accent{flex:2;min-height:240px}
-
+      /* on single-col, right column needs an explicit height since height:100% loses reference */
+      .sol-right{height:380px}
     }
     @media(max-width:560px){
-      .sol-right{flex-direction:column;gap:.75rem;min-height:0}
-      .sol-photo-main{flex:none;height:220px;min-height:0}
-      .sol-photo-accent{flex:none;height:160px;min-height:0}
+      .sol-right{height:300px}
     }
 
     /* ── AREE ─────────────────────────────────────────────────────── */
