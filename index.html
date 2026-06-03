@@ -207,65 +207,103 @@
      *   2  overlay ← buffers ribbon from text; dark on content side, subtle on right
      *   3  content ← always fully above everything
      */
-    /* multi-layer overlay: dark vignette left + bottom for text, subtle right reveal */
     .hero-overlay{
       position:absolute;inset:0;z-index:2;
       background:
-        linear-gradient(180deg, rgba(18,16,13,.55) 0%, rgba(18,16,13,.18) 45%, rgba(18,16,13,.75) 100%),
-        linear-gradient(105deg, rgba(18,16,13,.85) 0%, rgba(18,16,13,.6) 40%, rgba(18,16,13,.2) 100%);
+        linear-gradient(180deg, rgba(18,16,13,.62) 0%, rgba(18,16,13,.28) 50%, rgba(18,16,13,.82) 100%),
+        linear-gradient(105deg, rgba(18,16,13,.9) 0%, rgba(18,16,13,.65) 40%, rgba(18,16,13,.35) 100%);
     }
+    /* 2-column grid: left = content, right = form card */
     .hero-main{
-      flex:1;display:flex;align-items:center;
+      flex:1;
+      display:grid;
+      grid-template-columns:1.15fr 1fr;
+      gap:3.5rem;
+      align-items:center;
       max-width:1280px;margin:0 auto;width:100%;
-      padding:clamp(3.5rem,7vw,6rem) var(--px) clamp(5rem,10vw,9rem);
+      padding:clamp(3.5rem,7vw,6rem) var(--px) clamp(4rem,8vw,7rem);
       position:relative;z-index:3;
     }
-    .hero-txt{max-width:760px}
+    .hero-txt{}
     .hero-kicker{
       display:inline-flex;align-items:center;gap:.65rem;
       font-size:.6rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
-      color:var(--or);margin-bottom:1.75rem;
+      color:var(--or);margin-bottom:1.5rem;
     }
     .hero-kicker-dot{
       width:6px;height:6px;border-radius:50%;background:var(--or);flex-shrink:0;
     }
     .hero-h1{
-      font-size:clamp(3.2rem,7vw,6.2rem);font-weight:900;
-      line-height:.96;letter-spacing:-.035em;color:#fff;
-      margin-bottom:1.85rem;
+      /* scaled for the narrower left column */
+      font-size:clamp(2.4rem,3.6vw,3.8rem);font-weight:900;
+      line-height:.97;letter-spacing:-.035em;color:#fff;
+      margin-bottom:1.5rem;
     }
     .hero-h1 em{font-style:italic;color:var(--or)}
     .hero-sub{
-      font-size:.95rem;font-weight:300;
-      color:rgba(242,244,245,.62);max-width:540px;
-      line-height:1.85;margin-bottom:2.75rem;
+      font-size:.9rem;font-weight:300;
+      color:rgba(242,244,245,.6);
+      line-height:1.85;margin-bottom:2.25rem;
     }
-    .hero-ctas{display:flex;gap:.9rem;flex-wrap:wrap;margin-bottom:3.25rem}
+    .hero-ctas{display:flex;gap:.85rem;flex-wrap:wrap;margin-bottom:2.25rem}
 
     /* Trust strip */
     .hero-trust{
-      display:flex;align-items:center;gap:1.5rem;
-      font-size:.68rem;font-weight:400;color:rgba(255,255,255,.36);
-      margin-bottom:3rem;
+      display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap;
+      font-size:.65rem;font-weight:400;color:rgba(255,255,255,.34);
+      margin-bottom:2.25rem;
     }
-    .hero-trust-sep{width:1px;height:14px;background:rgba(255,255,255,.15);flex-shrink:0}
+    .hero-trust-sep{width:1px;height:12px;background:rgba(255,255,255,.14);flex-shrink:0}
 
     .hero-stats{
-      display:flex;gap:0;
-      border-top:1px solid rgba(255,255,255,.1);padding-top:2.25rem;
+      display:grid;grid-template-columns:1fr 1fr;gap:.85rem 0;
+      border-top:1px solid rgba(255,255,255,.1);padding-top:2rem;
     }
-    .hst{padding-right:2.5rem;margin-right:2.5rem;border-right:1px solid rgba(255,255,255,.08)}
-    .hst:last-child{border-right:none;padding-right:0;margin-right:0}
-    .hst-n{font-size:2.4rem;font-weight:900;color:var(--or);line-height:1;letter-spacing:-.03em}
-    .hst-l{font-size:.68rem;color:rgba(255,255,255,.36);margin-top:.25rem;letter-spacing:.04em;line-height:1.4}
+    .hst{padding-right:1.5rem}
+    .hst:nth-child(2n){padding-right:0}
+    .hst-n{font-size:2rem;font-weight:900;color:var(--or);line-height:1;letter-spacing:-.03em}
+    .hst-l{font-size:.65rem;color:rgba(255,255,255,.34);margin-top:.2rem;letter-spacing:.04em;line-height:1.4}
+
+    /* Hero form card — right column */
+    .hero-form-card{
+      background:rgba(10,8,6,.84);
+      backdrop-filter:blur(24px);
+      -webkit-backdrop-filter:blur(24px);
+      border:1px solid rgba(255,255,255,.09);
+      border-top:2px solid var(--or);
+      border-radius:var(--radius);
+      padding:2rem 2.25rem 2.25rem;
+      position:relative;
+      z-index:3;
+    }
+    .hfc-head{
+      margin-bottom:1.5rem;
+      padding-bottom:1.25rem;
+      border-bottom:1px solid rgba(255,255,255,.07);
+    }
+    .hfc-title{
+      font-size:.88rem;font-weight:700;
+      color:#fff;letter-spacing:-.01em;margin-bottom:.3rem;
+    }
+    .hfc-sub{
+      font-size:.66rem;color:rgba(255,255,255,.3);letter-spacing:.04em;
+    }
+    /* tighter textarea inside the compact card */
+    .hero-form-card .ff textarea{min-height:76px}
 
     /* Hero bottom ribbon */
     .hero-rib-wrap{position:absolute;bottom:-4px;left:0;width:100%;height:300px;z-index:2;pointer-events:none;overflow:hidden}
 
-    @media(max-width:760px){
-      .hero-stats{flex-wrap:wrap;gap:1.5rem}
-      .hst{border-right:none;padding-right:0;margin-right:0;min-width:calc(50% - .75rem)}
-      .hero-trust{flex-wrap:wrap;gap:.6rem}
+    /* ── Responsive hero ───── */
+    @media(max-width:960px){
+      .hero-main{grid-template-columns:1fr;gap:2.5rem}
+      .hero-h1{font-size:clamp(3rem,7vw,5.4rem)}
+      .hero-stats{grid-template-columns:repeat(4,1fr);gap:0}
+      .hst{padding-right:1.5rem;margin-right:0}
+    }
+    @media(max-width:600px){
+      .hero-stats{grid-template-columns:1fr 1fr;gap:.85rem 0}
+      .hero-trust{gap:.5rem}
     }
 
     /* ── PROBLEMA ──────────────────────────────────────────────────── */
@@ -509,8 +547,9 @@
     .tc p{font-size:.78rem;color:rgba(255,255,255,.35);line-height:1.7;font-weight:300}
 
     /* ── CONTATTI ─────────────────────────────────────────────────── */
+    /* Form has moved to the hero; this section now shows contact info only */
     #contatti{background:var(--ink2);padding:var(--py) var(--px);position:relative;overflow:hidden}
-    .cont-in{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 1.4fr;gap:5rem;align-items:start}
+    .cont-in{max-width:720px;margin:0 auto}
     .cont-h2{font-size:clamp(2rem,4vw,3.2rem);font-weight:900;color:#fff;line-height:1.02;letter-spacing:-.025em;margin-bottom:1.35rem}
     .cont-h2 em{font-style:italic;color:var(--or)}
     .cont-sub{font-size:.9rem;font-weight:300;color:rgba(242,244,245,.42);line-height:1.85;margin-bottom:2.75rem}
@@ -564,7 +603,7 @@
     }
     .ferr{border-color:var(--chili) !important;background:rgba(206,57,32,.06) !important}
 
-    @media(max-width:760px){.cont-in{grid-template-columns:1fr;gap:3.5rem}.frow{grid-template-columns:1fr}}
+    @media(max-width:600px){.frow{grid-template-columns:1fr}}
 
     /* ── OR LINE ──────────────────────────────────────────────────── */
     .or-line{height:1px;background:linear-gradient(90deg,transparent,var(--or) 30%,var(--or) 70%,transparent)}
@@ -666,6 +705,8 @@
   </div>
 
   <div class="hero-main" id="main">
+
+    <!-- ── LEFT: content ── -->
     <div class="hero-txt">
       <span class="hero-kicker fu">
         <span class="hero-kicker-dot"></span>
@@ -678,18 +719,18 @@
       </h1>
       <p class="hero-sub fu d2">Con AgiLex hai uno studio legale d'impresa sempre al tuo fianco. Costo annuale concordato, supporto 7/7, in italiano e in inglese. Nessuna sorpresa.</p>
       <div class="hero-ctas fu d3">
-        <a href="#contatti" class="btn-primary">
-          Richiedi consulenza gratuita
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </a>
-        <a href="tel:+390239562104" class="btn-outline-wh">
+        <a href="tel:+390239562104" class="btn-primary">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12 19.79 19.79 0 0 1 2.04 3.39 2 2 0 0 1 4 1.21h3a2 2 0 0 1 2 1.72 19.79 19.79 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 19.79 19.79 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
           02 39562104
+        </a>
+        <a href="#hero-form" class="btn-outline-wh">
+          Compila il modulo
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </a>
       </div>
       <!-- Trust signals -->
       <div class="hero-trust fu d4" aria-label="Trust signals">
-        <span>✓ Costo concordato in anticipo</span>
+        <span>✓ Costo concordato</span>
         <span class="hero-trust-sep" aria-hidden="true"></span>
         <span>✓ Nessun rinnovo automatico</span>
         <span class="hero-trust-sep" aria-hidden="true"></span>
@@ -714,6 +755,64 @@
         </div>
       </div>
     </div>
+
+    <!-- ── RIGHT: form card ── -->
+    <div class="hero-form-card fu d2" id="hero-form">
+      <div class="hfc-head">
+        <p class="hfc-title">Richiedi una consulenza gratuita</p>
+        <p class="hfc-sub">Risposta entro 24 ore · Senza impegno</p>
+      </div>
+      <form class="contact-form" id="cForm" novalidate aria-label="Modulo di contatto">
+        <div class="frow">
+          <div class="ff">
+            <label for="nome">Nome e cognome <abbr title="campo obbligatorio">*</abbr></label>
+            <input type="text" id="nome" name="nome" placeholder="Mario Rossi" required autocomplete="name"/>
+          </div>
+          <div class="ff">
+            <label for="azienda">Azienda <abbr title="campo obbligatorio">*</abbr></label>
+            <input type="text" id="azienda" name="azienda" placeholder="Rossi S.r.l." required autocomplete="organization"/>
+          </div>
+        </div>
+        <div class="frow">
+          <div class="ff">
+            <label for="dip">Numero dipendenti</label>
+            <select id="dip" name="dip">
+              <option value="">Seleziona</option>
+              <option>1–5</option>
+              <option>6–15</option>
+              <option>16–50</option>
+              <option>51–200</option>
+              <option>Oltre 200</option>
+            </select>
+          </div>
+          <div class="ff">
+            <label for="tel">Telefono <abbr title="campo obbligatorio">*</abbr></label>
+            <input type="tel" id="tel" name="tel" placeholder="+39 02 1234567" required autocomplete="tel"/>
+          </div>
+        </div>
+        <div class="ff">
+          <label for="em">Email <abbr title="campo obbligatorio">*</abbr></label>
+          <input type="email" id="em" name="em" placeholder="mario@rossi.it" required autocomplete="email"/>
+        </div>
+        <div class="ff">
+          <label for="msg">La tua esigenza</label>
+          <textarea id="msg" name="msg" placeholder="Es. PMI con 20 dipendenti, contrattualistica e gestione fornitori..."></textarea>
+        </div>
+        <div class="fcheck">
+          <input type="checkbox" id="priv" name="priv" required/>
+          <label for="priv">Ho letto e accetto la <a href="#" rel="noopener">Privacy Policy</a>. Acconsento al trattamento dei dati ai sensi del GDPR. <abbr title="campo obbligatorio">*</abbr></label>
+        </div>
+        <button type="submit" class="btn-primary fsub">
+          Invia la richiesta
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+        <div class="fok" id="fok" role="status" aria-live="polite">
+          <strong>Richiesta inviata.</strong><br>
+          Un avvocato ti contatterà entro 24 ore per un primo confronto gratuito.
+        </div>
+      </form>
+    </div>
+
   </div>
 </section>
 
@@ -1045,78 +1144,25 @@
   </div>
 
   <div class="cont-in">
-    <div>
-      <span class="slabel fu">Contatti</span>
-      <h2 class="cont-h2 fu d1" id="contatti-h2">Iniziamo a<br>lavorare <em>insieme.</em></h2>
-      <p class="cont-sub fu d2">Compila il modulo e ti ricontatteremo entro 24 ore per fissare un primo confronto senza impegno.</p>
-      <address class="cinfo fu d3" style="font-style:normal">
-        <div class="crow">
-          <div class="cico" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
-          <div><strong>Sede</strong>Corso Buenos Aires 45, 20124 Milano</div>
-        </div>
-        <div class="crow">
-          <div class="cico" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12 19.79 19.79 0 0 1 2.04 3.39 2 2 0 0 1 4 1.21h3a2 2 0 0 1 2 1.72 19.79 19.79 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 19.79 19.79 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
-          <div><strong>Telefono</strong><a href="tel:+390239562104">02 39562104</a> · <a href="tel:+393477188684">347 7188684</a></div>
-        </div>
-        <div class="crow">
-          <div class="cico" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
-          <div><strong>Email</strong><a href="mailto:amministrazione.bortolottilex@gmail.com">amministrazione.bortolottilex@gmail.com</a></div>
-        </div>
-      </address>
-      <div class="cont-note fu d4">
-        <strong>Cosa succede dopo l'invio?</strong> Entro 24 ore un avvocato dello studio ti contatterà per un primo confronto telefonico gratuito, senza impegno.
+    <span class="slabel fu">Contatti</span>
+    <h2 class="cont-h2 fu d1" id="contatti-h2">Preferisci contattarci<br><em>direttamente?</em></h2>
+    <p class="cont-sub fu d2">Siamo raggiungibili per telefono, email o di persona nella nostra sede di Milano. Il primo confronto è sempre gratuito e senza impegno.</p>
+    <address class="cinfo fu d3" style="font-style:normal">
+      <div class="crow">
+        <div class="cico" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <div><strong>Sede</strong>Corso Buenos Aires 45, 20124 Milano</div>
       </div>
-    </div>
-    <div class="fu d2">
-      <form class="contact-form" id="cForm" novalidate aria-label="Modulo di contatto">
-        <div class="frow">
-          <div class="ff">
-            <label for="nome">Nome e cognome <abbr title="campo obbligatorio">*</abbr></label>
-            <input type="text" id="nome" name="nome" placeholder="Mario Rossi" required autocomplete="name"/>
-          </div>
-          <div class="ff">
-            <label for="azienda">Azienda <abbr title="campo obbligatorio">*</abbr></label>
-            <input type="text" id="azienda" name="azienda" placeholder="Rossi S.r.l." required autocomplete="organization"/>
-          </div>
-        </div>
-        <div class="frow">
-          <div class="ff">
-            <label for="dip">Numero dipendenti</label>
-            <select id="dip" name="dip">
-              <option value="">Seleziona</option>
-              <option>1–5</option>
-              <option>6–15</option>
-              <option>16–50</option>
-              <option>51–200</option>
-              <option>Oltre 200</option>
-            </select>
-          </div>
-          <div class="ff">
-            <label for="tel">Telefono <abbr title="campo obbligatorio">*</abbr></label>
-            <input type="tel" id="tel" name="tel" placeholder="+39 02 1234567" required autocomplete="tel"/>
-          </div>
-        </div>
-        <div class="ff">
-          <label for="em">Email <abbr title="campo obbligatorio">*</abbr></label>
-          <input type="email" id="em" name="em" placeholder="mario@rossi.it" required autocomplete="email"/>
-        </div>
-        <div class="ff">
-          <label for="msg">La tua esigenza</label>
-          <textarea id="msg" name="msg" placeholder="Es. PMI con 20 dipendenti, ho bisogno di supporto su contrattualistica e gestione fornitori..."></textarea>
-        </div>
-        <div class="fcheck">
-          <input type="checkbox" id="priv" name="priv" required/>
-          <label for="priv">Ho letto e accetto la <a href="#" rel="noopener">Privacy Policy</a>. Acconsento al trattamento dei dati personali ai sensi del GDPR per essere ricontattato dallo Studio Legale Bortolotti. <abbr title="campo obbligatorio">*</abbr></label>
-        </div>
-        <button type="submit" class="btn-primary fsub">
-          Richiedi una consulenza gratuita
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </button>
-        <div class="fok" id="fok" role="status" aria-live="polite">
-          <strong>Richiesta inviata.</strong><br>
-          Un avvocato ti contatterà entro 24 ore per un primo confronto gratuito.
-        </div>
-      </form>
+      <div class="crow">
+        <div class="cico" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12 19.79 19.79 0 0 1 2.04 3.39 2 2 0 0 1 4 1.21h3a2 2 0 0 1 2 1.72 19.79 19.79 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 19.79 19.79 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+        <div><strong>Telefono</strong><a href="tel:+390239562104">02 39562104</a> · <a href="tel:+393477188684">347 7188684</a></div>
+      </div>
+      <div class="crow">
+        <div class="cico" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+        <div><strong>Email</strong><a href="mailto:amministrazione.bortolottilex@gmail.com">amministrazione.bortolottilex@gmail.com</a></div>
+      </div>
+    </address>
+    <div class="cont-note fu d4">
+      <strong>Oppure compila il modulo in cima alla pagina.</strong> Entro 24 ore un avvocato ti contatterà per un primo confronto telefonico gratuito, senza impegno.
     </div>
   </div>
 </section>
