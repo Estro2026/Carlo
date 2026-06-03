@@ -255,14 +255,46 @@
     }
     .hero-trust-sep{width:1px;height:12px;background:rgba(255,255,255,.14);flex-shrink:0}
 
+    /* ── Hero stats strip ──────────────────────────────────────────── */
     .hero-stats{
-      display:grid;grid-template-columns:1fr 1fr;gap:.85rem 0;
-      border-top:1px solid rgba(255,255,255,.1);padding-top:2rem;
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      border-top:1px solid rgba(255,255,255,.1);
+      padding-top:1.85rem;
     }
-    .hst{padding-right:1.5rem}
-    .hst:nth-child(2n){padding-right:0}
-    .hst-n{font-size:2rem;font-weight:900;color:var(--or);line-height:1;letter-spacing:-.03em}
-    .hst-l{font-size:.65rem;color:rgba(255,255,255,.34);margin-top:.2rem;letter-spacing:.04em;line-height:1.4}
+    .hst{
+      padding-right:1.5rem;
+      border-right:1px solid rgba(255,255,255,.08);
+    }
+    .hst:last-child{border-right:none;padding-right:0}
+    /* orange micro-accent line above each number */
+    .hst::before{
+      content:'';display:block;
+      width:18px;height:2px;
+      background:var(--or);border-radius:1px;
+      margin-bottom:.65rem;
+    }
+    .hst-n{
+      font-size:1.85rem;font-weight:900;
+      color:var(--or);line-height:1;
+      letter-spacing:-.025em;
+      margin-bottom:.38rem;
+    }
+    /* primary label — small-caps, more visible */
+    .hst-l{
+      font-size:.6rem;font-weight:700;
+      text-transform:uppercase;letter-spacing:.1em;
+      color:rgba(255,255,255,.62);
+      line-height:1.3;
+    }
+    /* secondary context — light, lowercase */
+    .hst-l span{
+      display:block;
+      font-weight:300;text-transform:none;
+      letter-spacing:.03em;
+      color:rgba(255,255,255,.3);
+      font-size:.58rem;margin-top:.1rem;
+    }
 
     /* Hero form card — right column */
     .hero-form-card{
@@ -298,12 +330,27 @@
     @media(max-width:960px){
       .hero-main{grid-template-columns:1fr;gap:2.5rem}
       .hero-h1{font-size:clamp(3rem,7vw,5.4rem)}
-      .hero-stats{grid-template-columns:repeat(4,1fr);gap:0}
-      .hst{padding-right:1.5rem;margin-right:0}
+      /* single-col hero → stats go back to a natural 4-col row (full width) */
+      .hero-stats{grid-template-columns:repeat(4,1fr)}
     }
     @media(max-width:600px){
-      .hero-stats{grid-template-columns:1fr 1fr;gap:.85rem 0}
       .hero-trust{gap:.5rem}
+      /* 2×2 grid with cross dividers */
+      .hero-stats{grid-template-columns:1fr 1fr}
+      .hst{padding-right:1.25rem}
+      .hst:nth-child(2n){
+        border-right:none;
+        padding-right:0;
+        padding-left:1.25rem;
+      }
+      .hst:nth-child(-n+2){
+        padding-bottom:1.5rem;
+        border-bottom:1px solid rgba(255,255,255,.08);
+      }
+      .hst:nth-child(n+3){padding-top:1.5rem}
+      /* restore right border on odd items in 2-col layout */
+      .hst:nth-child(2n-1){border-right:1px solid rgba(255,255,255,.08)}
+      .hst:last-child{border-right:none}
     }
 
     /* ── PROBLEMA ──────────────────────────────────────────────────── */
@@ -739,19 +786,19 @@
       <div class="hero-stats fu d5" role="list" aria-label="Numeri chiave">
         <div class="hst" role="listitem">
           <div class="hst-n">7/7</div>
-          <div class="hst-l">Disponibilità<br>365 giorni l'anno</div>
+          <div class="hst-l">Disponibilità<span>365 giorni l'anno</span></div>
         </div>
         <div class="hst" role="listitem">
           <div class="hst-n">15+</div>
-          <div class="hst-l">Anni di<br>esperienza</div>
+          <div class="hst-l">Anni di esperienza<span>Studio fondato nel 2009</span></div>
         </div>
         <div class="hst" role="listitem">
           <div class="hst-n">2</div>
-          <div class="hst-l">Lingue<br>IT &amp; EN</div>
+          <div class="hst-l">Lingue<span>Italiano &amp; English</span></div>
         </div>
         <div class="hst" role="listitem">
           <div class="hst-n">9+</div>
-          <div class="hst-l">Aree del<br>diritto aziendale</div>
+          <div class="hst-l">Aree di diritto<span>Civile, commerciale e lavoro</span></div>
         </div>
       </div>
     </div>
