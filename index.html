@@ -200,9 +200,16 @@
       width:100%;height:100%;object-fit:cover;
       filter:brightness(0.38) contrast(1.12) saturate(0.55);
     }
+    /*
+     * Layer order (bottom → top):
+     *   0  photo
+     *   1  ribbon  ← decorative, below overlay so gradient acts as diffuser
+     *   2  overlay ← buffers ribbon from text; dark on content side, subtle on right
+     *   3  content ← always fully above everything
+     */
     /* multi-layer overlay: dark vignette left + bottom for text, subtle right reveal */
     .hero-overlay{
-      position:absolute;inset:0;z-index:1;
+      position:absolute;inset:0;z-index:2;
       background:
         linear-gradient(180deg, rgba(18,16,13,.55) 0%, rgba(18,16,13,.18) 45%, rgba(18,16,13,.75) 100%),
         linear-gradient(105deg, rgba(18,16,13,.85) 0%, rgba(18,16,13,.6) 40%, rgba(18,16,13,.2) 100%);
@@ -650,11 +657,11 @@
   </div>
   <div class="hero-overlay" aria-hidden="true"></div>
 
-  <!-- Decorative ribbon -->
-  <div class="rib" style="bottom:-6px;left:0;width:100%;height:280px;z-index:2" aria-hidden="true">
+  <!-- Decorative ribbon — z-index:1 keeps it below the overlay (z:2) and text (z:3) -->
+  <div class="rib" style="bottom:-6px;left:0;width:100%;height:280px;z-index:1" aria-hidden="true">
     <svg viewBox="0 0 1440 280" xmlns="http://www.w3.org/2000/svg" fill="none" preserveAspectRatio="xMidYMax meet" style="width:100%;height:100%">
       <path d="M -80,260 C 80,200 180,120 260,102 C 340,84 414,108 428,152 C 442,196 410,236 368,246 C 326,256 284,232 280,202 C 276,172 304,152 340,156 C 400,164 530,212 730,262 C 910,304 1110,322 1500,332"
-            stroke="#EC6608" stroke-width="30" stroke-linecap="round" fill="none" opacity=".85"/>
+            stroke="#EC6608" stroke-width="30" stroke-linecap="round" fill="none" opacity=".6"/>
     </svg>
   </div>
 
