@@ -201,23 +201,28 @@
     .hero-photo{position:absolute;inset:0;z-index:0}
     .hero-photo img{
       width:100%;height:100%;object-fit:cover;
-      object-position:center 12%;
-      filter:brightness(0.48) contrast(1.18) saturate(0.52);
-      transform:scale(1.22);
-      transform-origin:center 20%;
+      /* push crop upward so building tops + skyline are visible in the upper half */
+      object-position:center 8%;
+      /* brighter + higher contrast so skyline reads clearly as background */
+      filter:brightness(0.62) contrast(1.22) saturate(0.48);
+      /* moderate zoom — enough to fill frame without pushing buildings below the fold */
+      transform:scale(1.10);
+      transform-origin:center 15%;
     }
     /*
      * Layer order (bottom → top):
      *   0  photo
-     *   1  ribbon  ← decorative, below overlay so gradient acts as diffuser
-     *   2  overlay ← left column darker for text readability; right column lighter to show skyline
-     *   3  content ← always fully above everything
+     *   1  ribbon  ← decorative, below overlay
+     *   2  overlay ← left band dark for text; centre/right much lighter so skyline shows
+     *   3  content
      */
     .hero-overlay{
       position:absolute;inset:0;z-index:2;
       background:
-        linear-gradient(180deg, rgba(18,16,13,.45) 0%, rgba(18,16,13,.18) 42%, rgba(18,16,13,.72) 100%),
-        linear-gradient(108deg, rgba(18,16,13,.92) 0%, rgba(18,16,13,.72) 38%, rgba(18,16,13,.22) 65%, rgba(18,16,13,.10) 100%);
+        /* vertical: very light at top so sky/towers show, heavier only at the bottom strip */
+        linear-gradient(180deg, rgba(18,16,13,.22) 0%, rgba(18,16,13,.10) 38%, rgba(18,16,13,.60) 85%, rgba(18,16,13,.88) 100%),
+        /* horizontal: left band stays dark for headline readability; opens up right of centre */
+        linear-gradient(108deg, rgba(18,16,13,.88) 0%, rgba(18,16,13,.72) 32%, rgba(18,16,13,.18) 58%, rgba(18,16,13,.08) 100%);
     }
     /* 2-column grid: left = content, right = form card */
     .hero-main{
@@ -334,27 +339,27 @@
       .hero-stats{grid-template-columns:repeat(4,1fr)}
       /* tablet: centre skyline, use stronger uniform overlay */
       .hero-photo img{
-        object-position:center 14%;
-        transform:scale(1.16);
-        transform-origin:center 20%;
+        object-position:center 8%;
+        transform:scale(1.06);
+        transform-origin:center 15%;
       }
       .hero-overlay{
         background:
-          linear-gradient(180deg, rgba(18,16,13,.52) 0%, rgba(18,16,13,.28) 45%, rgba(18,16,13,.82) 100%),
-          linear-gradient(108deg, rgba(18,16,13,.88) 0%, rgba(18,16,13,.60) 50%, rgba(18,16,13,.44) 100%);
+          linear-gradient(180deg, rgba(18,16,13,.22) 0%, rgba(18,16,13,.10) 35%, rgba(18,16,13,.65) 80%, rgba(18,16,13,.90) 100%),
+          linear-gradient(108deg, rgba(18,16,13,.85) 0%, rgba(18,16,13,.58) 45%, rgba(18,16,13,.28) 100%);
       }
     }
     @media(max-width:600px){
       /* mobile: skyline visible above content, centred */
       .hero-photo img{
-        object-position:center 10%;
-        transform:scale(1.10);
-        transform-origin:center 15%;
+        object-position:center 6%;
+        transform:scale(1.04);
+        transform-origin:center 12%;
       }
       .hero-overlay{
         background:
-          linear-gradient(180deg, rgba(18,16,13,.42) 0%, rgba(18,16,13,.22) 30%, rgba(18,16,13,.88) 70%, rgba(18,16,13,.96) 100%),
-          linear-gradient(108deg, rgba(18,16,13,.82) 0%, rgba(18,16,13,.55) 100%);
+          linear-gradient(180deg, rgba(18,16,13,.18) 0%, rgba(18,16,13,.08) 28%, rgba(18,16,13,.72) 65%, rgba(18,16,13,.96) 100%),
+          linear-gradient(108deg, rgba(18,16,13,.80) 0%, rgba(18,16,13,.50) 100%);
       }
       .hero-trust{gap:.5rem}
       /* 2×2 grid with cross dividers */
