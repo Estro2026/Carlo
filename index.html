@@ -1127,53 +1127,67 @@
     footer{background:#060504;color:rgba(255,255,255,.3);padding:0 var(--px) 2rem}
     .fw{max-width:1280px;margin:0 auto}
 
-    /* Footer form — pre-nav block */
+    /* Form CTA section — light background */
+    #form-cta{background:var(--afw);padding:var(--py) var(--px)}
+    .fform-outer{max-width:1280px;margin:0 auto}
     .fform-wrap{
       display:grid;grid-template-columns:1fr 1.5fr;gap:5rem;align-items:start;
-      padding:4rem 0 4rem;
-      border-bottom:1px solid rgba(255,255,255,.06);
-      margin-bottom:3.5rem;
     }
     .fform-label{font-size:.6rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--or);display:block;margin-bottom:.85rem}
-    .fform-title{font-size:clamp(1.5rem,2.8vw,2.4rem);font-weight:900;color:#fff;line-height:1.04;letter-spacing:-.022em;margin-bottom:.85rem}
+    .fform-title{font-size:clamp(1.5rem,2.8vw,2.4rem);font-weight:900;color:var(--ink);line-height:1.04;letter-spacing:-.022em;margin-bottom:.85rem}
     .fform-title em{font-style:italic;color:var(--or)}
-    .fform-sub{font-size:.82rem;color:rgba(255,255,255,.34);line-height:1.85;font-weight:300;margin-bottom:1.5rem}
+    .fform-sub{font-size:.82rem;color:rgba(18,16,13,.48);line-height:1.85;font-weight:300;margin-bottom:1.5rem}
     .fform-badges{display:flex;flex-wrap:wrap;gap:.6rem}
     .fform-badge{
       display:inline-flex;align-items:center;gap:.4rem;
       font-size:.65rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;
-      color:rgba(255,255,255,.32);
+      color:rgba(18,16,13,.38);
     }
     .fform-badge svg{color:var(--or);flex-shrink:0}
-    .fform-contacts{display:flex;flex-direction:column;gap:0;margin-bottom:1.75rem;border:1px solid rgba(255,255,255,.07);border-radius:5px;overflow:hidden}
+    .fform-contacts{display:flex;flex-direction:column;gap:0;margin-bottom:1.75rem;border:1px solid rgba(18,16,13,.1);border-radius:5px;overflow:hidden;background:#fff}
     .fform-contact-row{
       display:flex;align-items:center;gap:1rem;
       padding:.9rem 1.1rem;
-      border-bottom:1px solid rgba(255,255,255,.05);
+      border-bottom:1px solid rgba(18,16,13,.07);
       text-decoration:none;
       transition:background .18s;
     }
     .fform-contact-row:last-child{border-bottom:none}
-    a.fform-contact-row:hover{background:rgba(255,255,255,.04)}
+    a.fform-contact-row:hover{background:rgba(236,102,8,.04)}
     .fform-contact-ico{
       width:32px;height:32px;border-radius:6px;
-      background:rgba(236,102,8,.1);border:1px solid rgba(236,102,8,.18);
+      background:rgba(236,102,8,.1);border:1px solid rgba(236,102,8,.2);
       display:flex;align-items:center;justify-content:center;
       color:var(--or);flex-shrink:0;
     }
     .fform-contact-text{display:flex;flex-direction:column;gap:.1rem;min-width:0}
-    .fform-contact-label{font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.28)}
-    .fform-contact-val{font-size:.78rem;color:rgba(255,255,255,.62);font-weight:400;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-
+    .fform-contact-label{font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(18,16,13,.32)}
+    .fform-contact-val{font-size:.78rem;color:rgba(18,16,13,.7);font-weight:400;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
     .fform-card{
-      background:rgba(255,255,255,.03);
-      border:1px solid rgba(255,255,255,.07);
+      background:#fff;
+      border:1px solid rgba(18,16,13,.08);
       border-radius:5px;padding:2rem 1.85rem;
+      box-shadow:0 4px 24px rgba(18,16,13,.06);
     }
-
     @media(max-width:860px){
-      .fform-wrap{grid-template-columns:1fr;gap:2.25rem;padding:3rem 0}
+      .fform-wrap{grid-template-columns:1fr;gap:2.25rem}
     }
+    /* Light-theme overrides for the form fields inside #form-cta */
+    #form-cta .ff label{color:rgba(18,16,13,.45)}
+    #form-cta .ff input,
+    #form-cta .ff select,
+    #form-cta .ff textarea{
+      background:#fff;border-color:rgba(18,16,13,.14);color:var(--ink);
+    }
+    #form-cta .ff input::placeholder,
+    #form-cta .ff textarea::placeholder{color:rgba(18,16,13,.28)}
+    #form-cta .ff select{color:rgba(18,16,13,.55)}
+    #form-cta .ff select option{background:#fff;color:var(--ink)}
+    #form-cta .ff input:focus,
+    #form-cta .ff select:focus,
+    #form-cta .ff textarea:focus{border-color:var(--or);background:#fff}
+    #form-cta .fcheck label{color:rgba(18,16,13,.5)}
+    #form-cta .fok{background:rgba(236,102,8,.07);border-color:rgba(236,102,8,.25);color:var(--ink)}
 
     .ft{
       display:grid;grid-template-columns:1.8fr 1fr 1fr;gap:3rem;
@@ -1838,15 +1852,13 @@
 </section>
 
 
-<!-- ══ FOOTER ════════════════════════════════════════════════════════ -->
-<footer>
-  <div class="fw">
-
-    <!-- Footer contact form -->
+<!-- ══ FORM CTA ═══════════════════════════════════════════════════════ -->
+<section id="form-cta" aria-labelledby="fform-h2">
+  <div class="fform-outer">
     <div class="fform-wrap">
       <div class="fform-intro">
         <span class="fform-label">Contatto diretto</span>
-        <h2 class="fform-title">Richiedi una<br><em>consulenza gratuita</em></h2>
+        <h2 class="fform-title" id="fform-h2">Richiedi una<br><em>consulenza gratuita</em></h2>
         <p class="fform-sub">Compila il modulo oppure contattaci direttamente. Un avvocato AgiLex ti risponderà entro 24 ore per un primo confronto senza impegno e senza costi.</p>
 
         <div class="fform-contacts">
@@ -1956,6 +1968,13 @@
         </form>
       </div>
     </div>
+  </div>
+</section>
+
+
+<!-- ══ FOOTER ════════════════════════════════════════════════════════ -->
+<footer>
+  <div class="fw">
 
     <div class="ft">
       <div class="fbrand">
