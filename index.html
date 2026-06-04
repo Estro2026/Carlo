@@ -924,14 +924,28 @@
     .ctamid-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
 
     /* ── PERCHÉ ───────────────────────────────────────────────────── */
-    #diff{background:var(--afw);padding:var(--py) var(--px);position:relative;overflow:hidden}
-    /* Faint warmth glow top-right */
-    #diff::before{
-      content:'';position:absolute;top:-15%;right:-8%;
-      width:640px;height:640px;border-radius:50%;
-      background:radial-gradient(circle,rgba(236,102,8,.044) 0%,transparent 68%);
-      pointer-events:none;
+    #diff{
+      padding:var(--py) var(--px);position:relative;overflow:hidden;
+      /* arc sweeps from bottom-right to top-left — third light section, new direction */
+      background:
+        radial-gradient(ellipse 100% 65% at 108%  108%, rgba(236,102,8,.18)  0%, transparent 46%),
+        radial-gradient(ellipse 75%  55% at 80%   82%,  rgba(206,57,32,.12)  0%, transparent 42%),
+        radial-gradient(ellipse 65%  50% at 50%   55%,  rgba(146,21,42,.08)  0%, transparent 40%),
+        radial-gradient(ellipse 55%  45% at 18%   28%,  rgba(213,220,220,.2) 0%, transparent 50%),
+        var(--afw);
     }
+    #diff::before{
+      content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
+      opacity:.16;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.55' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-repeat:repeat;background-size:200px 200px;mix-blend-mode:multiply;
+    }
+    #diff::after{
+      content:'';position:absolute;bottom:-15%;right:-8%;
+      width:680px;height:680px;border-radius:50%;pointer-events:none;z-index:0;
+      background:radial-gradient(circle,rgba(236,102,8,.12) 0%,rgba(206,57,32,.06) 40%,transparent 65%);
+    }
+    #diff .diff-in{position:relative;z-index:1}
     .diff-in{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
     .diff-h2{
       font-size:clamp(1.9rem,4vw,3.6rem);font-weight:900;
@@ -948,40 +962,53 @@
     .js-ready .diff-h2.in em::after{transform:scaleX(1)}
 
     /* Six items */
-    .diff-list{display:flex;flex-direction:column}
+    .diff-list{display:flex;flex-direction:column;gap:.6rem}
     .di{
-      display:flex;gap:1.35rem;padding:1.5rem 0;
-      border-bottom:1px solid var(--platinum);
+      display:flex;align-items:flex-start;gap:0;
+      background:#fff;
+      border:1px solid rgba(18,16,13,.07);
+      border-radius:6px;
+      overflow:hidden;
       position:relative;
-      transition:background .22s,box-shadow .3s cubic-bezier(.22,.61,.36,1),padding-left .28s cubic-bezier(.22,.61,.36,1);
       cursor:default;
+      transition:box-shadow .28s cubic-bezier(.22,.61,.36,1),transform .28s cubic-bezier(.22,.61,.36,1),border-color .22s;
     }
-    .di:last-child{border-bottom:none}
     .di:hover{
-      background:rgba(236,102,8,.025);
-      box-shadow:inset 3px 0 0 var(--or);
-      padding-left:.65rem;
+      box-shadow:0 6px 28px rgba(18,16,13,.1);
+      transform:translateX(4px);
+      border-color:rgba(236,102,8,.3);
     }
     /* Slide-from-left override */
     .js-ready .di.fu{transform:translateX(-22px);opacity:0}
     .js-ready .di.fu.in{transform:none;opacity:1}
 
-    /* Number */
+    /* Left accent band with number */
     .di-n{
-      font-size:1.9rem;font-weight:900;font-style:italic;
-      color:rgba(236,102,8,.18);flex-shrink:0;line-height:1;
-      width:32px;text-align:right;padding-top:3px;
-      transition:color .24s,transform .28s cubic-bezier(.34,1.56,.64,1);
+      flex-shrink:0;
+      width:56px;
+      display:flex;align-items:center;justify-content:center;
+      font-size:1rem;font-weight:900;font-style:italic;letter-spacing:-.02em;
+      color:rgba(236,102,8,.5);
+      background:rgba(236,102,8,.06);
+      border-right:2px solid rgba(236,102,8,.12);
+      align-self:stretch;
+      transition:background .25s,color .25s,border-color .25s;
       user-select:none;
+      min-height:72px;
     }
-    .di:hover .di-n{color:var(--or);transform:scale(1.18) translateX(-2px)}
+    .di:hover .di-n{
+      background:var(--or);
+      color:#fff;
+      border-color:var(--or);
+    }
 
-    /* Text */
-    .di h3{font-size:.9rem;font-weight:700;color:rgba(18,16,13,.88);margin-bottom:.38rem;line-height:1.35;transition:color .2s}
+    /* Content area */
+    .di-body{flex:1;padding:1.1rem 1.25rem}
+    .di h3{font-size:.88rem;font-weight:700;color:rgba(18,16,13,.9);margin-bottom:.32rem;line-height:1.35;transition:color .2s}
     .di:hover h3{color:var(--ink)}
     .di h3 .hl{color:var(--or)}
-    .di p{font-size:.8rem;color:rgba(18,16,13,.44);line-height:1.78;font-weight:300;transition:color .2s}
-    .di:hover p{color:rgba(18,16,13,.62)}
+    .di p{font-size:.78rem;color:rgba(18,16,13,.62);line-height:1.78;font-weight:400;margin:0;transition:color .2s}
+    .di:hover p{color:rgba(18,16,13,.78)}
 
     /* Arrow micro-indicator */
     .di-arr{
@@ -1023,7 +1050,7 @@
     }
     .dr-kicker{font-size:.6rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--or);margin-bottom:1rem;display:block}
     .dr-big{font-size:clamp(1.8rem,3vw,2.8rem);font-weight:900;font-style:italic;color:#fff;line-height:1.02;margin-bottom:.85rem}
-    .dr-sub{font-size:.85rem;color:rgba(255,255,255,.38);line-height:1.8;margin-bottom:1.75rem;font-weight:300}
+    .dr-sub{font-size:.85rem;color:rgba(255,255,255,.72);line-height:1.8;margin-bottom:1.75rem;font-weight:400}
     .dr-list{display:flex;flex-direction:column;gap:.6rem;margin-bottom:2.25rem}
     .drl{
       display:flex;align-items:center;gap:.8rem;
@@ -1931,17 +1958,42 @@ footer .fw{position:relative;z-index:1}
 
 <!-- ══ PERCHÉ ════════════════════════════════════════════════════════ -->
 <section id="diff" aria-labelledby="diff-h2">
+  <svg class="diff-geo" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden">
+    <defs>
+      <linearGradient id="dgGrad1" x1="100%" y1="100%" x2="0%" y2="0%">
+        <stop offset="0%"   stop-color="#EC6608" stop-opacity=".6"/>
+        <stop offset="50%"  stop-color="#CE3920" stop-opacity=".38"/>
+        <stop offset="100%" stop-color="#92152A" stop-opacity=".1"/>
+      </linearGradient>
+      <linearGradient id="dgGrad2" x1="100%" y1="100%" x2="0%" y2="0%">
+        <stop offset="0%"   stop-color="#CE3920" stop-opacity=".42"/>
+        <stop offset="100%" stop-color="#92152A" stop-opacity=".07"/>
+      </linearGradient>
+      <linearGradient id="dgGrad3" x1="100%" y1="100%" x2="0%" y2="0%">
+        <stop offset="0%"   stop-color="#EC6608" stop-opacity=".25"/>
+        <stop offset="100%" stop-color="#D5DCDC" stop-opacity=".05"/>
+      </linearGradient>
+    </defs>
+    <!-- origin bottom-right -->
+    <circle cx="110%" cy="110%" r="220" fill="none" stroke="url(#dgGrad1)" stroke-width="28"/>
+    <!-- arc rises -->
+    <circle cx="84%"  cy="80%"  r="115" fill="none" stroke="url(#dgGrad2)" stroke-width="20"/>
+    <!-- arc centre -->
+    <circle cx="56%"  cy="50%"  r="65"  fill="none" stroke="url(#dgGrad2)" stroke-width="14"/>
+    <!-- arc fades top-left -->
+    <circle cx="18%"  cy="18%"  r="36"  fill="none" stroke="url(#dgGrad3)" stroke-width="10" stroke-dasharray="14 8"/>
+  </svg>
   <div class="diff-in">
     <div>
       <span class="slabel fu">Il vantaggio AgiLex</span>
       <h2 class="diff-h2 fu d1" id="diff-h2">Il problema legale che non arriva mai<br><em>è quello che abbiamo già risolto.</em></h2>
       <div class="diff-list" role="list">
-        <div class="di fu" role="listitem"><div class="di-n">1</div><div><h3><span class="hl">Sempre</span> al tuo fianco<span class="di-arr">→</span></h3><p>Un avvocato d'impresa disponibile 7 giorni su 7, 365 giorni l'anno. In italiano e in inglese.</p></div></div>
-        <div class="di fu d1" role="listitem"><div class="di-n">2</div><div><h3><span class="hl">Un referente,</span> non un centralino<span class="di-arr">→</span></h3><p>Conosce la tua azienda. Risponde quando chiami. Nessun passaggio di mano.</p></div></div>
-        <div class="di fu d2" role="listitem"><div class="di-n">3</div><div><h3><span class="hl">Veniamo</span> da te<span class="di-arr">→</span></h3><p>Riunioni, trattative, firma dei contratti — dove serve, quando serve. Niente spostamenti inutili a tuo carico.</p></div></div>
-        <div class="di fu d3" role="listitem"><div class="di-n">4</div><div><h3><span class="hl">Budget</span> sotto controllo<span class="di-arr">→</span></h3><p>Costo annuale fisso, concordato in anticipo. Zero sorprese in fattura.</p></div></div>
-        <div class="di fu d4" role="listitem"><div class="di-n">5</div><div><h3><span class="hl">Italiano</span> e inglese<span class="di-arr">→</span></h3><p>Assistenza piena in entrambe le lingue per operazioni internazionali, partner stranieri e strutture cross-border.</p></div></div>
-        <div class="di fu d5" role="listitem"><div class="di-n">6</div><div><h3><span class="hl">In azienda,</span> non solo in studio<span class="di-arr">→</span></h3><p>Interveniamo direttamente — riunioni operative, negoziazioni, formazione interna. Supporto concreto, non solo pareri.</p></div></div>
+        <div class="di fu" role="listitem"><div class="di-n">1</div><div class="di-body"><h3><span class="hl">Sempre</span> al tuo fianco<span class="di-arr">→</span></h3><p>Un avvocato d'impresa disponibile 7 giorni su 7, 365 giorni l'anno. In italiano e in inglese.</p></div></div>
+        <div class="di fu d1" role="listitem"><div class="di-n">2</div><div class="di-body"><h3><span class="hl">Un referente,</span> non un centralino<span class="di-arr">→</span></h3><p>Conosce la tua azienda. Risponde quando chiami. Nessun passaggio di mano.</p></div></div>
+        <div class="di fu d2" role="listitem"><div class="di-n">3</div><div class="di-body"><h3><span class="hl">Veniamo</span> da te<span class="di-arr">→</span></h3><p>Riunioni, trattative, firma dei contratti — dove serve, quando serve. Niente spostamenti inutili a tuo carico.</p></div></div>
+        <div class="di fu d3" role="listitem"><div class="di-n">4</div><div class="di-body"><h3><span class="hl">Budget</span> sotto controllo<span class="di-arr">→</span></h3><p>Costo annuale fisso, concordato in anticipo. Zero sorprese in fattura.</p></div></div>
+        <div class="di fu d4" role="listitem"><div class="di-n">5</div><div class="di-body"><h3><span class="hl">Italiano</span> e inglese<span class="di-arr">→</span></h3><p>Assistenza piena in entrambe le lingue per operazioni internazionali, partner stranieri e strutture cross-border.</p></div></div>
+        <div class="di fu d5" role="listitem"><div class="di-n">6</div><div class="di-body"><h3><span class="hl">In azienda,</span> non solo in studio<span class="di-arr">→</span></h3><p>Interveniamo direttamente — riunioni operative, negoziazioni, formazione interna. Supporto concreto, non solo pareri.</p></div></div>
       </div>
     </div>
     <div class="fu d2">
