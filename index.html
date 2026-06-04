@@ -1334,12 +1334,14 @@ footer .fw{position:relative;z-index:1}
     }
     .fform-outer{max-width:1280px;margin:0 auto;position:relative;z-index:1}
     .fform-wrap{
-      display:grid;grid-template-columns:1fr 1.5fr;gap:5rem;align-items:start;
+      display:grid;grid-template-columns:1fr 1.5fr;gap:5rem;align-items:stretch;
     }
+    .fform-intro{display:flex;flex-direction:column}
+    .fform-card{display:flex;flex-direction:column}
     .fform-label{font-size:.6rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--or);display:block;margin-bottom:1rem}
     .fform-title{font-size:clamp(2rem,4.2vw,3.6rem);font-weight:900;color:var(--ink);line-height:1.0;letter-spacing:-.03em;margin-bottom:1rem}
     .fform-title em{font-style:italic;color:var(--or)}
-    .fform-sub{font-size:.84rem;color:rgba(18,16,13,.55);line-height:1.85;font-weight:300;margin-bottom:1.75rem}
+    .fform-sub{font-size:.84rem;color:rgba(18,16,13,.78);line-height:1.85;font-weight:400;margin-bottom:1.75rem}
 
     /* Promise highlight block */
     .fform-promise{
