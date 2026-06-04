@@ -381,7 +381,33 @@
     }
 
     /* ── PROBLEMA ──────────────────────────────────────────────────── */
-    #problema{background:var(--afw);padding:var(--py) var(--px);position:relative;overflow:hidden}
+    #problema{
+      padding:var(--py) var(--px);position:relative;overflow:hidden;
+      background:
+        /* warm-to-cool diagonal brand gradient */
+        linear-gradient(135deg,
+          rgba(146,21,42,.07)  0%,
+          rgba(206,57,32,.05) 30%,
+          rgba(236,102,8,.04) 55%,
+          rgba(213,220,220,.18) 80%,
+          rgba(242,244,245,1) 100%
+        ),
+        var(--afw);
+    }
+    /* noise texture overlay */
+    #problema::before{
+      content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
+      opacity:.032;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      background-repeat:repeat;background-size:300px 300px;
+    }
+    /* top-right warm radial glow */
+    #problema::after{
+      content:'';position:absolute;top:-20%;right:-10%;
+      width:560px;height:560px;border-radius:50%;pointer-events:none;z-index:0;
+      background:radial-gradient(circle,rgba(236,102,8,.07) 0%,rgba(206,57,32,.04) 45%,transparent 70%);
+    }
+    #problema .prob-in{position:relative;z-index:1}
     .prob-in{max-width:1280px;margin:0 auto}
     .prob-header{
       display:flex;align-items:flex-end;justify-content:space-between;
@@ -393,9 +419,12 @@
     }
     .prob-h2 em{font-style:italic;color:var(--or)}
     .prob-aside{
-      font-size:.82rem;font-weight:300;color:rgba(18,16,13,.45);
-      max-width:300px;line-height:1.75;flex-shrink:0;
-      padding-left:1.25rem;border-left:2px solid var(--or);
+      font-size:.84rem;font-weight:400;color:rgba(18,16,13,.78);
+      max-width:300px;line-height:1.82;flex-shrink:0;
+      padding:1rem 1.25rem;
+      border-left:3px solid var(--or);
+      background:rgba(236,102,8,.06);
+      border-radius:0 4px 4px 0;
     }
 
     /* ── Card grid ── */
