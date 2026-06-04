@@ -951,11 +951,11 @@
     }
 
     /* ── TARGET ───────────────────────────────────────────────────── */
-    #target{background:var(--ink);padding:var(--py) var(--px);position:relative;overflow:hidden}
+    #target{background:var(--afw);padding:var(--py) var(--px);position:relative;overflow:hidden}
     .tgt-in{max-width:1280px;margin:0 auto}
     .tgt-h2{
       font-size:clamp(2rem,4.5vw,3.8rem);font-weight:900;
-      color:#fff;line-height:1.02;letter-spacing:-.025em;
+      color:var(--ink);line-height:1.02;letter-spacing:-.025em;
       max-width:760px;margin-bottom:clamp(2.5rem,5vw,4rem);
     }
     .tgt-h2 em{font-style:italic;color:var(--or)}
@@ -965,19 +965,19 @@
       display:grid;
       grid-template-columns:repeat(3,1fr);
       gap:0;
-      border:1px solid rgba(255,255,255,.06);
+      border:1px solid rgba(18,16,13,.1);
       border-radius:6px;overflow:hidden;
       counter-reset:tc;
     }
     .tc{
-      background:var(--ink);
+      background:#fff;
       padding:2.1rem 1.85rem 2.4rem;
       display:flex;flex-direction:column;gap:.65rem;
       position:relative;overflow:hidden;
-      border-right:1px solid rgba(255,255,255,.06);
-      border-bottom:1px solid rgba(255,255,255,.06);
+      border-right:1px solid rgba(18,16,13,.08);
+      border-bottom:1px solid rgba(18,16,13,.08);
       counter-increment:tc;
-      transition:background .22s;
+      transition:background .22s,box-shadow .22s;
       cursor:default;
     }
     /* Remove right border on last column */
@@ -990,11 +990,11 @@
       content:counter(tc,decimal-leading-zero);
       position:absolute;bottom:-.15em;right:.6rem;
       font-size:4.5rem;font-weight:900;font-style:italic;line-height:1;
-      color:rgba(255,255,255,.035);
+      color:rgba(18,16,13,.04);
       pointer-events:none;user-select:none;
       transition:color .22s;
     }
-    .tc:hover::before{color:rgba(236,102,8,.07)}
+    .tc:hover::before{color:rgba(236,102,8,.08)}
 
     /* Orange bottom reveal */
     .tc::after{
@@ -1004,46 +1004,65 @@
       transition:transform .28s cubic-bezier(.22,.61,.36,1);
     }
     .tc:hover::after{transform:scaleX(1)}
-    .tc:hover{background:#1B1914}
+    .tc:hover{background:#faf8f6;box-shadow:inset 0 -2px 0 var(--or)}
 
-    /* Dot — top anchor, animated on hover */
+    /* Dot */
     .tc-dot{
       width:8px;height:8px;border-radius:50%;background:var(--or);flex-shrink:0;
       transition:transform .25s cubic-bezier(.34,1.56,.64,1),box-shadow .25s;
     }
-    .tc:hover .tc-dot{transform:scale(1.5);box-shadow:0 0 0 4px rgba(236,102,8,.18)}
+    .tc:hover .tc-dot{transform:scale(1.5);box-shadow:0 0 0 4px rgba(236,102,8,.16)}
 
     .tc h3{
       font-size:.9rem;font-weight:700;
-      color:rgba(242,244,245,.88);line-height:1.35;
+      color:rgba(18,16,13,.88);line-height:1.35;
       transition:color .2s;
     }
-    .tc:hover h3{color:#fff}
-    .tc p{font-size:.79rem;color:rgba(255,255,255,.34);line-height:1.75;font-weight:300;transition:color .2s}
-    .tc:hover p{color:rgba(255,255,255,.52)}
+    .tc:hover h3{color:var(--ink)}
+    .tc p{font-size:.79rem;color:rgba(18,16,13,.5);line-height:1.75;font-weight:300;transition:color .2s}
+    .tc:hover p{color:rgba(18,16,13,.68)}
 
-    /* Tablet: 2×3 — still zero orphans */
+    /* Tablet: 2×3 */
     @media(max-width:860px){
       .tgt-grid{grid-template-columns:repeat(2,1fr)}
-      /* Reset 3n rule */
-      .tc:nth-child(3n){border-right:1px solid rgba(255,255,255,.06)}
+      .tc:nth-child(3n){border-right:1px solid rgba(18,16,13,.08)}
       .tc:nth-child(2n){border-right:none}
-      /* Reset last-row rule and re-apply for 2-col */
-      .tc:nth-last-child(-n+3){border-bottom:1px solid rgba(255,255,255,.06)}
+      .tc:nth-last-child(-n+3){border-bottom:1px solid rgba(18,16,13,.08)}
       .tc:nth-last-child(-n+2){border-bottom:none}
     }
     /* Mobile: single column */
     @media(max-width:520px){
       .tgt-grid{grid-template-columns:1fr}
       .tc,.tc:nth-child(3n),.tc:nth-child(2n){border-right:none}
-      .tc:nth-last-child(-n+3),.tc:nth-last-child(-n+2){border-bottom:1px solid rgba(255,255,255,.06)}
+      .tc:nth-last-child(-n+3),.tc:nth-last-child(-n+2){border-bottom:1px solid rgba(18,16,13,.08)}
       .tc:last-child{border-bottom:none}
     }
 
     /* ── CONTATTI ─────────────────────────────────────────────────── */
-    /* Form has moved to the hero; this section now shows contact info only */
     #contatti{background:var(--ink2);padding:var(--py) var(--px);position:relative;overflow:hidden}
-    .cont-in{max-width:720px;margin:0 auto}
+    .cont-in{
+      max-width:1100px;margin:0 auto;
+      display:grid;grid-template-columns:1fr 1fr;
+      gap:4rem;align-items:start;
+    }
+    .cont-left{}
+    /* Map column */
+    .cont-map{
+      position:sticky;top:5.5rem;
+      border-radius:5px;overflow:hidden;
+      border:1px solid rgba(255,255,255,.08);
+      box-shadow:0 8px 32px rgba(0,0,0,.35);
+      min-height:460px;
+    }
+    .cont-map iframe{
+      display:block;width:100%;height:460px;border:0;
+      filter:grayscale(.15) contrast(1.06);
+    }
+    @media(max-width:860px){
+      .cont-in{grid-template-columns:1fr;gap:2.5rem}
+      .cont-map{position:static;min-height:280px}
+      .cont-map iframe{height:280px}
+    }
     .cont-h2{font-size:clamp(2rem,4vw,3.2rem);font-weight:900;color:#fff;line-height:1.02;letter-spacing:-.025em;margin-bottom:1.35rem}
     .cont-h2 em{font-style:italic;color:var(--or)}
     .cont-sub{font-size:.9rem;font-weight:300;color:rgba(242,244,245,.42);line-height:1.85;margin-bottom:2.75rem}
@@ -1747,26 +1766,40 @@
   </div>
 
   <div class="cont-in">
-    <span class="slabel fu">Contatti</span>
-    <h2 class="cont-h2 fu d1" id="contatti-h2">Preferisci contattarci<br><em>direttamente?</em></h2>
-    <p class="cont-sub fu d2">Siamo raggiungibili per telefono, email o di persona nella nostra sede di Milano. Il primo confronto è sempre gratuito e senza impegno.</p>
-    <address class="cinfo fu d3" style="font-style:normal">
-      <div class="crow">
-        <div class="cico" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
-        <div><strong>Sede</strong>Corso Buenos Aires 45, 20124 Milano</div>
+
+    <div class="cont-left">
+      <span class="slabel fu">Contatti</span>
+      <h2 class="cont-h2 fu d1" id="contatti-h2">Preferisci contattarci<br><em>direttamente?</em></h2>
+      <p class="cont-sub fu d2">Siamo raggiungibili per telefono, email o di persona nella nostra sede di Milano. Il primo confronto è sempre gratuito e senza impegno.</p>
+      <address class="cinfo fu d3" style="font-style:normal">
+        <div class="crow">
+          <div class="cico" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div><strong>Sede</strong>Corso Buenos Aires 45, 20124 Milano</div>
+        </div>
+        <div class="crow">
+          <div class="cico" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12 19.79 19.79 0 0 1 2.04 3.39 2 2 0 0 1 4 1.21h3a2 2 0 0 1 2 1.72 19.79 19.79 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 19.79 19.79 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+          <div><strong>Telefono</strong><a href="tel:+390239562104">02 39562104</a> · <a href="tel:+393477188684">347 7188684</a></div>
+        </div>
+        <div class="crow">
+          <div class="cico" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+          <div><strong>Email</strong><a href="mailto:amministrazione.bortolottilex@gmail.com">amministrazione.bortolottilex@gmail.com</a></div>
+        </div>
+      </address>
+      <div class="cont-note fu d4">
+        <strong>Oppure compila il modulo in cima alla pagina.</strong> Entro 24 ore un avvocato ti contatterà per un primo confronto telefonico gratuito, senza impegno.
       </div>
-      <div class="crow">
-        <div class="cico" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12 19.79 19.79 0 0 1 2.04 3.39 2 2 0 0 1 4 1.21h3a2 2 0 0 1 2 1.72 19.79 19.79 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 19.79 19.79 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
-        <div><strong>Telefono</strong><a href="tel:+390239562104">02 39562104</a> · <a href="tel:+393477188684">347 7188684</a></div>
-      </div>
-      <div class="crow">
-        <div class="cico" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
-        <div><strong>Email</strong><a href="mailto:amministrazione.bortolottilex@gmail.com">amministrazione.bortolottilex@gmail.com</a></div>
-      </div>
-    </address>
-    <div class="cont-note fu d4">
-      <strong>Oppure compila il modulo in cima alla pagina.</strong> Entro 24 ore un avvocato ti contatterà per un primo confronto telefonico gratuito, senza impegno.
     </div>
+
+    <div class="cont-map fu d2" aria-label="Mappa sede Studio Legale Bortolotti">
+      <iframe
+        src="https://maps.google.com/maps?q=Corso+Buenos+Aires+45+Milano+20124+Italy&output=embed&hl=it&z=16"
+        title="Studio Legale Bortolotti — Corso Buenos Aires 45, Milano"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        allowfullscreen>
+      </iframe>
+    </div>
+
   </div>
 </section>
 
