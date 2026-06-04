@@ -672,29 +672,48 @@
 
     /* ── COME FUNZIONA · vertical timeline ─────────────────────── */
     #cf{background:var(--ink2);padding:var(--py) var(--px);position:relative}
-    .cf-in{max-width:720px;margin:0 auto}
+    .cf-in{max-width:1100px;margin:0 auto}
     .cf-head{text-align:center;margin-bottom:3.75rem}
     .cf-h2{font-size:clamp(2rem,4vw,3.5rem);font-weight:900;color:#fff;line-height:1.02;letter-spacing:-.025em;margin-bottom:.85rem}
     .cf-h2 em{font-style:italic;color:var(--or)}
     .cf-sub{font-size:.9rem;font-weight:300;color:rgba(242,244,245,.42);line-height:1.85;max-width:540px;margin:0 auto}
 
-    /* Timeline spine */
-    .tl{display:flex;flex-direction:column}
-    .tl-step{display:flex;align-items:flex-start;position:relative}
-    .tl-left{display:flex;flex-direction:column;align-items:center;flex-shrink:0;width:60px;margin-right:1.75rem}
+    /* ── Horizontal timeline ── */
+    .tl{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative;margin-bottom:2.5rem}
 
-    /* Number circle — resting state */
+    /* connector line running through the circles */
+    .tl::before{
+      content:'';position:absolute;
+      top:28px; /* vertically centred on the 56px circle */
+      left:calc(12.5% + 0px);right:calc(12.5% + 0px);
+      height:2px;
+      background:linear-gradient(90deg,rgba(236,102,8,.06) 0%,rgba(236,102,8,.42) 50%,rgba(236,102,8,.06) 100%);
+      z-index:0;
+    }
+    .js-ready .tl::before{
+      transform:scaleX(0);transform-origin:left;
+      transition:transform .9s cubic-bezier(.22,.61,.36,1) .3s;
+    }
+    .js-ready .tl.tl-line-in::before{transform:scaleX(1)}
+
+    .tl-step{
+      display:flex;flex-direction:column;align-items:center;
+      text-align:center;padding:0 1rem;position:relative;
+    }
+    .tl-left{display:flex;justify-content:center;margin-bottom:1.25rem;position:relative;z-index:1}
+    .tl-line{display:none} /* no vertical line in horizontal layout */
+
+    /* Number circle */
     .tl-circle{
       width:56px;height:56px;border-radius:50%;
       border:2px solid rgba(236,102,8,.2);
       display:flex;align-items:center;justify-content:center;
       font-size:1.05rem;font-weight:900;font-style:italic;
       color:rgba(236,102,8,.3);
-      background:transparent;
+      background:var(--ink2);
       position:relative;z-index:1;flex-shrink:0;
       transition:border-color .35s,color .35s,background .35s,box-shadow .35s;
     }
-    /* Circle entrance (requires .js-ready) */
     .js-ready .tl-circle{
       transform:scale(.72);opacity:0;
       transition:
@@ -706,46 +725,34 @@
       transform:scale(1);opacity:1;
       border-color:rgba(236,102,8,.58);color:var(--or);
     }
-    /* Step hover — circle fills on any step */
     .js-ready .tl-step:hover .tl-circle,
     .tl-step:hover .tl-circle{
       border-color:var(--or);background:var(--or);color:#fff;
       box-shadow:0 0 0 8px rgba(236,102,8,.1);
     }
 
-    /* Connector segment between steps */
-    .tl-line{
-      width:2px;flex:1;min-height:2rem;
-      background:linear-gradient(180deg,rgba(236,102,8,.42) 0%,rgba(236,102,8,.06) 100%);
-      transform-origin:top;
-    }
-    .js-ready .tl-line{
-      transform:scaleY(0);
-      transition:transform .72s cubic-bezier(.22,.61,.36,1) .46s;
-    }
-    .js-ready .tl-step.tl-in .tl-line{transform:scaleY(1)}
-
     /* Step body */
-    .tl-body{flex:1;padding:0 0 2.75rem}
+    .tl-body{width:100%;padding:0}
     .tl-body-inner{
-      padding:1.2rem 1.5rem 1.3rem;
+      padding:1.2rem 1rem 1.3rem;
       border:1px solid rgba(255,255,255,.05);
       border-radius:6px;
       background:rgba(255,255,255,.025);
       transition:background .22s,border-color .24s,transform .22s;
+      height:100%;
     }
     .tl-step:hover .tl-body-inner{
       background:rgba(255,255,255,.05);
       border-color:rgba(236,102,8,.28);
-      transform:translateX(5px);
-      box-shadow:0 4px 20px rgba(236,102,8,.07);
+      transform:translateY(-4px);
+      box-shadow:0 8px 24px rgba(236,102,8,.07);
     }
-    .tl-body h3{font-size:.88rem;font-weight:700;color:#fff;margin-bottom:.38rem;line-height:1.35}
-    .tl-body p{font-size:.79rem;color:rgba(242,244,245,.42);line-height:1.8;font-weight:300;margin:0}
+    .tl-body h3{font-size:.84rem;font-weight:700;color:#fff;margin-bottom:.5rem;line-height:1.35}
+    .tl-body p{font-size:.76rem;color:rgba(242,244,245,.42);line-height:1.8;font-weight:300;margin:0}
 
-    /* Step entrance animation */
+    /* Step entrance */
     .js-ready .tl-step{
-      opacity:0;transform:translateY(26px);
+      opacity:0;transform:translateY(22px);
       transition:opacity .5s cubic-bezier(.22,.61,.36,1),transform .5s cubic-bezier(.22,.61,.36,1);
     }
     .js-ready .tl-step.tl-in{opacity:1;transform:none}
@@ -759,7 +766,7 @@
       border-radius:4px;
       font-size:.7rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;
       color:rgba(236,102,8,.75);
-      margin-bottom:2.25rem;
+      margin-bottom:2.25rem;justify-content:center;
     }
     .tl-badge svg{flex-shrink:0}
     .js-ready .tl-badge{opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease}
@@ -767,31 +774,24 @@
 
     .cf-cta{text-align:center}
 
-    /* Pulse ring on hovered circle */
     @keyframes tlGlow{
       0%,100%{box-shadow:0 0 0 6px rgba(236,102,8,.12)}
       50%     {box-shadow:0 0 0 14px rgba(236,102,8,.05)}
     }
     .js-ready .tl-step:hover .tl-circle,
-    .tl-step:hover .tl-circle{
-      animation:tlGlow 2s ease-in-out infinite;
-    }
+    .tl-step:hover .tl-circle{animation:tlGlow 2s ease-in-out infinite}
 
-    /* Respect reduced motion */
     @media(prefers-reduced-motion:reduce){
-      .js-ready .tl-step,
-      .js-ready .tl-circle,
-      .js-ready .tl-line,
-      .js-ready .tl-badge{
-        transition:none!important;animation:none!important;
-        opacity:1!important;transform:none!important;
+      .js-ready .tl-step,.js-ready .tl-circle,.js-ready .tl-line,.js-ready .tl-badge,.js-ready .tl::before{
+        transition:none!important;animation:none!important;opacity:1!important;transform:none!important;
       }
     }
-    @media(max-width:600px){
-      .tl-left{width:48px;margin-right:1.25rem}
-      .tl-circle{width:48px;height:48px;font-size:.95rem}
-      .tl-body-inner{padding:1rem 1.1rem}
-      .tl-body{padding-bottom:2rem}
+    @media(max-width:720px){
+      .tl{grid-template-columns:1fr 1fr;gap:1.5rem}
+      .tl::before{display:none}
+    }
+    @media(max-width:420px){
+      .tl{grid-template-columns:1fr}
     }
 
     /* ── CTA ORANGE ───────────────────────────────────────────────── */
@@ -2084,17 +2084,26 @@
         }
       });
     }, {threshold: 0.22, rootMargin: '0px 0px -50px 0px'});
-    document.querySelectorAll('.tl-step, .tl-badge').forEach(function(el, i){
-      if(prefersReduced){
-        /* Skip observer — elements are visible via CSS @media rule */
-        el.classList.add('tl-in');
-      } else {
-        tlIO.observe(el);
-      }
+
+    /* Observe the .tl container for the horizontal line draw */
+    var tlContainer = document.querySelector('.tl');
+    if(tlContainer){
+      var lineIO = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if(e.isIntersecting){ e.target.classList.add('tl-line-in'); lineIO.unobserve(e.target); }
+        });
+      }, {threshold:0.3});
+      if(prefersReduced){ tlContainer.classList.add('tl-line-in'); }
+      else { lineIO.observe(tlContainer); }
+    }
+
+    document.querySelectorAll('.tl-step, .tl-badge').forEach(function(el){
+      if(prefersReduced){ el.classList.add('tl-in'); }
+      else { tlIO.observe(el); }
     });
-    /* Safety fallback for timeline */
     setTimeout(function(){
       document.querySelectorAll('.tl-step, .tl-badge').forEach(function(el){ el.classList.add('tl-in'); });
+      if(tlContainer) tlContainer.classList.add('tl-line-in');
     }, 3000);
   });
 
