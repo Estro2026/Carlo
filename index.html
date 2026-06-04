@@ -1068,7 +1068,28 @@
     }
 
     /* ── TARGET ───────────────────────────────────────────────────── */
-    #target{background:var(--afw);padding:var(--py) var(--px);position:relative;overflow:hidden}
+    #target{
+  padding:var(--py) var(--px);position:relative;overflow:hidden;
+  /* arc from top-left to bottom-right — fourth light section, alternating direction */
+  background:
+    radial-gradient(ellipse 100% 65% at -8%  -8%,  rgba(146,21,42,.18)  0%, transparent 46%),
+    radial-gradient(ellipse 75%  55% at 22%  22%,  rgba(206,57,32,.12)  0%, transparent 42%),
+    radial-gradient(ellipse 65%  50% at 52%  50%,  rgba(236,102,8,.08)  0%, transparent 40%),
+    radial-gradient(ellipse 55%  45% at 82%  78%,  rgba(213,220,220,.2) 0%, transparent 50%),
+    var(--afw);
+}
+#target::before{
+  content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
+  opacity:.16;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.55' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat:repeat;background-size:200px 200px;mix-blend-mode:multiply;
+}
+#target::after{
+  content:'';position:absolute;top:-15%;left:-8%;
+  width:660px;height:660px;border-radius:50%;pointer-events:none;z-index:0;
+  background:radial-gradient(circle,rgba(146,21,42,.10) 0%,rgba(206,57,32,.05) 40%,transparent 65%);
+}
+#target .tgt-in{position:relative;z-index:1}
     .tgt-in{max-width:1280px;margin:0 auto}
     .tgt-h2{
       font-size:clamp(2rem,4.5vw,3.8rem);font-weight:900;
@@ -1123,21 +1144,26 @@
     .tc:hover::after{transform:scaleX(1)}
     .tc:hover{background:#faf8f6;box-shadow:inset 0 -2px 0 var(--or)}
 
-    /* Dot */
-    .tc-dot{
-      width:8px;height:8px;border-radius:50%;background:var(--or);flex-shrink:0;
-      transition:transform .25s cubic-bezier(.34,1.56,.64,1),box-shadow .25s;
-    }
-    .tc:hover .tc-dot{transform:scale(1.5);box-shadow:0 0 0 4px rgba(236,102,8,.16)}
-
-    .tc h3{
-      font-size:.9rem;font-weight:700;
-      color:rgba(18,16,13,.88);line-height:1.35;
-      transition:color .2s;
-    }
-    .tc:hover h3{color:var(--ink)}
-    .tc p{font-size:.79rem;color:rgba(18,16,13,.5);line-height:1.75;font-weight:300;transition:color .2s}
-    .tc:hover p{color:rgba(18,16,13,.68)}
+    .tc-ico{
+  width:44px;height:44px;border-radius:10px;
+  background:rgba(236,102,8,.08);
+  border:1px solid rgba(236,102,8,.18);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--or);flex-shrink:0;margin-bottom:.25rem;
+  transition:background .28s,border-color .28s,color .28s,transform .3s cubic-bezier(.34,1.56,.64,1);
+}
+.tc:hover .tc-ico{
+  background:var(--or);border-color:var(--or);color:#fff;
+  transform:scale(1.1) rotate(-4deg);
+}
+.tc h3{
+  font-size:.9rem;font-weight:700;
+  color:rgba(18,16,13,.9);line-height:1.35;
+  transition:color .2s;
+}
+.tc:hover h3{color:var(--ink)}
+.tc p{font-size:.79rem;color:rgba(18,16,13,.65);line-height:1.75;font-weight:400;transition:color .2s}
+.tc:hover p{color:rgba(18,16,13,.82)}
 
     /* Tablet: 2×3 */
     @media(max-width:860px){
@@ -2033,16 +2059,55 @@ footer .fw{position:relative;z-index:1}
 
 <!-- ══ TARGET ════════════════════════════════════════════════════════ -->
 <section id="target" aria-labelledby="target-h2">
+<svg class="tgt-geo" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden">
+  <defs>
+    <linearGradient id="tgGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   stop-color="#92152A" stop-opacity=".6"/>
+      <stop offset="50%"  stop-color="#CE3920" stop-opacity=".38"/>
+      <stop offset="100%" stop-color="#EC6608" stop-opacity=".1"/>
+    </linearGradient>
+    <linearGradient id="tgGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   stop-color="#CE3920" stop-opacity=".42"/>
+      <stop offset="100%" stop-color="#EC6608" stop-opacity=".07"/>
+    </linearGradient>
+    <linearGradient id="tgGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   stop-color="#92152A" stop-opacity=".22"/>
+      <stop offset="100%" stop-color="#D5DCDC" stop-opacity=".05"/>
+    </linearGradient>
+  </defs>
+  <circle cx="-8%"  cy="-8%"  r="220" fill="none" stroke="url(#tgGrad1)" stroke-width="28"/>
+  <circle cx="18%"  cy="20%"  r="115" fill="none" stroke="url(#tgGrad2)" stroke-width="20"/>
+  <circle cx="48%"  cy="50%"  r="65"  fill="none" stroke="url(#tgGrad2)" stroke-width="14"/>
+  <circle cx="82%"  cy="82%"  r="36"  fill="none" stroke="url(#tgGrad3)" stroke-width="10" stroke-dasharray="14 8"/>
+</svg>
   <div class="tgt-in">
     <span class="slabel fu">A chi è pensato</span>
     <h2 class="tgt-h2 fu d1" id="target-h2">AgiLex è pensato per chi<br>fa impresa sul <em>serio.</em></h2>
     <div class="tgt-grid" role="list">
-      <div class="tc fu" role="listitem"><div class="tc-dot" aria-hidden="true"></div><div><h3>PMI in crescita</h3><p>Aziende che stanno scalando e hanno bisogno di strutturare la gestione legale in modo professionale.</p></div></div>
-      <div class="tc fu d1" role="listitem"><div class="tc-dot" aria-hidden="true"></div><div><h3>Imprenditori</h3><p>Chi gestisce un'attività in proprio e vuole un avvocato di riferimento senza ingaggiare uno studio fisso.</p></div></div>
-      <div class="tc fu d2" role="listitem"><div class="tc-dot" aria-hidden="true"></div><div><h3>Aziende strutturate</h3><p>Imprese di medie dimensioni che hanno bisogno di un affiancamento legale esterno complementare.</p></div></div>
-      <div class="tc fu d3" role="listitem"><div class="tc-dot" aria-hidden="true"></div><div><h3>Startup e scaleup</h3><p>Realtà in rapida crescita che devono strutturare accordi, proteggere l'IP e gestire investitori.</p></div></div>
-      <div class="tc fu d4" role="listitem"><div class="tc-dot" aria-hidden="true"></div><div><h3>Realtà con dipendenti e contratti</h3><p>Chi lavora con più fornitori, clienti e collaboratori ha bisogno di presidio legale costante su ogni rapporto.</p></div></div>
-      <div class="tc fu d5" role="listitem"><div class="tc-dot" aria-hidden="true"></div><div><h3>Chi vuole prevenire, non solo curare</h3><p>Il costo di un buon avvocato è sempre inferiore al costo di una controversia. Investire nella prevenzione conviene.</p></div></div>
+      <div class="tc fu" role="listitem">
+  <div class="tc-ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+  <div><h3>PMI in crescita</h3><p>Aziende che stanno scalando e hanno bisogno di strutturare la gestione legale in modo professionale.</p></div>
+</div>
+<div class="tc fu d1" role="listitem">
+  <div class="tc-ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M6 20v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/></svg></div>
+  <div><h3>Imprenditori</h3><p>Chi gestisce un'attività in proprio e vuole un avvocato di riferimento senza ingaggiare uno studio fisso.</p></div>
+</div>
+<div class="tc fu d2" role="listitem">
+  <div class="tc-ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg></div>
+  <div><h3>Aziende strutturate</h3><p>Imprese di medie dimensioni che hanno bisogno di un affiancamento legale esterno complementare.</p></div>
+</div>
+<div class="tc fu d3" role="listitem">
+  <div class="tc-ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+  <div><h3>Startup e scaleup</h3><p>Realtà in rapida crescita che devono strutturare accordi, proteggere l'IP e gestire investitori.</p></div>
+</div>
+<div class="tc fu d4" role="listitem">
+  <div class="tc-ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+  <div><h3>Realtà con dipendenti e contratti</h3><p>Chi lavora con più fornitori, clienti e collaboratori ha bisogno di presidio legale costante su ogni rapporto.</p></div>
+</div>
+<div class="tc fu d5" role="listitem">
+  <div class="tc-ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg></div>
+  <div><h3>Chi vuole prevenire, non solo curare</h3><p>Il costo di un buon avvocato è sempre inferiore al costo di una controversia. Investire nella prevenzione conviene.</p></div>
+</div>
     </div>
   </div>
 </section>
