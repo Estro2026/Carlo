@@ -201,28 +201,13 @@
     .hero-photo{position:absolute;inset:0;z-index:0}
     .hero-photo img{
       width:100%;height:100%;object-fit:cover;
-      /* push crop upward so building tops + skyline are visible in the upper half */
-      object-position:center 8%;
-      /* brighter + higher contrast so skyline reads clearly as background */
-      filter:brightness(0.62) contrast(1.22) saturate(0.48);
-      /* moderate zoom — enough to fill frame without pushing buildings below the fold */
-      transform:scale(1.10);
-      transform-origin:center 15%;
+      object-position:center center;
     }
-    /*
-     * Layer order (bottom → top):
-     *   0  photo
-     *   1  ribbon  ← decorative, below overlay
-     *   2  overlay ← left band dark for text; centre/right much lighter so skyline shows
-     *   3  content
-     */
     .hero-overlay{
       position:absolute;inset:0;z-index:2;
       background:
-        /* vertical: very light at top so sky/towers show, heavier only at the bottom strip */
-        linear-gradient(180deg, rgba(18,16,13,.22) 0%, rgba(18,16,13,.10) 38%, rgba(18,16,13,.60) 85%, rgba(18,16,13,.88) 100%),
-        /* horizontal: left band stays dark for headline readability; opens up right of centre */
-        linear-gradient(108deg, rgba(18,16,13,.88) 0%, rgba(18,16,13,.72) 32%, rgba(18,16,13,.18) 58%, rgba(18,16,13,.08) 100%);
+        linear-gradient(180deg, rgba(18,16,13,.10) 0%, rgba(18,16,13,.05) 50%, rgba(18,16,13,.72) 100%),
+        linear-gradient(108deg, rgba(18,16,13,.78) 0%, rgba(18,16,13,.55) 30%, rgba(18,16,13,.10) 65%, transparent 100%);
     }
     /* 2-column grid: left = content, right = form card */
     .hero-main{
