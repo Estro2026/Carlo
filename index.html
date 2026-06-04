@@ -835,31 +835,74 @@
 
     /* ── PERCHÉ ───────────────────────────────────────────────────── */
     #diff{background:var(--afw);padding:var(--py) var(--px);position:relative;overflow:hidden}
+    /* Faint warmth glow top-right */
+    #diff::before{
+      content:'';position:absolute;top:-15%;right:-8%;
+      width:640px;height:640px;border-radius:50%;
+      background:radial-gradient(circle,rgba(236,102,8,.044) 0%,transparent 68%);
+      pointer-events:none;
+    }
     .diff-in{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
     .diff-h2{
-      font-size:clamp(2rem,4.5vw,3.8rem);font-weight:900;
-      color:var(--ink);line-height:1.02;letter-spacing:-.025em;margin-bottom:2.5rem;
+      font-size:clamp(1.9rem,4vw,3.6rem);font-weight:900;
+      color:var(--ink);line-height:1.04;letter-spacing:-.025em;margin-bottom:2.75rem;
     }
-    .diff-h2 em{font-style:italic;color:var(--or)}
+    .diff-h2 em{font-style:italic;color:var(--or);position:relative;display:inline}
+    /* Em underline draws in after h2 fades in */
+    .diff-h2 em::after{
+      content:'';position:absolute;bottom:-2px;left:0;right:0;height:2px;
+      background:linear-gradient(90deg,var(--or),var(--chili));
+      transform:scaleX(0);transform-origin:left;
+      transition:transform .72s cubic-bezier(.22,.61,.36,1) .6s;
+    }
+    .js-ready .diff-h2.in em::after{transform:scaleX(1)}
+
+    /* Six items */
     .diff-list{display:flex;flex-direction:column}
     .di{
       display:flex;gap:1.35rem;padding:1.5rem 0;
       border-bottom:1px solid var(--platinum);
-      transition:background .2s;
+      position:relative;
+      transition:background .22s,box-shadow .3s cubic-bezier(.22,.61,.36,1),padding-left .28s cubic-bezier(.22,.61,.36,1);
+      cursor:default;
     }
     .di:last-child{border-bottom:none}
-    .di-n{
-      font-size:1.4rem;font-weight:900;font-style:italic;
-      color:rgba(236,102,8,.25);flex-shrink:0;line-height:1;
-      width:28px;text-align:right;padding-top:3px;
-      transition:color .25s;
+    .di:hover{
+      background:rgba(236,102,8,.025);
+      box-shadow:inset 3px 0 0 var(--or);
+      padding-left:.65rem;
     }
-    .di:hover .di-n{color:rgba(236,102,8,.6)}
-    .di h3{font-size:.9rem;font-weight:700;color:rgba(18,16,13,.88);margin-bottom:.35rem}
-    .di h3 .hl{color:var(--or)}
-    .di p{font-size:.8rem;color:rgba(18,16,13,.5);line-height:1.75;font-weight:300}
+    /* Slide-from-left override */
+    .js-ready .di.fu{transform:translateX(-22px);opacity:0}
+    .js-ready .di.fu.in{transform:none;opacity:1}
 
-    /* perché collage */
+    /* Number */
+    .di-n{
+      font-size:1.9rem;font-weight:900;font-style:italic;
+      color:rgba(236,102,8,.18);flex-shrink:0;line-height:1;
+      width:32px;text-align:right;padding-top:3px;
+      transition:color .24s,transform .28s cubic-bezier(.34,1.56,.64,1);
+      user-select:none;
+    }
+    .di:hover .di-n{color:var(--or);transform:scale(1.18) translateX(-2px)}
+
+    /* Text */
+    .di h3{font-size:.9rem;font-weight:700;color:rgba(18,16,13,.88);margin-bottom:.38rem;line-height:1.35;transition:color .2s}
+    .di:hover h3{color:var(--ink)}
+    .di h3 .hl{color:var(--or)}
+    .di p{font-size:.8rem;color:rgba(18,16,13,.44);line-height:1.78;font-weight:300;transition:color .2s}
+    .di:hover p{color:rgba(18,16,13,.62)}
+
+    /* Arrow micro-indicator */
+    .di-arr{
+      display:inline-block;color:var(--or);font-size:.7rem;font-style:normal;
+      opacity:0;transform:translateX(-6px);
+      transition:opacity .2s,transform .2s;
+      margin-left:.3rem;
+    }
+    .di:hover .di-arr{opacity:1;transform:translateX(0)}
+
+    /* Collage */
     .perc-collage{position:relative;height:520px;margin-bottom:2rem}
     .perc-a{position:absolute;top:0;left:0;width:65%;height:63%;overflow:hidden;z-index:2;border-radius:2px}
     .perc-b{position:absolute;bottom:0;right:0;width:58%;height:60%;overflow:hidden;z-index:2;border-radius:2px}
@@ -867,20 +910,44 @@
       position:absolute;top:33%;left:37%;width:38%;height:45%;
       overflow:hidden;z-index:4;
       outline:3px solid var(--afw);border-radius:2px;
+      transition:transform .4s cubic-bezier(.22,.61,.36,1),box-shadow .4s;
     }
-    .perc-collage img{width:100%;height:100%;object-fit:cover;filter:brightness(0.88) contrast(1.06) saturate(0.72)}
+    .perc-c:hover{transform:scale(1.04);box-shadow:0 16px 44px rgba(18,16,13,.2)}
+    .perc-collage img{width:100%;height:100%;object-fit:cover;filter:brightness(0.88) contrast(1.06) saturate(0.72);transition:transform .55s cubic-bezier(.22,.61,.36,1)}
+    .perc-a:hover img,.perc-b:hover img{transform:scale(1.06)}
 
-    .diff-card{background:var(--ink);border-radius:var(--radius);padding:2.5rem 2.25rem}
+    /* Dark summary card */
+    .diff-card{
+      background:var(--ink);border-radius:var(--radius);padding:2.5rem 2.25rem;
+      position:relative;overflow:hidden;
+      border:1px solid rgba(255,255,255,.04);
+    }
+    .diff-card::before{
+      content:'';position:absolute;top:0;left:0;right:0;height:2px;
+      background:linear-gradient(90deg,var(--or) 0%,var(--chili) 55%,transparent 100%);
+    }
+    .diff-card::after{
+      content:'';position:absolute;bottom:0;left:0;right:0;height:110px;
+      background:linear-gradient(0deg,rgba(236,102,8,.045) 0%,transparent 100%);
+      pointer-events:none;
+    }
     .dr-kicker{font-size:.6rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--or);margin-bottom:1rem;display:block}
     .dr-big{font-size:clamp(1.8rem,3vw,2.8rem);font-weight:900;font-style:italic;color:#fff;line-height:1.02;margin-bottom:.85rem}
     .dr-sub{font-size:.85rem;color:rgba(255,255,255,.38);line-height:1.8;margin-bottom:1.75rem;font-weight:300}
-    .dr-list{display:flex;flex-direction:column;gap:.7rem;margin-bottom:2.25rem}
-    .drl{display:flex;align-items:center;gap:.8rem;font-size:.8rem;color:rgba(255,255,255,.68);font-weight:600}
-    .drl svg{color:var(--or);flex-shrink:0}
+    .dr-list{display:flex;flex-direction:column;gap:.6rem;margin-bottom:2.25rem}
+    .drl{
+      display:flex;align-items:center;gap:.8rem;
+      font-size:.8rem;color:rgba(255,255,255,.62);font-weight:600;
+      transition:color .2s,transform .22s;cursor:default;
+    }
+    .drl:hover{color:#fff;transform:translateX(5px)}
+    .drl svg{color:var(--or);flex-shrink:0;transition:transform .22s}
+    .drl:hover svg{transform:scale(1.28)}
 
     @media(max-width:900px){
       .diff-in{grid-template-columns:1fr}
       .perc-collage{display:none}
+      .di:hover{padding-left:.4rem}
     }
 
     /* ── TARGET ───────────────────────────────────────────────────── */
@@ -1540,15 +1607,15 @@
 <section id="diff" aria-labelledby="diff-h2">
   <div class="diff-in">
     <div>
-      <span class="slabel fu">Perché scegliere AgiLex</span>
-      <h2 class="diff-h2 fu d1" id="diff-h2">Non aspettiamo le emergenze.<br><em>Le preveniamo.</em></h2>
+      <span class="slabel fu">Il vantaggio AgiLex</span>
+      <h2 class="diff-h2 fu d1" id="diff-h2">Il problema legale che non arriva mai<br><em>è quello che abbiamo già risolto.</em></h2>
       <div class="diff-list" role="list">
-        <div class="di fu" role="listitem"><div class="di-n">1</div><div><h3><span class="hl">Cura</span> per la tua impresa</h3><p>I nostri avvocati d'impresa sono al tuo fianco 7 giorni su 7, 365 giorni l'anno, in italiano e in inglese.</p></div></div>
-        <div class="di fu d1" role="listitem"><div class="di-n">2</div><div><h3><span class="hl">Affidabilità</span> garantita</h3><p>Lo studio risponde tutte le volte che ne hai bisogno. Un referente stabile che conosce la tua azienda.</p></div></div>
-        <div class="di fu d2" role="listitem"><div class="di-n">3</div><div><h3><span class="hl">Agilità</span> operativa</h3><p>Veniamo noi da te quando necessario. Risparmi tempo ed energie. Supporto operativo, non solo pareri teorici.</p></div></div>
-        <div class="di fu d3" role="listitem"><div class="di-n">4</div><div><h3><span class="hl">Costo</span> prevedibile e trasparente</h3><p>Abbonamento annuale fisso. Nessuna sorpresa in fattura. Pianifica il budget in anticipo.</p></div></div>
-        <div class="di fu d4" role="listitem"><div class="di-n">5</div><div><h3><span class="hl">Multilingue</span> per chi opera a livello internazionale</h3><p>Assistenza in italiano e inglese per partner internazionali o strutture cross-border.</p></div></div>
-        <div class="di fu d5" role="listitem"><div class="di-n">6</div><div><h3><span class="hl">Intervento diretto</span> in azienda</h3><p>Riunioni, negoziazioni, formazione del personale: intervento diretto presso la sede del cliente.</p></div></div>
+        <div class="di fu" role="listitem"><div class="di-n">1</div><div><h3><span class="hl">Sempre</span> al tuo fianco<span class="di-arr">→</span></h3><p>Un avvocato d'impresa disponibile 7 giorni su 7, 365 giorni l'anno. In italiano e in inglese.</p></div></div>
+        <div class="di fu d1" role="listitem"><div class="di-n">2</div><div><h3><span class="hl">Un referente,</span> non un centralino<span class="di-arr">→</span></h3><p>Conosce la tua azienda. Risponde quando chiami. Nessun passaggio di mano.</p></div></div>
+        <div class="di fu d2" role="listitem"><div class="di-n">3</div><div><h3><span class="hl">Veniamo</span> da te<span class="di-arr">→</span></h3><p>Riunioni, trattative, firma dei contratti — dove serve, quando serve. Niente spostamenti inutili a tuo carico.</p></div></div>
+        <div class="di fu d3" role="listitem"><div class="di-n">4</div><div><h3><span class="hl">Budget</span> sotto controllo<span class="di-arr">→</span></h3><p>Costo annuale fisso, concordato in anticipo. Zero sorprese in fattura.</p></div></div>
+        <div class="di fu d4" role="listitem"><div class="di-n">5</div><div><h3><span class="hl">Italiano</span> e inglese<span class="di-arr">→</span></h3><p>Assistenza piena in entrambe le lingue per operazioni internazionali, partner stranieri e strutture cross-border.</p></div></div>
+        <div class="di fu d5" role="listitem"><div class="di-n">6</div><div><h3><span class="hl">In azienda,</span> non solo in studio<span class="di-arr">→</span></h3><p>Interveniamo direttamente — riunioni operative, negoziazioni, formazione interna. Supporto concreto, non solo pareri.</p></div></div>
       </div>
     </div>
     <div class="fu d2">
