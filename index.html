@@ -593,35 +593,108 @@
     }
 
     /* ── AREE ─────────────────────────────────────────────────────── */
-    #aree{background:var(--afw);padding:var(--py) var(--px);position:relative;overflow:hidden}
+    #aree{background:var(--ink);padding:var(--py) var(--px);position:relative;overflow:hidden}
     .aree-in{max-width:1280px;margin:0 auto}
-    .aree-header{display:flex;align-items:flex-end;justify-content:space-between;gap:2rem;margin-bottom:clamp(2.5rem,5vw,4rem);flex-wrap:wrap}
+    .aree-header{
+      display:flex;align-items:flex-end;justify-content:space-between;
+      gap:2rem;margin-bottom:clamp(2.5rem,5vw,4rem);flex-wrap:wrap;
+    }
     .aree-h2{
       font-size:clamp(2rem,4.5vw,3.8rem);font-weight:900;
-      color:var(--ink);line-height:1.02;letter-spacing:-.025em;max-width:700px;
+      color:#fff;line-height:1.02;letter-spacing:-.025em;max-width:700px;
     }
     .aree-h2 em{font-style:italic;color:var(--or)}
+    .aree-desc{
+      color:rgba(242,244,245,.38);max-width:320px;
+      font-size:.82rem;font-weight:300;line-height:1.8;
+      padding-left:1.25rem;border-left:2px solid rgba(236,102,8,.4);
+      flex-shrink:0;
+    }
+
+    /* premium 3-col card grid */
     .aree-grid{
-      display:grid;grid-template-columns:repeat(3,1fr);gap:0;
-      border:1px solid var(--platinum);border-radius:var(--radius);overflow:hidden;
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:1px;
+      background:rgba(255,255,255,.06); /* hairline grid lines */
+      border:1px solid rgba(255,255,255,.06);
+      border-radius:6px;
+      overflow:hidden;
+      counter-reset:area;
+      margin-bottom:1px; /* close bottom gap */
     }
     .ac{
-      padding:2rem 1.6rem;
-      border-right:1px solid var(--platinum);border-bottom:1px solid var(--platinum);
-      display:flex;flex-direction:column;gap:.85rem;
-      transition:background .25s;background:var(--afw);
-      position:relative;
+      background:var(--ink2);
+      padding:2.25rem 2rem 2.75rem;
+      position:relative;overflow:hidden;
+      counter-increment:area;
+      display:flex;flex-direction:column;gap:1.25rem;
+      transition:background .28s;
     }
+    /* large italic counter watermark */
+    .ac::before{
+      content:counter(area,decimal-leading-zero);
+      position:absolute;bottom:.25rem;right:.9rem;
+      font-size:5.5rem;font-weight:900;font-style:italic;
+      line-height:1;letter-spacing:-.06em;
+      color:rgba(255,255,255,.03);
+      pointer-events:none;user-select:none;
+      transition:color .28s;
+    }
+    /* left orange reveal line */
     .ac::after{
-      content:'';position:absolute;bottom:0;left:0;width:0;height:2px;
-      background:var(--or);transition:width .35s ease;
+      content:'';position:absolute;top:0;left:0;bottom:0;width:3px;
+      background:linear-gradient(180deg,var(--or),var(--chili));
+      transform:scaleY(0);transform-origin:bottom center;
+      transition:transform .32s cubic-bezier(.22,.61,.36,1);
     }
-    .ac:hover{background:#eceef0}
-    .ac:hover::after{width:100%}
-    .ac-ico{color:var(--or);opacity:.9}
-    .ac h3{font-size:.84rem;font-weight:700;color:rgba(18,16,13,.88);line-height:1.45}
-    @media(max-width:760px){.aree-grid{grid-template-columns:1fr 1fr}}
+    .ac:hover{background:rgba(28,25,21,1)}
+    .ac:hover::before{color:rgba(255,255,255,.055)}
+    .ac:hover::after{transform:scaleY(1)}
+
+    /* icon badge */
+    .ac-ico{
+      width:44px;height:44px;border-radius:9px;
+      background:rgba(236,102,8,.08);
+      border:1px solid rgba(236,102,8,.18);
+      display:flex;align-items:center;justify-content:center;
+      color:var(--or);flex-shrink:0;
+      transition:background .28s,border-color .28s,transform .28s;
+    }
+    .ac:hover .ac-ico{
+      background:rgba(236,102,8,.16);
+      border-color:rgba(236,102,8,.42);
+      transform:scale(1.07);
+    }
+    .ac h3{
+      font-size:.86rem;font-weight:700;
+      color:rgba(255,255,255,.82);line-height:1.42;
+    }
+
+    /* CTA strip below grid */
+    .aree-cta{
+      display:flex;align-items:center;justify-content:space-between;
+      gap:2rem;flex-wrap:wrap;
+      margin-top:2.25rem;
+      padding:1.75rem 2.25rem;
+      background:rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.07);
+      border-radius:6px;
+    }
+    .aree-cta-txt{
+      font-size:.88rem;font-weight:300;color:rgba(242,244,245,.42);line-height:1.65;
+    }
+    .aree-cta-txt strong{color:rgba(242,244,245,.78);font-weight:700}
+
+    @media(max-width:760px){
+      .aree-grid{grid-template-columns:1fr 1fr}
+      .aree-cta{flex-direction:column;align-items:flex-start;gap:1.25rem}
+    }
     @media(max-width:480px){.aree-grid{grid-template-columns:1fr}}
+    @media(max-width:680px){
+      .aree-header{flex-direction:column;align-items:flex-start}
+      .aree-desc{max-width:100%;border-left:none;padding-left:0;border-top:1px solid rgba(236,102,8,.3);padding-top:.85rem}
+    }
 
     /* ── COME FUNZIONA ─────────────────────────────────────────────── */
     #cf{background:var(--ink2);padding:var(--py) 0;position:relative;overflow:hidden}
@@ -1181,51 +1254,91 @@
 <!-- ══ AREE ══════════════════════════════════════════════════════════ -->
 <section id="aree" aria-labelledby="aree-h2">
   <div class="aree-in">
+
     <div class="aree-header">
       <div>
         <span class="slabel fu">Aree di intervento</span>
         <h2 class="aree-h2 fu d1" id="aree-h2">Copertura legale <em>completa</em><br>per le imprese.</h2>
       </div>
-      <p class="prob-aside fu d2" style="color:rgba(18,16,13,.42)">Lo Studio Legale Bortolotti mette a disposizione avvocati d'impresa in grado di offrire assistenza in tutte le principali aree del diritto civile e commerciale.</p>
+      <p class="aree-desc fu d2">Lo Studio Legale Bortolotti mette a disposizione avvocati d'impresa in grado di offrire assistenza in tutte le principali aree del diritto civile e commerciale.</p>
     </div>
+
     <div class="aree-grid" role="list">
+
       <div class="ac fu" role="listitem">
-        <div class="ac-ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+        <div class="ac-ico" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </div>
         <h3>Diritto civile e contrattualistica</h3>
       </div>
+
       <div class="ac fu d1" role="listitem">
-        <div class="ac-ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <div class="ac-ico" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        </div>
         <h3>Responsabilità civile e risarcimento del danno</h3>
       </div>
+
       <div class="ac fu d2" role="listitem">
-        <div class="ac-ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+        <div class="ac-ico" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+        </div>
         <h3>Recupero crediti ed esecuzioni</h3>
       </div>
+
       <div class="ac fu d3" role="listitem">
-        <div class="ac-ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
+        <div class="ac-ico" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/><line x1="7" y1="15" x2="7.01" y2="15" stroke-width="2.5"/><line x1="11" y1="15" x2="15" y2="15"/></svg>
+        </div>
         <h3>Diritto bancario ed assicurativo</h3>
       </div>
+
       <div class="ac fu d4" role="listitem">
-        <div class="ac-ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="2" x2="22" y2="6"/><path d="M7.5 20.5L19 9l-4-4L3.5 16.5 2 22z"/></svg></div>
+        <div class="ac-ico" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+        </div>
         <h3>Diritto commerciale e societario</h3>
       </div>
+
       <div class="ac fu d5" role="listitem">
-        <div class="ac-ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+        <div class="ac-ico" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
         <h3>Diritto immobiliare e locazioni</h3>
       </div>
+
       <div class="ac fu d6" role="listitem">
-        <div class="ac-ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+        <div class="ac-ico" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </div>
         <h3>E-commerce, licenze, distribuzione e trasporti</h3>
       </div>
+
       <div class="ac fu d7" role="listitem">
-        <div class="ac-ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M16.24 7.76a6 6 0 0 1 0 8.49m-8.48-.01a6 6 0 0 1 0-8.49m-2.83-2.82a10 10 0 0 0 0 14.14"/></svg></div>
+        <div class="ac-ico" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M16.24 7.76a6 6 0 0 1 0 8.49m-8.48-.01a6 6 0 0 1 0-8.49m-2.83-2.82a10 10 0 0 0 0 14.14"/></svg>
+        </div>
         <h3>Marchi, brevetti e proprietà intellettuale</h3>
       </div>
+
       <div class="ac fu d8" role="listitem">
-        <div class="ac-ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <div class="ac-ico" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/><line x1="18" y1="11" x2="23" y2="11"/><line x1="20.5" y1="8.5" x2="20.5" y2="13.5"/></svg>
+        </div>
         <h3>Diritto del lavoro</h3>
       </div>
+
     </div>
+
+    <!-- CTA strip -->
+    <div class="aree-cta fu">
+      <p class="aree-cta-txt"><strong>Hai bisogno di assistenza legale continuativa?</strong><br>Un primo confronto è gratuito e senza impegno. In 30 minuti capiamo insieme se AgiLex è adatto alla tua azienda.</p>
+      <a href="#contatti" class="btn-or">
+        Prenota un confronto gratuito
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+
   </div>
 </section>
 
