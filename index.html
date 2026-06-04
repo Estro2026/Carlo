@@ -406,44 +406,6 @@
       background:radial-gradient(circle,rgba(146,21,42,.14) 0%,rgba(206,57,32,.08) 38%,transparent 65%);
     }
     #problema .prob-in{position:relative;z-index:1}
-    .prob-geo{position:absolute;inset:0;pointer-events:none;z-index:0;overflow:hidden}
-    .pg{position:absolute;border-radius:50%;border-style:solid}
-    /* large burgundy ring — bottom-left anchor of the arc */
-    .pg1{
-      width:420px;height:420px;
-      bottom:-180px;left:-120px;
-      border:2px solid rgba(146,21,42,.18);
-      background:radial-gradient(circle,rgba(146,21,42,.07) 0%,transparent 65%);
-    }
-    /* medium chili ring — mid-left */
-    .pg2{
-      width:260px;height:260px;
-      bottom:60px;left:80px;
-      border:1.5px solid rgba(206,57,32,.14);
-      background:transparent;
-    }
-    /* small orange filled blob — follows arc upward */
-    .pg3{
-      width:140px;height:140px;
-      top:18%;left:36%;
-      border:none;
-      background:radial-gradient(circle,rgba(236,102,8,.1) 0%,transparent 70%);
-      border-radius:50%;
-    }
-    /* large platinum ring — top-right */
-    .pg4{
-      width:500px;height:500px;
-      top:-200px;right:-180px;
-      border:2px solid rgba(213,220,220,.28);
-      background:radial-gradient(circle,rgba(213,220,220,.06) 0%,transparent 60%);
-    }
-    /* small accent circle — inner top-right */
-    .pg5{
-      width:180px;height:180px;
-      top:8%;right:12%;
-      border:1.5px solid rgba(236,102,8,.12);
-      background:transparent;
-    }
     .prob-in{max-width:1280px;margin:0 auto}
     .prob-header{
       display:flex;align-items:flex-end;justify-content:space-between;
@@ -1479,13 +1441,33 @@
 
 <!-- ══ PROBLEMA ══════════════════════════════════════════════════════ -->
 <section id="problema" aria-labelledby="problema-h2">
-  <div class="prob-geo" aria-hidden="true">
-    <div class="pg pg1"></div>
-    <div class="pg pg2"></div>
-    <div class="pg pg3"></div>
-    <div class="pg pg4"></div>
-    <div class="pg pg5"></div>
-  </div>
+  <svg class="prob-geo" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden">
+    <defs>
+      <linearGradient id="pgGrad1" x1="0%" y1="100%" x2="100%" y2="0%">
+        <stop offset="0%"   stop-color="#92152A" stop-opacity=".7"/>
+        <stop offset="45%"  stop-color="#CE3920" stop-opacity=".5"/>
+        <stop offset="100%" stop-color="#EC6608" stop-opacity=".15"/>
+      </linearGradient>
+      <linearGradient id="pgGrad2" x1="0%" y1="100%" x2="100%" y2="0%">
+        <stop offset="0%"   stop-color="#CE3920" stop-opacity=".5"/>
+        <stop offset="100%" stop-color="#EC6608" stop-opacity=".1"/>
+      </linearGradient>
+      <linearGradient id="pgGrad3" x1="100%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%"   stop-color="#EC6608" stop-opacity=".35"/>
+        <stop offset="100%" stop-color="#D5DCDC" stop-opacity=".08"/>
+      </linearGradient>
+    </defs>
+    <!-- large ring bottom-left — anchor of the arc, thick like the ribbon -->
+    <circle cx="-60" cy="105%" r="240" fill="none" stroke="url(#pgGrad1)" stroke-width="28"/>
+    <!-- medium ring bottom-left inner -->
+    <circle cx="120" cy="92%" r="130" fill="none" stroke="url(#pgGrad2)" stroke-width="18"/>
+    <!-- small accent mid -->
+    <circle cx="42%" cy="62%" r="64" fill="none" stroke="url(#pgGrad2)" stroke-width="12" stroke-dasharray="20 14"/>
+    <!-- large ring top-right -->
+    <circle cx="105%" cy="-5%" r="280" fill="none" stroke="url(#pgGrad3)" stroke-width="22"/>
+    <!-- small ring top-right inner -->
+    <circle cx="88%" cy="14%" r="90" fill="none" stroke="url(#pgGrad3)" stroke-width="14" stroke-dasharray="18 10"/>
+  </svg>
   <div class="prob-in">
     <div class="prob-header">
       <div>
