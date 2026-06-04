@@ -1222,23 +1222,23 @@
     }
     .cont-h2{font-size:clamp(2rem,4vw,3.2rem);font-weight:900;color:#fff;line-height:1.02;letter-spacing:-.025em;margin-bottom:1.35rem}
     .cont-h2 em{font-style:italic;color:var(--or)}
-    .cont-sub{font-size:.9rem;font-weight:300;color:rgba(242,244,245,.42);line-height:1.85;margin-bottom:2.75rem}
+    .cont-sub{font-size:.9rem;font-weight:300;color:rgba(242,244,245,.72);line-height:1.85;margin-bottom:2.75rem}
     .cinfo{display:flex;flex-direction:column;gap:1.1rem}
-    .crow{display:flex;align-items:flex-start;gap:.9rem;font-size:.82rem;color:rgba(255,255,255,.4)}
+    .crow{display:flex;align-items:flex-start;gap:.9rem;font-size:.82rem;color:rgba(255,255,255,.62)}
     .cico{
       width:38px;height:38px;border-radius:var(--radius);
       border:1px solid rgba(255,255,255,.1);color:var(--or);
       display:flex;align-items:center;justify-content:center;flex-shrink:0;
     }
     .crow strong{display:block;color:#fff;font-size:.62rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.05rem}
-    .crow a{color:rgba(255,255,255,.4);transition:color .2s}
+    .crow a{color:rgba(255,255,255,.62);transition:color .2s}
     .crow a:hover{color:var(--or)}
     .cont-note{
       margin-top:2.75rem;padding:1.35rem 1.6rem;
       border-left:2px solid var(--or);
-      font-size:.8rem;color:rgba(255,255,255,.38);line-height:1.8;font-weight:300;
+      font-size:.8rem;color:rgba(255,255,255,.62);line-height:1.8;font-weight:300;
     }
-    .cont-note strong{color:rgba(255,255,255,.8)}
+    .cont-note strong{color:rgba(255,255,255,.92)}
 
     /* form */
     .contact-form{display:flex;flex-direction:column;gap:.9rem}
@@ -1279,7 +1279,7 @@
     .or-line{height:1px;background:linear-gradient(90deg,transparent,var(--or) 30%,var(--or) 70%,transparent)}
 
     /* ── FOOTER ───────────────────────────────────────────────────── */
-    footer{background:#060504;color:rgba(255,255,255,.3);padding:3rem var(--px) 2rem;position:relative;overflow:hidden}
+    footer{background:#060504;color:rgba(255,255,255,.42);padding:3rem var(--px) 2rem;position:relative;overflow:hidden}
 footer::before{
   content:'';position:absolute;inset:0;pointer-events:none;z-index:0;opacity:.06;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.55' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
@@ -1287,52 +1287,109 @@ footer::before{
 }
 footer::after{
   content:'';position:absolute;top:-10%;right:-5%;width:500px;height:500px;border-radius:50%;pointer-events:none;z-index:0;
-  background:radial-gradient(circle,rgba(236,102,8,.07) 0%,rgba(146,21,42,.04) 45%,transparent 70%);
+  background:radial-gradient(circle,rgba(236,102,8,.09) 0%,rgba(146,21,42,.05) 45%,transparent 70%);
 }
 footer .fw{position:relative;z-index:1}
     .fw{max-width:1280px;margin:0 auto}
+    .footer-illo{position:absolute;right:-40px;bottom:-10px;width:clamp(300px,42vw,520px);pointer-events:none;z-index:0;opacity:.55}
+    .fbrand p{font-size:.76rem;line-height:1.75;margin-top:1rem;font-weight:300;color:rgba(255,255,255,.52)}
 
-    /* Form CTA section — light background */
-    #form-cta{background:var(--afw);padding:var(--py) var(--px)}
-    .fform-outer{max-width:1280px;margin:0 auto}
+    /* Form CTA section — light arc background */
+    #form-cta{
+      padding:var(--py) var(--px);position:relative;overflow:hidden;
+      background:
+        radial-gradient(ellipse 110% 70% at 112% 112%, rgba(146,21,42,.26) 0%, transparent 48%),
+        radial-gradient(ellipse 85% 65% at 82% 98%,   rgba(206,57,32,.2)  0%, transparent 44%),
+        radial-gradient(ellipse 70% 55% at 55% 72%,   rgba(236,102,8,.14) 0%, transparent 42%),
+        radial-gradient(ellipse 60% 50% at 18% 36%,   rgba(213,220,220,.2) 0%, transparent 50%),
+        var(--afw);
+    }
+    #form-cta::before{
+      content:'';position:absolute;inset:0;pointer-events:none;z-index:0;opacity:.14;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.55' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-repeat:repeat;background-size:200px 200px;mix-blend-mode:multiply;
+    }
+    #form-cta::after{
+      content:'';position:absolute;bottom:-15%;right:-8%;
+      width:700px;height:700px;border-radius:50%;pointer-events:none;z-index:0;
+      background:radial-gradient(circle,rgba(146,21,42,.12) 0%,rgba(206,57,32,.07) 38%,transparent 65%);
+    }
+    .fform-outer{max-width:1280px;margin:0 auto;position:relative;z-index:1}
     .fform-wrap{
       display:grid;grid-template-columns:1fr 1.5fr;gap:5rem;align-items:start;
     }
-    .fform-label{font-size:.6rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--or);display:block;margin-bottom:.85rem}
-    .fform-title{font-size:clamp(1.5rem,2.8vw,2.4rem);font-weight:900;color:var(--ink);line-height:1.04;letter-spacing:-.022em;margin-bottom:.85rem}
+    .fform-label{font-size:.6rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--or);display:block;margin-bottom:1rem}
+    .fform-title{font-size:clamp(2rem,4.2vw,3.6rem);font-weight:900;color:var(--ink);line-height:1.0;letter-spacing:-.03em;margin-bottom:1rem}
     .fform-title em{font-style:italic;color:var(--or)}
-    .fform-sub{font-size:.82rem;color:rgba(18,16,13,.48);line-height:1.85;font-weight:300;margin-bottom:1.5rem}
-    .fform-badges{display:flex;flex-wrap:wrap;gap:.6rem}
-    .fform-badge{
-      display:inline-flex;align-items:center;gap:.4rem;
-      font-size:.65rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;
-      color:rgba(18,16,13,.38);
+    .fform-sub{font-size:.84rem;color:rgba(18,16,13,.55);line-height:1.85;font-weight:300;margin-bottom:1.75rem}
+
+    /* Promise highlight block */
+    .fform-promise{
+      display:flex;align-items:flex-start;gap:.9rem;
+      padding:1.1rem 1.35rem;margin-bottom:1.85rem;
+      background:rgba(236,102,8,.07);border-left:3px solid var(--or);border-radius:0 5px 5px 0;
     }
-    .fform-badge svg{color:var(--or);flex-shrink:0}
-    .fform-contacts{display:flex;flex-direction:column;gap:0;margin-bottom:1.75rem;border:1px solid rgba(18,16,13,.1);border-radius:5px;overflow:hidden;background:#fff}
-    .fform-contact-row{
+    .fform-promise-ico{
+      flex-shrink:0;width:34px;height:34px;border-radius:50%;
+      background:var(--or);display:flex;align-items:center;justify-content:center;
+      color:#fff;margin-top:1px;
+    }
+    .fform-promise strong{display:block;font-size:.85rem;font-weight:800;color:var(--ink);margin-bottom:.22rem;letter-spacing:-.01em}
+    .fform-promise p{font-size:.75rem;color:rgba(18,16,13,.55);line-height:1.65;margin:0}
+
+    /* Contact list — large bold rows */
+    .fform-clist{display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.85rem}
+    .fform-ci{
       display:flex;align-items:center;gap:1rem;
-      padding:.9rem 1.1rem;
-      border-bottom:1px solid rgba(18,16,13,.07);
-      text-decoration:none;
-      transition:background .18s;
+      padding:.9rem 1.2rem;border-radius:6px;
+      background:#fff;border:1px solid rgba(18,16,13,.08);
+      text-decoration:none;cursor:default;
+      box-shadow:0 1px 4px rgba(18,16,13,.04);
+      transition:box-shadow .22s,transform .22s,border-color .22s;
     }
-    .fform-contact-row:last-child{border-bottom:none}
-    a.fform-contact-row:hover{background:rgba(236,102,8,.04)}
-    .fform-contact-ico{
-      width:32px;height:32px;border-radius:6px;
-      background:rgba(236,102,8,.1);border:1px solid rgba(236,102,8,.2);
+    a.fform-ci:hover{
+      box-shadow:0 5px 22px rgba(18,16,13,.1);
+      transform:translateX(4px);border-color:rgba(236,102,8,.3);cursor:pointer;
+    }
+    .fform-ci-ico{
+      width:44px;height:44px;border-radius:10px;
+      background:rgba(236,102,8,.09);border:1px solid rgba(236,102,8,.18);
       display:flex;align-items:center;justify-content:center;
       color:var(--or);flex-shrink:0;
+      transition:background .22s,border-color .22s,color .22s;
     }
-    .fform-contact-text{display:flex;flex-direction:column;gap:.1rem;min-width:0}
-    .fform-contact-label{font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(18,16,13,.32)}
-    .fform-contact-val{font-size:.78rem;color:rgba(18,16,13,.7);font-weight:400;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    a.fform-ci:hover .fform-ci-ico{background:var(--or);border-color:var(--or);color:#fff}
+    .fform-ci-body{flex:1;display:flex;flex-direction:column;gap:.08rem;min-width:0}
+    .fform-ci-label{font-size:.58rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:rgba(18,16,13,.35)}
+    .fform-ci-val{font-size:.82rem;font-weight:600;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .fform-ci-arr{
+      font-size:1rem;color:rgba(236,102,8,.4);flex-shrink:0;line-height:1;
+      transition:color .18s,transform .18s;
+    }
+    a.fform-ci:hover .fform-ci-arr{color:var(--or);transform:translateX(3px)}
+
+    /* Badges */
+    .fform-badges{display:flex;flex-wrap:wrap;gap:.5rem}
+    .fform-badge{
+      display:inline-flex;align-items:center;gap:.4rem;
+      padding:.38rem .78rem;
+      background:rgba(18,16,13,.06);border:1px solid rgba(18,16,13,.1);border-radius:3px;
+      font-size:.6rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;
+      color:rgba(18,16,13,.55);
+    }
+    .fform-badge svg{color:var(--or);flex-shrink:0}
+
+    /* Form card */
     .fform-card{
       background:#fff;
       border:1px solid rgba(18,16,13,.08);
-      border-radius:5px;padding:2rem 1.85rem;
-      box-shadow:0 4px 24px rgba(18,16,13,.06);
+      border-radius:8px;padding:2.25rem 2rem;
+      box-shadow:0 8px 40px rgba(18,16,13,.09),0 2px 8px rgba(18,16,13,.05);
+      position:relative;overflow:hidden;
+    }
+    .fform-card::before{
+      content:'';position:absolute;top:0;left:0;right:0;height:3px;
+      background:linear-gradient(90deg,var(--burgundy),var(--chili),var(--or));
     }
     @media(max-width:860px){
       .fform-wrap{grid-template-columns:1fr;gap:2.25rem}
@@ -1361,13 +1418,13 @@ footer .fw{position:relative;z-index:1}
     }
     .fbn{font-size:.88rem;font-weight:900;letter-spacing:.16em;text-transform:uppercase;color:var(--or)}
     .fbs{font-size:.5rem;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.18);margin-top:.12rem}
-    .fbrand p{font-size:.76rem;line-height:1.75;margin-top:1rem;font-weight:300}
-    .fbrand-contact{margin-top:1.2rem;font-size:.74rem;display:flex;flex-direction:column;gap:.3rem;font-weight:300}
-    .fbrand-contact a{transition:color .2s}
-    .fbrand-contact a:hover{color:rgba(255,255,255,.7)}
+    .fbrand p{font-size:.76rem;line-height:1.75;margin-top:1rem;font-weight:300;color:rgba(255,255,255,.52)}
+    .fbrand-contact{margin-top:1.2rem;font-size:.74rem;display:flex;flex-direction:column;gap:.3rem;font-weight:300;color:rgba(255,255,255,.52)}
+    .fbrand-contact a{color:rgba(255,255,255,.52);transition:color .2s}
+    .fbrand-contact a:hover{color:rgba(255,255,255,.85)}
     .fcol h4{font-size:.55rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--or);margin-bottom:1rem}
     .fcol ul{display:flex;flex-direction:column;gap:.5rem}
-    .fcol ul a{font-size:.76rem;transition:color .2s}
+    .fcol ul a{font-size:.76rem;color:rgba(255,255,255,.52);transition:color .2s}
     .fcol ul a:hover{color:rgba(255,255,255,.7)}
     .fb{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem;font-size:.68rem}
     .fb a{transition:color .2s}.fb a:hover{color:rgba(255,255,255,.6)}
@@ -2116,12 +2173,39 @@ footer .fw{position:relative;z-index:1}
 <!-- ══ CONTATTI ══════════════════════════════════════════════════════ -->
 <section id="contatti" aria-labelledby="contatti-h2">
 
-  <div class="rib" style="top:-50px;right:0;width:550px;height:360px;z-index:1" aria-hidden="true">
+  <!-- Decorative ribbon -->
+  <div class="rib" style="top:-50px;right:0;width:550px;height:360px;z-index:3" aria-hidden="true">
     <svg viewBox="0 0 550 360" xmlns="http://www.w3.org/2000/svg" fill="none" preserveAspectRatio="xMaxYMid meet" style="width:100%;height:100%">
+      <defs>
+        <linearGradient id="cntRibGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#EC6608"/>
+          <stop offset="55%" stop-color="#CE3920"/>
+          <stop offset="100%" stop-color="#92152A"/>
+        </linearGradient>
+      </defs>
       <path d="M 630,340 C 510,268 410,168 335,148 C 260,128 186,152 172,198 C 158,244 190,288 232,298 C 274,308 316,284 320,254 C 324,224 296,204 260,208 C 195,216 70,268 -130,330"
-            stroke="rgba(236,102,8,0.18)" stroke-width="28" stroke-linecap="round" fill="none"/>
+            stroke="url(#cntRibGrad)" stroke-width="38" stroke-linecap="round" fill="none" opacity=".7"/>
     </svg>
   </div>
+
+  <!-- Decorative circles: dark section, warm tones along TR→BL arc -->
+  <svg aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden">
+    <defs>
+      <linearGradient id="cntGrad1" x1="100%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%"   stop-color="#EC6608" stop-opacity=".35"/>
+        <stop offset="50%"  stop-color="#CE3920" stop-opacity=".2"/>
+        <stop offset="100%" stop-color="#92152A" stop-opacity=".06"/>
+      </linearGradient>
+      <linearGradient id="cntGrad2" x1="100%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%"   stop-color="#EC6608" stop-opacity=".22"/>
+        <stop offset="100%" stop-color="#CE3920" stop-opacity=".05"/>
+      </linearGradient>
+    </defs>
+    <circle cx="108%" cy="-12%" r="240" fill="none" stroke="url(#cntGrad1)" stroke-width="26"/>
+    <circle cx="78%"  cy="18%"  r="120" fill="none" stroke="url(#cntGrad2)" stroke-width="18"/>
+    <circle cx="48%"  cy="52%"  r="65"  fill="none" stroke="url(#cntGrad2)" stroke-width="12"/>
+    <circle cx="18%"  cy="88%"  r="34"  fill="none" stroke="url(#cntGrad2)" stroke-width="8" stroke-dasharray="12 7"/>
+  </svg>
 
   <div class="cont-in">
 
@@ -2147,63 +2231,91 @@ footer .fw{position:relative;z-index:1}
 
 <!-- ══ FORM CTA ═══════════════════════════════════════════════════════ -->
 <section id="form-cta" aria-labelledby="fform-h2">
+  <!-- Decorative SVG circles: BR → TL arc -->
+  <svg aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden">
+    <defs>
+      <linearGradient id="fcGrad1" x1="100%" y1="100%" x2="0%" y2="0%">
+        <stop offset="0%"   stop-color="#92152A" stop-opacity=".55"/>
+        <stop offset="45%"  stop-color="#CE3920" stop-opacity=".32"/>
+        <stop offset="100%" stop-color="#EC6608" stop-opacity=".08"/>
+      </linearGradient>
+      <linearGradient id="fcGrad2" x1="100%" y1="100%" x2="0%" y2="0%">
+        <stop offset="0%"   stop-color="#CE3920" stop-opacity=".35"/>
+        <stop offset="100%" stop-color="#EC6608" stop-opacity=".06"/>
+      </linearGradient>
+      <linearGradient id="fcGrad3" x1="100%" y1="100%" x2="0%" y2="0%">
+        <stop offset="0%"   stop-color="#92152A" stop-opacity=".18"/>
+        <stop offset="100%" stop-color="#D5DCDC" stop-opacity=".04"/>
+      </linearGradient>
+    </defs>
+    <circle cx="108%" cy="108%" r="240" fill="none" stroke="url(#fcGrad1)" stroke-width="26"/>
+    <circle cx="80%"  cy="82%"  r="120" fill="none" stroke="url(#fcGrad2)" stroke-width="18"/>
+    <circle cx="50%"  cy="52%"  r="66"  fill="none" stroke="url(#fcGrad2)" stroke-width="13"/>
+    <circle cx="18%"  cy="20%"  r="35"  fill="none" stroke="url(#fcGrad3)" stroke-width="9" stroke-dasharray="12 7"/>
+  </svg>
+
   <div class="fform-outer">
     <div class="fform-wrap">
       <div class="fform-intro">
         <span class="fform-label">Contatto diretto</span>
         <h2 class="fform-title" id="fform-h2">Richiedi una<br><em>consulenza gratuita</em></h2>
-        <p class="fform-sub">Compila il modulo oppure contattaci direttamente. Un avvocato AgiLex ti risponderà entro 24 ore per un primo confronto senza impegno e senza costi.</p>
+        <p class="fform-sub">Compila il modulo o contattaci direttamente. Un avvocato AgiLex ti risponde entro 24 ore per un primo confronto senza costi.</p>
 
-        <div class="fform-contacts">
-          <a href="tel:+390239562104" class="fform-contact-row">
-            <span class="fform-contact-ico" aria-hidden="true">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.28h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6 6l.94-.94a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7a2 2 0 0 1 1.72 2.01z"/></svg>
-            </span>
-            <span class="fform-contact-text">
-              <span class="fform-contact-label">Telefono</span>
-              <span class="fform-contact-val">02 39562104 · 347 7188684</span>
-            </span>
-          </a>
-          <a href="mailto:amministrazione.bortolottilex@gmail.com" class="fform-contact-row">
-            <span class="fform-contact-ico" aria-hidden="true">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            </span>
-            <span class="fform-contact-text">
-              <span class="fform-contact-label">Email</span>
-              <span class="fform-contact-val">amministrazione.bortolottilex@gmail.com</span>
-            </span>
-          </a>
-          <div class="fform-contact-row">
-            <span class="fform-contact-ico" aria-hidden="true">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            </span>
-            <span class="fform-contact-text">
-              <span class="fform-contact-label">Sede</span>
-              <span class="fform-contact-val">Corso Buenos Aires 45, 20124 Milano</span>
-            </span>
+        <!-- Promise block -->
+        <div class="fform-promise">
+          <span class="fform-promise-ico" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </span>
+          <div>
+            <strong>Prima consulenza senza costi né impegno</strong>
+            <p>Parlaci del tuo caso: valutiamo insieme se AgiLex è la soluzione giusta per la tua azienda, senza vincoli.</p>
           </div>
-          <div class="fform-contact-row">
-            <span class="fform-contact-ico" aria-hidden="true">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+
+        <!-- Contact list -->
+        <div class="fform-clist">
+          <a href="tel:+390239562104" class="fform-ci">
+            <span class="fform-ci-ico" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.28h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6 6l.94-.94a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7a2 2 0 0 1 1.72 2.01z"/></svg>
             </span>
-            <span class="fform-contact-text">
-              <span class="fform-contact-label">Orari</span>
-              <span class="fform-contact-val">Lun–Ven 9:00–18:00</span>
+            <span class="fform-ci-body">
+              <span class="fform-ci-label">Chiamaci ora</span>
+              <span class="fform-ci-val">02 39562104 · 347 7188684</span>
+            </span>
+            <span class="fform-ci-arr" aria-hidden="true">→</span>
+          </a>
+          <a href="mailto:amministrazione.bortolottilex@gmail.com" class="fform-ci">
+            <span class="fform-ci-ico" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </span>
+            <span class="fform-ci-body">
+              <span class="fform-ci-label">Scrivici via email</span>
+              <span class="fform-ci-val">amministrazione.bortolottilex@gmail.com</span>
+            </span>
+            <span class="fform-ci-arr" aria-hidden="true">→</span>
+          </a>
+          <div class="fform-ci">
+            <span class="fform-ci-ico" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </span>
+            <span class="fform-ci-body">
+              <span class="fform-ci-label">Orari · Sede</span>
+              <span class="fform-ci-val">Lun–Ven 9:00–18:00 · Corso Buenos Aires 45</span>
             </span>
           </div>
         </div>
 
         <div class="fform-badges">
           <span class="fform-badge">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
             Risposta entro 24h
           </span>
           <span class="fform-badge">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
             Nessun impegno
           </span>
           <span class="fform-badge">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
             Dati protetti GDPR
           </span>
         </div>
@@ -2267,6 +2379,56 @@ footer .fw{position:relative;z-index:1}
 
 <!-- ══ FOOTER ════════════════════════════════════════════════════════ -->
 <footer>
+
+  <!-- Balance scale illustration -->
+  <svg class="footer-illo" viewBox="0 0 560 500" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <linearGradient id="sGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%"   stop-color="#EC6608" stop-opacity=".9"/>
+        <stop offset="50%"  stop-color="#CE3920" stop-opacity=".6"/>
+        <stop offset="100%" stop-color="#92152A" stop-opacity=".3"/>
+      </linearGradient>
+      <linearGradient id="sGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%"   stop-color="#EC6608" stop-opacity=".5"/>
+        <stop offset="100%" stop-color="#92152A" stop-opacity=".15"/>
+      </linearGradient>
+    </defs>
+    <!-- Vertical pole -->
+    <line x1="280" y1="48" x2="280" y2="416" stroke="url(#sGrad1)" stroke-width="6" stroke-linecap="round"/>
+    <!-- Horizontal beam — left pan slightly higher (right pan loaded) -->
+    <line x1="72" y1="148" x2="488" y2="162" stroke="url(#sGrad1)" stroke-width="7" stroke-linecap="round"/>
+    <!-- Center pivot ring -->
+    <circle cx="280" cy="155" r="13" stroke="url(#sGrad1)" stroke-width="5"/>
+    <circle cx="280" cy="155" r="4"  fill="rgba(236,102,8,.45)"/>
+    <!-- Top finial -->
+    <circle cx="280" cy="48"  r="9"  stroke="url(#sGrad1)" stroke-width="4"/>
+    <!-- Beam end ornaments -->
+    <circle cx="72"  cy="148" r="5"  stroke="url(#sGrad2)" stroke-width="3"/>
+    <circle cx="488" cy="162" r="5"  stroke="url(#sGrad2)" stroke-width="3"/>
+    <!-- Left chains (3 lines, to pan at ~282px) -->
+    <line x1="52"  y1="148" x2="48"  y2="282" stroke="url(#sGrad2)" stroke-width="2.5" stroke-dasharray="7 5"/>
+    <line x1="72"  y1="148" x2="72"  y2="282" stroke="url(#sGrad2)" stroke-width="2.5" stroke-dasharray="7 5"/>
+    <line x1="92"  y1="148" x2="96"  y2="282" stroke="url(#sGrad2)" stroke-width="2.5" stroke-dasharray="7 5"/>
+    <!-- Left pan (slightly higher) -->
+    <path d="M 30,282 C 30,328 116,328 116,282" stroke="url(#sGrad1)" stroke-width="5" stroke-linecap="round"/>
+    <line x1="30"  y1="282" x2="116" y2="282" stroke="url(#sGrad1)" stroke-width="3"/>
+    <!-- Right chains (to pan at ~318px — heavier/lower) -->
+    <line x1="468" y1="162" x2="452" y2="318" stroke="url(#sGrad2)" stroke-width="2.5" stroke-dasharray="7 5"/>
+    <line x1="488" y1="162" x2="488" y2="318" stroke="url(#sGrad2)" stroke-width="2.5" stroke-dasharray="7 5"/>
+    <line x1="508" y1="162" x2="524" y2="318" stroke="url(#sGrad2)" stroke-width="2.5" stroke-dasharray="7 5"/>
+    <!-- Right pan (slightly lower) -->
+    <path d="M 444,318 C 444,364 530,364 530,318" stroke="url(#sGrad1)" stroke-width="5" stroke-linecap="round"/>
+    <line x1="444" y1="318" x2="530" y2="318" stroke="url(#sGrad1)" stroke-width="3"/>
+    <!-- Base column -->
+    <rect x="258" y="416" width="44" height="20" rx="4" stroke="url(#sGrad1)" stroke-width="4"/>
+    <!-- Base plate -->
+    <rect x="194" y="436" width="172" height="16" rx="4" stroke="url(#sGrad1)" stroke-width="4"/>
+    <!-- Decorative outer circles (brand style) -->
+    <circle cx="72"  cy="380" r="62"  fill="none" stroke="url(#sGrad2)" stroke-width="2" opacity=".55"/>
+    <circle cx="488" cy="428" r="78"  fill="none" stroke="url(#sGrad2)" stroke-width="2" opacity=".4"/>
+    <circle cx="280" cy="486" r="44"  fill="none" stroke="url(#sGrad2)" stroke-width="1.5" stroke-dasharray="9 6" opacity=".35"/>
+  </svg>
+
   <div class="fw">
 
     <div class="ft">
