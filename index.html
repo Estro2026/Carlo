@@ -1309,7 +1309,7 @@ footer::after{
 }
 footer .fw{position:relative;z-index:1}
     .fw{max-width:1280px;margin:0 auto}
-    .footer-illo{position:absolute;right:-40px;bottom:-10px;width:clamp(300px,42vw,520px);pointer-events:none;z-index:0;opacity:.55}
+    .footer-illo{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:clamp(260px,38vw,480px);pointer-events:none;z-index:0;opacity:.08;object-fit:contain}
     .fbrand p{font-size:.76rem;line-height:1.75;margin-top:1rem;font-weight:300;color:rgba(255,255,255,.52)}
 
     /* Form CTA section — light arc background */
@@ -2455,54 +2455,7 @@ footer .fw{position:relative;z-index:1}
 <!-- ══ FOOTER ════════════════════════════════════════════════════════ -->
 <footer>
 
-  <!-- Balance scale illustration -->
-  <svg class="footer-illo" viewBox="0 0 560 500" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <defs>
-      <linearGradient id="sGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%"   stop-color="#EC6608" stop-opacity=".9"/>
-        <stop offset="50%"  stop-color="#CE3920" stop-opacity=".6"/>
-        <stop offset="100%" stop-color="#92152A" stop-opacity=".3"/>
-      </linearGradient>
-      <linearGradient id="sGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%"   stop-color="#EC6608" stop-opacity=".5"/>
-        <stop offset="100%" stop-color="#92152A" stop-opacity=".15"/>
-      </linearGradient>
-    </defs>
-    <!-- Vertical pole -->
-    <line x1="280" y1="48" x2="280" y2="416" stroke="url(#sGrad1)" stroke-width="6" stroke-linecap="round"/>
-    <!-- Horizontal beam — left pan slightly higher (right pan loaded) -->
-    <line x1="72" y1="148" x2="488" y2="162" stroke="url(#sGrad1)" stroke-width="7" stroke-linecap="round"/>
-    <!-- Center pivot ring -->
-    <circle cx="280" cy="155" r="13" stroke="url(#sGrad1)" stroke-width="5"/>
-    <circle cx="280" cy="155" r="4"  fill="rgba(236,102,8,.45)"/>
-    <!-- Top finial -->
-    <circle cx="280" cy="48"  r="9"  stroke="url(#sGrad1)" stroke-width="4"/>
-    <!-- Beam end ornaments -->
-    <circle cx="72"  cy="148" r="5"  stroke="url(#sGrad2)" stroke-width="3"/>
-    <circle cx="488" cy="162" r="5"  stroke="url(#sGrad2)" stroke-width="3"/>
-    <!-- Left chains (3 lines, to pan at ~282px) -->
-    <line x1="52"  y1="148" x2="48"  y2="282" stroke="url(#sGrad2)" stroke-width="2.5" stroke-dasharray="7 5"/>
-    <line x1="72"  y1="148" x2="72"  y2="282" stroke="url(#sGrad2)" stroke-width="2.5" stroke-dasharray="7 5"/>
-    <line x1="92"  y1="148" x2="96"  y2="282" stroke="url(#sGrad2)" stroke-width="2.5" stroke-dasharray="7 5"/>
-    <!-- Left pan (slightly higher) -->
-    <path d="M 30,282 C 30,328 116,328 116,282" stroke="url(#sGrad1)" stroke-width="5" stroke-linecap="round"/>
-    <line x1="30"  y1="282" x2="116" y2="282" stroke="url(#sGrad1)" stroke-width="3"/>
-    <!-- Right chains (to pan at ~318px — heavier/lower) -->
-    <line x1="468" y1="162" x2="452" y2="318" stroke="url(#sGrad2)" stroke-width="2.5" stroke-dasharray="7 5"/>
-    <line x1="488" y1="162" x2="488" y2="318" stroke="url(#sGrad2)" stroke-width="2.5" stroke-dasharray="7 5"/>
-    <line x1="508" y1="162" x2="524" y2="318" stroke="url(#sGrad2)" stroke-width="2.5" stroke-dasharray="7 5"/>
-    <!-- Right pan (slightly lower) -->
-    <path d="M 444,318 C 444,364 530,364 530,318" stroke="url(#sGrad1)" stroke-width="5" stroke-linecap="round"/>
-    <line x1="444" y1="318" x2="530" y2="318" stroke="url(#sGrad1)" stroke-width="3"/>
-    <!-- Base column -->
-    <rect x="258" y="416" width="44" height="20" rx="4" stroke="url(#sGrad1)" stroke-width="4"/>
-    <!-- Base plate -->
-    <rect x="194" y="436" width="172" height="16" rx="4" stroke="url(#sGrad1)" stroke-width="4"/>
-    <!-- Decorative outer circles (brand style) -->
-    <circle cx="72"  cy="380" r="62"  fill="none" stroke="url(#sGrad2)" stroke-width="2" opacity=".55"/>
-    <circle cx="488" cy="428" r="78"  fill="none" stroke="url(#sGrad2)" stroke-width="2" opacity=".4"/>
-    <circle cx="280" cy="486" r="44"  fill="none" stroke="url(#sGrad2)" stroke-width="1.5" stroke-dasharray="9 6" opacity=".35"/>
-  </svg>
+  <img class="footer-illo" src="icon-1-e3d25745.webp" alt="" aria-hidden="true"/>
 
   <div class="fw">
 
