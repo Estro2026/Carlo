@@ -1233,6 +1233,23 @@
     .crow strong{display:block;color:#fff;font-size:.62rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.05rem}
     .crow a{color:rgba(255,255,255,.62);transition:color .2s}
     .crow a:hover{color:var(--or)}
+    .ctrans{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;
+      max-width:680px;margin:0 auto clamp(2.5rem,5vw,4rem);
+    }
+    .ctrans-item{
+      display:flex;flex-direction:column;align-items:center;text-align:center;gap:.65rem;
+      padding:1.25rem 1rem;border-radius:6px;
+      background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);
+    }
+    .ctrans-ico{
+      width:40px;height:40px;border-radius:var(--radius);
+      border:1px solid rgba(255,255,255,.12);color:var(--or);
+      display:flex;align-items:center;justify-content:center;flex-shrink:0;
+    }
+    .ctrans-label{font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:#fff}
+    .ctrans-text{font-size:.76rem;font-weight:300;color:rgba(242,244,245,.65);line-height:1.65}
+    @media(max-width:580px){.ctrans{grid-template-columns:1fr;max-width:320px}}
     .cont-note{
       margin-top:2.75rem;padding:1.35rem 1.6rem;
       border-left:2px solid var(--or);
@@ -2212,7 +2229,29 @@ footer .fw{position:relative;z-index:1}
     <div class="cont-header">
       <span class="slabel fu">Dove siamo</span>
       <h2 class="cont-h2 fu d1" id="contatti-h2">Vieni a trovarci<br><em>a Milano</em></h2>
-      <p class="cont-sub fu d2">A due passi dalla fermata MM2 <strong style="color:rgba(255,255,255,.88)">Loreto</strong> e dalla fermata MM1/MM2 <strong style="color:rgba(255,255,255,.88)">Centrale FS</strong>. Raggiungibile con i tram <strong style="color:rgba(255,255,255,.88)">5, 9, 33</strong> e le linee bus <strong style="color:rgba(255,255,255,.88)">60, 62</strong>. Parcheggio a pagamento disponibile in zona Corso Buenos Aires.</p>
+      <div class="ctrans fu d2" role="list">
+        <div class="ctrans-item" role="listitem">
+          <span class="ctrans-ico" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="3"/><line x1="5" y1="10" x2="19" y2="10"/><line x1="5" y1="14" x2="19" y2="14"/><circle cx="8.5" cy="18" r="1" fill="currentColor"/><circle cx="15.5" cy="18" r="1" fill="currentColor"/></svg>
+          </span>
+          <span class="ctrans-label">Metro</span>
+          <span class="ctrans-text">MM2 Loreto · MM1/MM2 Centrale FS</span>
+        </div>
+        <div class="ctrans-item" role="listitem">
+          <span class="ctrans-ico" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18"/><circle cx="7.5" cy="18" r="1.5" fill="currentColor" stroke="none"/><circle cx="16.5" cy="18" r="1.5" fill="currentColor" stroke="none"/><line x1="7.5" y1="18" x2="16.5" y2="18"/></svg>
+          </span>
+          <span class="ctrans-label">Tram e bus</span>
+          <span class="ctrans-text">Tram 5, 9, 33 · Bus 60, 62</span>
+        </div>
+        <div class="ctrans-item" role="listitem">
+          <span class="ctrans-ico" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-4 0v2"/><line x1="12" y1="12" x2="12" y2="15"/><line x1="10.5" y1="13.5" x2="13.5" y2="13.5"/></svg>
+          </span>
+          <span class="ctrans-label">Parcheggio</span>
+          <span class="ctrans-text">A pagamento in zona Corso Buenos Aires</span>
+        </div>
+      </div>
     </div>
 
     <div class="cont-map fu">
