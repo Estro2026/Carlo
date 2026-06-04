@@ -1493,6 +1493,94 @@ footer .fw{position:relative;z-index:2}
     }
     .scta a:hover{background:rgba(236,102,8,.82);box-shadow:0 0 0 3px rgba(236,102,8,.2),0 6px 18px rgba(236,102,8,.35)}
     @media(max-width:900px){.scta{display:block}body{padding-bottom:70px}}
+
+    /* ── RESPONSIVE FIXES ────────────────────────────────────────── */
+
+    /* diff-in: reduce gap when stacked to 1 column */
+    @media(max-width:900px){
+      .diff-in{gap:2.5rem}
+    }
+
+    /* fform-wrap: reduce gap at intermediate widths before 1-col collapse */
+    @media(max-width:1100px){
+      .fform-wrap{gap:3rem}
+    }
+    @media(max-width:960px){
+      .fform-wrap{gap:2rem}
+    }
+
+    /* hero form card: hide on mobile — users reach the dedicated section below */
+    @media(max-width:960px){
+      .hero-form-card{display:none}
+      .hero-main{grid-template-columns:1fr}
+    }
+
+    /* hero stats: go to 2-col between 480–600px for better readability */
+    @media(max-width:480px){
+      .hero-stats{grid-template-columns:1fr 1fr}
+    }
+
+    /* ctrans transport cards: remove max-width constraint on very small screens */
+    @media(max-width:360px){
+      .ctrans{max-width:100%}
+    }
+
+    /* fform-ci contact rows: allow text to wrap on narrow screens */
+    @media(max-width:480px){
+      .fform-ci-val{white-space:normal;overflow:visible;text-overflow:unset;font-size:.76rem}
+      .fform-ci{padding:.8rem 1rem}
+    }
+
+    /* prob-grid: at very small screens ensure cards don't overflow */
+    @media(max-width:420px){
+      .pc{padding:1.6rem 1.25rem 1.85rem}
+    }
+
+    /* aree-grid: at very small screens fix last-row border */
+    @media(max-width:480px){
+      .ac:last-child{border-bottom:none}
+    }
+
+    /* sol-in: remove photo accent on very small screens */
+    @media(max-width:420px){
+      .sol-photo-accent{display:none}
+      .sol-right{height:260px}
+    }
+
+    /* tl timeline: reduce circle size and body padding on very small screens */
+    @media(max-width:420px){
+      .tl-step{padding:0 .4rem}
+      .tl-body-inner{padding:.9rem .75rem 1rem}
+      .tl-circle{width:44px;height:44px;font-size:.88rem}
+    }
+
+    /* diff-card: reduce padding on mobile */
+    @media(max-width:600px){
+      .diff-card{padding:1.75rem 1.5rem}
+    }
+
+    /* di list items: adjust number band width on very small screens */
+    @media(max-width:360px){
+      .di-n{width:44px}
+      .di-body{padding:.9rem 1rem}
+    }
+
+    /* fform-card: reduce padding on mobile */
+    @media(max-width:600px){
+      .fform-card{padding:1.75rem 1.5rem}
+    }
+
+    /* footer grid: tighten gap on narrow mobile */
+    @media(max-width:420px){
+      .ft{gap:2rem}
+      .fb{flex-direction:column;align-items:flex-start}
+    }
+
+    /* hero-ctas: full-width buttons on very small screens */
+    @media(max-width:380px){
+      .hero-ctas{flex-direction:column}
+      .hero-ctas .btn-primary,.hero-ctas .btn-outline-wh{width:100%;justify-content:center}
+    }
   </style>
 </head>
 <body>
