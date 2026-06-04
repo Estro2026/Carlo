@@ -649,14 +649,14 @@
     .ac:hover::before{color:rgba(18,16,13,.07)}
     .ac:hover::after{transform:scaleX(1)}
 
-    /* icon — no badge background, just the icon itself */
+    /* icon — solid filled, orange, visual anchor of the card */
     .ac-ico{
-      width:28px;height:28px;
+      width:22px;height:22px;
       display:flex;align-items:center;justify-content:center;
       color:var(--or);flex-shrink:0;
-      transition:transform .22s;
+      transition:color .22s,transform .22s;
     }
-    .ac:hover .ac-ico{transform:scale(1.12)}
+    .ac:hover .ac-ico{color:var(--chili);transform:scale(1.1)}
     .ac h3{font-size:.82rem;font-weight:700;color:var(--ink);line-height:1.42}
 
     /* CTA strip — dark bar at bottom of light section */
@@ -1257,72 +1257,63 @@
 
       <div class="ac fu" role="listitem">
         <div class="ac-ico" aria-hidden="true">
-          <!-- Documento con righe di testo -->
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM8 13h8v1.5H8V13zm0 3h8v1.5H8V16z"/></svg>
         </div>
         <h3>Diritto civile e contrattualistica</h3>
       </div>
 
       <div class="ac fu d1" role="listitem">
         <div class="ac-ico" aria-hidden="true">
-          <!-- Scudo con check -->
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-1.5 13.06l-2.83-2.83 1.06-1.06 1.77 1.77 4.24-4.24 1.06 1.06-5.3 5.3z"/></svg>
         </div>
         <h3>Responsabilità civile e risarcimento del danno</h3>
       </div>
 
       <div class="ac fu d2" role="listitem">
         <div class="ac-ico" aria-hidden="true">
-          <!-- Trend discendente (crediti non riscossi) -->
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 17 22 17 22 11"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M11.8 10.9c-2.27-.59-3-.6-3-1.9 0-1.26 1.27-1.7 2.5-1.7 1.17 0 2.28.48 2.79 1.22l1.8-1.05C15.12 6.21 13.76 5.4 12 5.17V3h-2v2.18c-2.28.46-4 1.84-4 4.02 0 2.6 2.15 3.27 4.2 3.82 2.27.59 3 .9 3 1.98 0 1.14-1.15 1.7-2.5 1.7-1.46 0-2.79-.73-3.36-1.86L5.5 15.88C6.38 17.68 8.1 18.84 10 19.08V21h2v-1.93c2.4-.44 4-1.96 4-4.07 0-2.96-2.15-3.57-4.2-4.1z"/></svg>
         </div>
         <h3>Recupero crediti ed esecuzioni</h3>
       </div>
 
       <div class="ac fu d3" role="listitem">
         <div class="ac-ico" aria-hidden="true">
-          <!-- Carta di credito con dettaglio -->
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/><line x1="6" y1="15" x2="9" y2="15"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.11 0-2 .89-2 2v12c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>
         </div>
         <h3>Diritto bancario ed assicurativo</h3>
       </div>
 
       <div class="ac fu d4" role="listitem">
         <div class="ac-ico" aria-hidden="true">
-          <!-- Palazzo/edificio societario -->
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="22" x2="21" y2="22"/><rect x="5" y="2" width="14" height="20" rx="1"/><line x1="9" y1="7" x2="9.01" y2="7" stroke-width="2.5"/><line x1="15" y1="7" x2="15.01" y2="7" stroke-width="2.5"/><line x1="9" y1="12" x2="9.01" y2="12" stroke-width="2.5"/><line x1="15" y1="12" x2="15.01" y2="12" stroke-width="2.5"/><path d="M9 22v-4h6v4"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z"/></svg>
         </div>
         <h3>Diritto commerciale e societario</h3>
       </div>
 
       <div class="ac fu d5" role="listitem">
         <div class="ac-ico" aria-hidden="true">
-          <!-- Casa / immobiliare -->
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
         </div>
         <h3>Diritto immobiliare e locazioni</h3>
       </div>
 
       <div class="ac fu d6" role="listitem">
         <div class="ac-ico" aria-hidden="true">
-          <!-- Pacco / distribuzione e-commerce -->
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/></svg>
         </div>
         <h3>E-commerce, licenze, distribuzione e trasporti</h3>
       </div>
 
       <div class="ac fu d7" role="listitem">
         <div class="ac-ico" aria-hidden="true">
-          <!-- Tag / marchio registrato -->
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7" stroke-width="2.5"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M21.41 11.58l-9-9C12.05 2.22 11.55 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .55.22 1.05.59 1.42l9 9c.36.36.86.58 1.41.58s1.05-.22 1.41-.59l7-7c.37-.36.59-.86.59-1.41s-.23-1.06-.59-1.42zM5.5 7C4.67 7 4 6.33 4 5.5S4.67 4 5.5 4 7 4.67 7 5.5 6.33 7 5.5 7z"/></svg>
         </div>
         <h3>Marchi, brevetti e proprietà intellettuale</h3>
       </div>
 
       <div class="ac fu d8" role="listitem">
         <div class="ac-ico" aria-hidden="true">
-          <!-- Persone / lavoro -->
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
         </div>
         <h3>Diritto del lavoro</h3>
       </div>
