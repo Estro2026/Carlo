@@ -687,46 +687,130 @@
       .aree-desc{max-width:100%;border-left:none;padding-left:0;border-top:1px solid rgba(236,102,8,.35);padding-top:.75rem}
     }
 
-    /* ── COME FUNZIONA ─────────────────────────────────────────────── */
-    #cf{background:var(--ink2);padding:var(--py) 0;position:relative;overflow:hidden}
-    .cf-wrap{
-      max-width:1280px;margin:0 auto;
-      display:grid;grid-template-columns:50% 50%;min-height:600px;
-    }
-    .cf-photo{position:relative;overflow:hidden}
-    .cf-photo img{
-      width:100%;height:100%;object-fit:cover;
-      filter:brightness(0.75) contrast(1.12) saturate(0.62);display:block;
-    }
-    .cf-photo-overlay{
-      position:absolute;inset:0;
-      background:linear-gradient(90deg,transparent 55%,var(--ink2) 100%),
-                 linear-gradient(0deg,var(--ink2) 0%,transparent 20%);
-    }
-    .cf-content{
-      padding:clamp(3rem,5vw,5rem) var(--px) clamp(3rem,5vw,5rem) clamp(2rem,3vw,3.5rem);
-      display:flex;flex-direction:column;justify-content:center;
-    }
+    /* ── COME FUNZIONA · vertical timeline ─────────────────────── */
+    #cf{background:var(--ink2);padding:var(--py) var(--px);position:relative}
+    .cf-in{max-width:720px;margin:0 auto}
+    .cf-head{text-align:center;margin-bottom:3.75rem}
     .cf-h2{font-size:clamp(2rem,4vw,3.5rem);font-weight:900;color:#fff;line-height:1.02;letter-spacing:-.025em;margin-bottom:.85rem}
     .cf-h2 em{font-style:italic;color:var(--or)}
-    .cf-sub{font-size:.9rem;font-weight:300;color:rgba(242,244,245,.42);line-height:1.85;margin-bottom:2.25rem}
-    .cf-steps{display:flex;flex-direction:column;margin-bottom:2.5rem}
-    .cfs{display:flex;gap:1.35rem;padding:1.5rem 0;border-bottom:1px solid rgba(255,255,255,.06)}
-    .cfs:last-child{border-bottom:none}
-    .cfs-n{
-      font-size:2.6rem;font-weight:900;font-style:italic;
-      color:rgba(236,102,8,.35);flex-shrink:0;line-height:1;
-      width:46px;text-align:right;padding-top:2px;
-      transition:color .25s;
-    }
-    .cfs:hover .cfs-n{color:rgba(236,102,8,.7)}
-    .cfs h3{font-size:.9rem;font-weight:700;color:#fff;margin-bottom:.35rem}
-    .cfs p{font-size:.8rem;color:rgba(242,244,245,.38);line-height:1.75;font-weight:300}
+    .cf-sub{font-size:.9rem;font-weight:300;color:rgba(242,244,245,.42);line-height:1.85;max-width:540px;margin:0 auto}
 
-    @media(max-width:900px){
-      .cf-wrap{grid-template-columns:1fr}
-      .cf-photo{height:280px}
-      .cf-content{padding:2.5rem var(--px)}
+    /* Timeline spine */
+    .tl{display:flex;flex-direction:column}
+    .tl-step{display:flex;align-items:flex-start;position:relative}
+    .tl-left{display:flex;flex-direction:column;align-items:center;flex-shrink:0;width:60px;margin-right:1.75rem}
+
+    /* Number circle — resting state */
+    .tl-circle{
+      width:56px;height:56px;border-radius:50%;
+      border:2px solid rgba(236,102,8,.2);
+      display:flex;align-items:center;justify-content:center;
+      font-size:1.05rem;font-weight:900;font-style:italic;
+      color:rgba(236,102,8,.3);
+      background:transparent;
+      position:relative;z-index:1;flex-shrink:0;
+      transition:border-color .35s,color .35s,background .35s,box-shadow .35s;
+    }
+    /* Circle entrance (requires .js-ready) */
+    .js-ready .tl-circle{
+      transform:scale(.72);opacity:0;
+      transition:
+        border-color .35s,color .35s,background .35s,box-shadow .35s,
+        transform .46s cubic-bezier(.34,1.56,.64,1) .08s,
+        opacity .32s ease .08s;
+    }
+    .js-ready .tl-step.tl-in .tl-circle{
+      transform:scale(1);opacity:1;
+      border-color:rgba(236,102,8,.58);color:var(--or);
+    }
+    /* Step 4 filled accent — higher specificity placed after general */
+    .tl-step--last .tl-circle{
+      border-color:var(--or);background:var(--or);color:#fff;
+    }
+    .js-ready .tl-step--last.tl-in .tl-circle{
+      border-color:var(--or);background:var(--or);color:#fff;
+      box-shadow:0 0 0 6px rgba(236,102,8,.12);
+      animation:tlGlow 2.6s ease-in-out .55s infinite;
+    }
+
+    /* Connector segment between steps */
+    .tl-line{
+      width:2px;flex:1;min-height:2rem;
+      background:linear-gradient(180deg,rgba(236,102,8,.42) 0%,rgba(236,102,8,.06) 100%);
+      transform-origin:top;
+    }
+    .js-ready .tl-line{
+      transform:scaleY(0);
+      transition:transform .72s cubic-bezier(.22,.61,.36,1) .46s;
+    }
+    .js-ready .tl-step.tl-in .tl-line{transform:scaleY(1)}
+
+    /* Step body */
+    .tl-body{flex:1;padding:0 0 2.75rem}
+    .tl-body-inner{
+      padding:1.2rem 1.5rem 1.3rem;
+      border:1px solid rgba(255,255,255,.05);
+      border-radius:6px;
+      background:rgba(255,255,255,.025);
+      transition:background .22s,border-color .24s,transform .22s;
+    }
+    .tl-step:hover .tl-body-inner{
+      background:rgba(255,255,255,.048);
+      border-color:rgba(236,102,8,.16);
+      transform:translateX(5px);
+    }
+    .tl-step--last:hover .tl-body-inner{
+      border-color:rgba(236,102,8,.3);
+      box-shadow:0 4px 20px rgba(236,102,8,.07);
+    }
+    .tl-body h3{font-size:.88rem;font-weight:700;color:#fff;margin-bottom:.38rem;line-height:1.35}
+    .tl-body p{font-size:.79rem;color:rgba(242,244,245,.42);line-height:1.8;font-weight:300;margin:0}
+
+    /* Step entrance animation */
+    .js-ready .tl-step{
+      opacity:0;transform:translateY(26px);
+      transition:opacity .5s cubic-bezier(.22,.61,.36,1),transform .5s cubic-bezier(.22,.61,.36,1);
+    }
+    .js-ready .tl-step.tl-in{opacity:1;transform:none}
+
+    /* Reassurance badge */
+    .tl-badge{
+      display:flex;align-items:center;gap:.72rem;
+      padding:.88rem 1.3rem;
+      background:rgba(236,102,8,.05);
+      border:1px solid rgba(236,102,8,.15);
+      border-radius:4px;
+      font-size:.7rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;
+      color:rgba(236,102,8,.75);
+      margin-bottom:2.25rem;
+    }
+    .tl-badge svg{flex-shrink:0}
+    .js-ready .tl-badge{opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease}
+    .js-ready .tl-badge.tl-in{opacity:1;transform:none}
+
+    .cf-cta{text-align:center}
+
+    /* Glow pulse on step 4 */
+    @keyframes tlGlow{
+      0%,100%{box-shadow:0 0 0 5px rgba(236,102,8,.12)}
+      50%     {box-shadow:0 0 0 12px rgba(236,102,8,.05)}
+    }
+
+    /* Respect reduced motion */
+    @media(prefers-reduced-motion:reduce){
+      .js-ready .tl-step,
+      .js-ready .tl-circle,
+      .js-ready .tl-line,
+      .js-ready .tl-badge{
+        transition:none!important;animation:none!important;
+        opacity:1!important;transform:none!important;
+      }
+    }
+    @media(max-width:600px){
+      .tl-left{width:48px;margin-right:1.25rem}
+      .tl-circle{width:48px;height:48px;font-size:.95rem}
+      .tl-body-inner{padding:1rem 1.1rem}
+      .tl-body{padding-bottom:2rem}
     }
 
     /* ── CTA ORANGE ───────────────────────────────────────────────── */
@@ -1347,52 +1431,81 @@
 
 <!-- ══ COME FUNZIONA ════════════════════════════════════════════════ -->
 <section id="cf" aria-labelledby="cf-h2">
-  <div class="cf-wrap">
-    <div class="cf-photo" aria-hidden="true">
-      <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=900&q=75" alt="" loading="lazy" decoding="async"/>
-      <div class="cf-photo-overlay"></div>
-    </div>
-    <div class="cf-content">
+  <div class="cf-in">
+
+    <div class="cf-head">
       <span class="slabel fu">Come funziona</span>
       <h2 class="cf-h2 fu d1" id="cf-h2">Come funziona<br><em>AgiLex?</em></h2>
       <p class="cf-sub fu d2">Un contratto di consulenza legale e assistenza annuale, senza rinnovo automatico. Un rapporto strutturato con costi che conosci in anticipo.</p>
-      <div class="cf-steps" role="list">
-        <div class="cfs fu d2" role="listitem">
-          <div class="cfs-n" aria-hidden="true">1</div>
-          <div>
+    </div>
+
+    <div class="tl" role="list">
+
+      <div class="tl-step" role="listitem">
+        <div class="tl-left" aria-hidden="true">
+          <div class="tl-circle">1</div>
+          <div class="tl-line"></div>
+        </div>
+        <div class="tl-body">
+          <div class="tl-body-inner">
             <h3>Analisi delle esigenze aziendali</h3>
             <p>Un primo confronto per capire la struttura, le attività e le necessità legali della tua azienda. Senza impegno.</p>
           </div>
         </div>
-        <div class="cfs fu d3" role="listitem">
-          <div class="cfs-n" aria-hidden="true">2</div>
-          <div>
+      </div>
+
+      <div class="tl-step" role="listitem">
+        <div class="tl-left" aria-hidden="true">
+          <div class="tl-circle">2</div>
+          <div class="tl-line"></div>
+        </div>
+        <div class="tl-body">
+          <div class="tl-body-inner">
             <h3>Definizione del perimetro</h3>
             <p>Insieme definiamo le aree coperte, la frequenza del supporto e le modalità operative più adatte alla tua realtà.</p>
           </div>
         </div>
-        <div class="cfs fu d4" role="listitem">
-          <div class="cfs-n" aria-hidden="true">3</div>
-          <div>
+      </div>
+
+      <div class="tl-step" role="listitem">
+        <div class="tl-left" aria-hidden="true">
+          <div class="tl-circle">3</div>
+          <div class="tl-line"></div>
+        </div>
+        <div class="tl-body">
+          <div class="tl-body-inner">
             <h3>Costo annuale concordato</h3>
             <p>Ricevi una proposta chiara, senza costi nascosti. Accetti solo se ti convince. Nessun automatismo.</p>
           </div>
         </div>
-        <div class="cfs fu d5" role="listitem">
-          <div class="cfs-n" aria-hidden="true">4</div>
-          <div>
+      </div>
+
+      <div class="tl-step tl-step--last" role="listitem">
+        <div class="tl-left" aria-hidden="true">
+          <div class="tl-circle">4</div>
+        </div>
+        <div class="tl-body">
+          <div class="tl-body-inner">
             <h3>Supporto legale continuativo</h3>
             <p>Da quel momento hai un avvocato d'impresa al tuo fianco per tutto l'anno, pronto quando ne hai bisogno.</p>
           </div>
         </div>
       </div>
-      <div class="fu d6">
-        <a href="#contatti" class="btn-primary">
-          Inizia ora
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </a>
-      </div>
+
     </div>
+
+    <div class="tl-badge" aria-label="Garanzie del servizio">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+      Nessun rinnovo automatico &nbsp;·&nbsp; Costo concordato in anticipo &nbsp;·&nbsp; Prima consulenza gratuita
+    </div>
+
+    <div class="cf-cta fu d3">
+      <a href="#contatti" class="btn-primary">
+        Inizia ora
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+
   </div>
 </section>
 
@@ -1635,6 +1748,29 @@
     setTimeout(function(){
       document.querySelectorAll('.fu').forEach(function(el){ el.classList.add('in'); });
     }, 2800);
+
+    /* Timeline IntersectionObserver — sequential step reveal */
+    var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var tlIO = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          e.target.classList.add('tl-in');
+          tlIO.unobserve(e.target);
+        }
+      });
+    }, {threshold: 0.22, rootMargin: '0px 0px -50px 0px'});
+    document.querySelectorAll('.tl-step, .tl-badge').forEach(function(el, i){
+      if(prefersReduced){
+        /* Skip observer — elements are visible via CSS @media rule */
+        el.classList.add('tl-in');
+      } else {
+        tlIO.observe(el);
+      }
+    });
+    /* Safety fallback for timeline */
+    setTimeout(function(){
+      document.querySelectorAll('.tl-step, .tl-badge').forEach(function(el){ el.classList.add('tl-in'); });
+    }, 3000);
   });
 
   /* Contact form validation */
