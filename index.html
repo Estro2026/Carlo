@@ -383,28 +383,27 @@
     /* ── PROBLEMA ──────────────────────────────────────────────────── */
     #problema{
       padding:var(--py) var(--px);position:relative;overflow:hidden;
+      /* curved sweep: multiple elliptical radials mimic the ribbon arc */
       background:
-        linear-gradient(135deg,
-          rgba(146,21,42,.22)  0%,
-          rgba(206,57,32,.16) 28%,
-          rgba(236,102,8,.10) 52%,
-          rgba(213,220,220,.28) 78%,
-          rgba(242,244,245,1) 100%
-        ),
+        radial-gradient(ellipse 110% 70% at -5% 115%, rgba(146,21,42,.28) 0%, transparent 48%),
+        radial-gradient(ellipse 80% 60% at 25% 105%, rgba(206,57,32,.22) 0%, transparent 44%),
+        radial-gradient(ellipse 70% 55% at 55% 95%,  rgba(236,102,8,.16) 0%, transparent 42%),
+        radial-gradient(ellipse 60% 50% at 82% 80%,  rgba(213,220,220,.22) 0%, transparent 50%),
         var(--afw);
     }
-    /* noise texture overlay */
+    /* grain texture — coarser, more visible */
     #problema::before{
       content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
-      opacity:.09;
-      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
-      background-repeat:repeat;background-size:300px 300px;
+      opacity:.16;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.55' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-repeat:repeat;background-size:200px 200px;
+      mix-blend-mode:multiply;
     }
-    /* top-right warm radial glow */
+    /* warm accent glow bottom-left following the ribbon arc */
     #problema::after{
-      content:'';position:absolute;top:-20%;right:-10%;
-      width:680px;height:680px;border-radius:50%;pointer-events:none;z-index:0;
-      background:radial-gradient(circle,rgba(236,102,8,.18) 0%,rgba(206,57,32,.10) 40%,transparent 68%);
+      content:'';position:absolute;bottom:-15%;left:-8%;
+      width:700px;height:700px;border-radius:50%;pointer-events:none;z-index:0;
+      background:radial-gradient(circle,rgba(146,21,42,.14) 0%,rgba(206,57,32,.08) 38%,transparent 65%);
     }
     #problema .prob-in{position:relative;z-index:1}
     .prob-in{max-width:1280px;margin:0 auto}
