@@ -723,14 +723,11 @@
       transform:scale(1);opacity:1;
       border-color:rgba(236,102,8,.58);color:var(--or);
     }
-    /* Step 4 filled accent — higher specificity placed after general */
-    .tl-step--last .tl-circle{
+    /* Step hover — circle fills on any step */
+    .js-ready .tl-step:hover .tl-circle,
+    .tl-step:hover .tl-circle{
       border-color:var(--or);background:var(--or);color:#fff;
-    }
-    .js-ready .tl-step--last.tl-in .tl-circle{
-      border-color:var(--or);background:var(--or);color:#fff;
-      box-shadow:0 0 0 6px rgba(236,102,8,.12);
-      animation:tlGlow 2.6s ease-in-out .55s infinite;
+      box-shadow:0 0 0 8px rgba(236,102,8,.1);
     }
 
     /* Connector segment between steps */
@@ -755,12 +752,9 @@
       transition:background .22s,border-color .24s,transform .22s;
     }
     .tl-step:hover .tl-body-inner{
-      background:rgba(255,255,255,.048);
-      border-color:rgba(236,102,8,.16);
+      background:rgba(255,255,255,.05);
+      border-color:rgba(236,102,8,.28);
       transform:translateX(5px);
-    }
-    .tl-step--last:hover .tl-body-inner{
-      border-color:rgba(236,102,8,.3);
       box-shadow:0 4px 20px rgba(236,102,8,.07);
     }
     .tl-body h3{font-size:.88rem;font-weight:700;color:#fff;margin-bottom:.38rem;line-height:1.35}
@@ -790,10 +784,14 @@
 
     .cf-cta{text-align:center}
 
-    /* Glow pulse on step 4 */
+    /* Pulse ring on hovered circle */
     @keyframes tlGlow{
-      0%,100%{box-shadow:0 0 0 5px rgba(236,102,8,.12)}
-      50%     {box-shadow:0 0 0 12px rgba(236,102,8,.05)}
+      0%,100%{box-shadow:0 0 0 6px rgba(236,102,8,.12)}
+      50%     {box-shadow:0 0 0 14px rgba(236,102,8,.05)}
+    }
+    .js-ready .tl-step:hover .tl-circle,
+    .tl-step:hover .tl-circle{
+      animation:tlGlow 2s ease-in-out infinite;
     }
 
     /* Respect reduced motion */
@@ -1480,7 +1478,7 @@
         </div>
       </div>
 
-      <div class="tl-step tl-step--last" role="listitem">
+      <div class="tl-step" role="listitem">
         <div class="tl-left" aria-hidden="true">
           <div class="tl-circle">4</div>
         </div>
