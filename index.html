@@ -1230,27 +1230,12 @@
 
     /* ── FOOTER ───────────────────────────────────────────────────── */
     footer{
-      background:
-        radial-gradient(ellipse 70% 70% at 0% 0%, rgba(146,21,42,.35) 0%, rgba(206,57,32,.12) 50%, transparent 75%),
-        radial-gradient(ellipse 50% 50% at 100% 100%, rgba(236,102,8,.2) 0%, transparent 65%),
-        url("Skyline%20milano%20per%20hero%20section.webp") center center / cover no-repeat,
-        #12100D;
-      color:rgba(255,255,255,.42);padding:3rem var(--px) 2rem;position:relative;overflow:clip;
+      background:url("Skyline%20milano%20per%20hero%20section.webp") center center / cover no-repeat, #F2F4F5;
+      color:#12100D;padding:3rem var(--px) 2rem;position:relative;overflow:clip;
     }
-footer::before{
-  content:'';position:absolute;inset:0;pointer-events:none;z-index:0;opacity:.09;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.55' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-repeat:repeat;background-size:200px 200px;mix-blend-mode:screen;
-}
-footer::after{
-  content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
-  background:
-    radial-gradient(ellipse 60% 80% at 100% 0%,  rgba(236,102,8,.16) 0%, transparent 52%),
-    radial-gradient(ellipse 55% 70% at 0%  100%, rgba(146,21,42,.20) 0%, transparent 52%);
-}
 footer .fw{position:relative;z-index:2}
     .fw{max-width:1280px;margin:0 auto}
-    .fbrand p{font-size:.76rem;line-height:1.75;margin-top:1rem;font-weight:300;color:rgba(255,255,255,.52)}
+    .fbrand p{font-size:.76rem;line-height:1.75;margin-top:1rem;font-weight:300;color:rgba(18,16,13,.65)}
 
     /* Form CTA section — light arc background */
     #form-cta{
@@ -1371,21 +1356,21 @@ footer .fw{position:relative;z-index:2}
 
     .ft{
       display:grid;grid-template-columns:1.8fr 1fr 1fr;gap:3rem;
-      padding-bottom:2.75rem;border-bottom:1px solid rgba(255,255,255,.05);
+      padding-bottom:2.75rem;border-bottom:1px solid rgba(18,16,13,.12);
       margin-bottom:1.75rem;
     }
     .fbn{font-size:.88rem;font-weight:900;letter-spacing:.16em;text-transform:uppercase;color:var(--or)}
-    .fbs{font-size:.5rem;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.18);margin-top:.12rem}
-    .fbrand p{font-size:.76rem;line-height:1.75;margin-top:1rem;font-weight:300;color:rgba(255,255,255,.52)}
-    .fbrand-contact{margin-top:1.2rem;font-size:.74rem;display:flex;flex-direction:column;gap:.3rem;font-weight:300;color:rgba(255,255,255,.52)}
-    .fbrand-contact a{color:rgba(255,255,255,.52);transition:color .2s}
-    .fbrand-contact a:hover{color:rgba(255,255,255,.85)}
+    .fbs{font-size:.5rem;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:rgba(18,16,13,.45);margin-top:.12rem}
+    .fbrand p{font-size:.76rem;line-height:1.75;margin-top:1rem;font-weight:300;color:rgba(18,16,13,.65)}
+    .fbrand-contact{margin-top:1.2rem;font-size:.74rem;display:flex;flex-direction:column;gap:.3rem;font-weight:300;color:rgba(18,16,13,.65)}
+    .fbrand-contact a{color:rgba(18,16,13,.65);transition:color .2s}
+    .fbrand-contact a:hover{color:#12100D}
     .fcol h4{font-size:.55rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--or);margin-bottom:1rem}
     .fcol ul{display:flex;flex-direction:column;gap:.5rem}
-    .fcol ul a{font-size:.76rem;color:rgba(255,255,255,.52);transition:color .2s}
-    .fcol ul a:hover{color:rgba(255,255,255,.7)}
-    .fb{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem;font-size:.68rem}
-    .fb a{transition:color .2s}.fb a:hover{color:rgba(255,255,255,.6)}
+    .fcol ul a{font-size:.76rem;color:rgba(18,16,13,.65);transition:color .2s}
+    .fcol ul a:hover{color:#12100D}
+    .fb{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem;font-size:.68rem;color:rgba(18,16,13,.55)}
+    .fb a{transition:color .2s;color:rgba(18,16,13,.65)}.fb a:hover{color:#12100D}
     .footer-logo{margin-bottom:.5rem}
     .footer-logo img{height:100px;width:auto}
 
