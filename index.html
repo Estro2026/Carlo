@@ -383,27 +383,7 @@
     /* ── PROBLEMA ──────────────────────────────────────────────────── */
     #problema{
       padding:var(--py) var(--px);position:relative;overflow:hidden;
-      /* curved sweep: multiple elliptical radials mimic the ribbon arc */
-      background:
-        radial-gradient(ellipse 110% 70% at -5% 115%, rgba(146,21,42,.28) 0%, transparent 48%),
-        radial-gradient(ellipse 80% 60% at 25% 105%, rgba(206,57,32,.22) 0%, transparent 44%),
-        radial-gradient(ellipse 70% 55% at 55% 95%,  rgba(236,102,8,.16) 0%, transparent 42%),
-        radial-gradient(ellipse 60% 50% at 82% 80%,  rgba(213,220,220,.22) 0%, transparent 50%),
-        var(--afw);
-    }
-    /* grain texture — coarser, more visible */
-    #problema::before{
-      content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
-      opacity:.16;
-      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.55' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
-      background-repeat:repeat;background-size:200px 200px;
-      mix-blend-mode:multiply;
-    }
-    /* warm accent glow bottom-left following the ribbon arc */
-    #problema::after{
-      content:'';position:absolute;bottom:-15%;left:-8%;
-      width:700px;height:700px;border-radius:50%;pointer-events:none;z-index:0;
-      background:radial-gradient(circle,rgba(146,21,42,.14) 0%,rgba(206,57,32,.08) 38%,transparent 65%);
+      background:#F2F4F5;
     }
     #problema .prob-in{position:relative;z-index:1}
     .prob-in{max-width:1280px;margin:0 auto}
@@ -524,15 +504,6 @@
     /* ── SOLUZIONE ────────────────────────────────────────────────── */
     #soluzione{
   background:var(--ink);padding:var(--py) var(--px);position:relative;overflow:hidden;
-}
-#soluzione::before{
-  content:'';position:absolute;inset:0;pointer-events:none;z-index:0;opacity:.07;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.55' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-repeat:repeat;background-size:200px 200px;mix-blend-mode:screen;
-}
-#soluzione::after{
-  content:'';position:absolute;bottom:-20%;left:-10%;width:600px;height:600px;border-radius:50%;pointer-events:none;z-index:0;
-  background:radial-gradient(circle,rgba(146,21,42,.12) 0%,rgba(206,57,32,.06) 40%,transparent 68%);
 }
 #soluzione .sol-in{position:relative;z-index:1}
     .sol-in{
@@ -655,25 +626,7 @@
     /* light background — breaks the dark run after #soluzione */
     #aree{
       padding:var(--py) var(--px);position:relative;overflow:hidden;
-      /* arc sweeps from top-right to bottom-left — mirror of #problema */
-      background:
-        radial-gradient(ellipse 110% 70% at 105% -10%, rgba(236,102,8,.20) 0%, transparent 48%),
-        radial-gradient(ellipse 80% 60% at 78%  18%,  rgba(206,57,32,.15) 0%, transparent 44%),
-        radial-gradient(ellipse 65% 55% at 48%  45%,  rgba(146,21,42,.10) 0%, transparent 42%),
-        radial-gradient(ellipse 55% 45% at 18%  72%,  rgba(213,220,220,.20) 0%, transparent 50%),
-        var(--afw);
-    }
-    #aree::before{
-      content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
-      opacity:.16;
-      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.55' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
-      background-repeat:repeat;background-size:200px 200px;
-      mix-blend-mode:multiply;
-    }
-    #aree::after{
-      content:'';position:absolute;top:-15%;right:-8%;
-      width:680px;height:680px;border-radius:50%;pointer-events:none;z-index:0;
-      background:radial-gradient(circle,rgba(236,102,8,.12) 0%,rgba(206,57,32,.06) 38%,transparent 65%);
+      background:#F2F4F5;
     }
     #aree .aree-in{position:relative;z-index:1}
     .aree-in{max-width:1280px;margin:0 auto}
@@ -772,15 +725,6 @@
 
     /* ── COME FUNZIONA · vertical timeline ─────────────────────── */
     #cf{background:var(--ink2);padding:var(--py) var(--px);position:relative;overflow:hidden}
-#cf::before{
-  content:'';position:absolute;inset:0;pointer-events:none;z-index:0;opacity:.07;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.55' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-repeat:repeat;background-size:200px 200px;mix-blend-mode:screen;
-}
-#cf::after{
-  content:'';position:absolute;top:-15%;right:-8%;width:580px;height:580px;border-radius:50%;pointer-events:none;z-index:0;
-  background:radial-gradient(circle,rgba(236,102,8,.09) 0%,rgba(206,57,32,.05) 40%,transparent 68%);
-}
 #cf .cf-in{position:relative;z-index:1}
     .cf-in{max-width:1100px;margin:0 auto}
     .cf-head{text-align:center;margin-bottom:3.75rem}
@@ -934,24 +878,7 @@
     /* ── PERCHÉ ───────────────────────────────────────────────────── */
     #diff{
       padding:var(--py) var(--px);position:relative;overflow:hidden;
-      /* arc sweeps from bottom-right to top-left — third light section, new direction */
-      background:
-        radial-gradient(ellipse 100% 65% at 108%  108%, rgba(236,102,8,.18)  0%, transparent 46%),
-        radial-gradient(ellipse 75%  55% at 80%   82%,  rgba(206,57,32,.12)  0%, transparent 42%),
-        radial-gradient(ellipse 65%  50% at 50%   55%,  rgba(146,21,42,.08)  0%, transparent 40%),
-        radial-gradient(ellipse 55%  45% at 18%   28%,  rgba(213,220,220,.2) 0%, transparent 50%),
-        var(--afw);
-    }
-    #diff::before{
-      content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
-      opacity:.16;
-      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.55' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
-      background-repeat:repeat;background-size:200px 200px;mix-blend-mode:multiply;
-    }
-    #diff::after{
-      content:'';position:absolute;bottom:-15%;right:-8%;
-      width:680px;height:680px;border-radius:50%;pointer-events:none;z-index:0;
-      background:radial-gradient(circle,rgba(236,102,8,.12) 0%,rgba(206,57,32,.06) 40%,transparent 65%);
+      background:#F2F4F5;
     }
     #diff .diff-in{position:relative;z-index:1}
     .diff-in{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
@@ -1078,24 +1005,7 @@
     /* ── TARGET ───────────────────────────────────────────────────── */
     #target{
   padding:var(--py) var(--px);position:relative;overflow:hidden;
-  /* arc from top-left to bottom-right — fourth light section, alternating direction */
-  background:
-    radial-gradient(ellipse 100% 65% at -8%  -8%,  rgba(146,21,42,.18)  0%, transparent 46%),
-    radial-gradient(ellipse 75%  55% at 22%  22%,  rgba(206,57,32,.12)  0%, transparent 42%),
-    radial-gradient(ellipse 65%  50% at 52%  50%,  rgba(236,102,8,.08)  0%, transparent 40%),
-    radial-gradient(ellipse 55%  45% at 82%  78%,  rgba(213,220,220,.2) 0%, transparent 50%),
-    var(--afw);
-}
-#target::before{
-  content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
-  opacity:.16;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.55' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-repeat:repeat;background-size:200px 200px;mix-blend-mode:multiply;
-}
-#target::after{
-  content:'';position:absolute;top:-15%;left:-8%;
-  width:660px;height:660px;border-radius:50%;pointer-events:none;z-index:0;
-  background:radial-gradient(circle,rgba(146,21,42,.10) 0%,rgba(206,57,32,.05) 40%,transparent 65%);
+  background:#F2F4F5;
 }
 #target .tgt-in{position:relative;z-index:1}
     .tgt-in{max-width:1280px;margin:0 auto}
@@ -1191,15 +1101,6 @@
 
     /* ── CONTATTI ─────────────────────────────────────────────────── */
     #contatti{background:var(--ink2);padding:var(--py) var(--px);position:relative;overflow:hidden}
-#contatti::before{
-  content:'';position:absolute;inset:0;pointer-events:none;z-index:0;opacity:.07;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.55' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-repeat:repeat;background-size:200px 200px;mix-blend-mode:screen;
-}
-#contatti::after{
-  content:'';position:absolute;bottom:-20%;left:-5%;width:560px;height:560px;border-radius:50%;pointer-events:none;z-index:0;
-  background:radial-gradient(circle,rgba(146,21,42,.10) 0%,rgba(236,102,8,.05) 42%,transparent 68%);
-}
 #contatti .cont-in{position:relative;z-index:1}
     .cont-in{max-width:1100px;margin:0 auto}
     .cont-header{text-align:center;max-width:600px;margin:0 auto clamp(2.5rem,5vw,4rem)}
@@ -1626,21 +1527,6 @@ footer .fw{position:relative;z-index:2}
   </div>
   <div class="hero-overlay" aria-hidden="true"></div>
 
-  <!-- Decorative ribbon — top-right, accompanies the skyline -->
-  <div class="rib" style="top:60px;right:0;width:55%;height:340px;z-index:3;pointer-events:none" aria-hidden="true">
-    <svg viewBox="0 0 800 340" xmlns="http://www.w3.org/2000/svg" fill="none" preserveAspectRatio="xMaxYMid meet" style="width:100%;height:100%;overflow:visible">
-      <path d="M 860,40 C 720,60 600,100 520,160 C 440,220 420,290 460,320 C 500,350 560,330 580,295 C 600,260 570,225 535,220 C 490,215 440,245 380,300"
-            stroke="url(#ribGrad2)" stroke-width="44" stroke-linecap="round" fill="none" opacity=".8"/>
-      <defs>
-        <linearGradient id="ribGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#F2F4F5" stop-opacity="0.9"/>
-          <stop offset="60%" stop-color="#D5DCDC" stop-opacity="0.55"/>
-          <stop offset="100%" stop-color="#F2F4F5" stop-opacity="0.1"/>
-        </linearGradient>
-      </defs>
-    </svg>
-  </div>
-
   <div class="hero-main" id="main">
 
     <!-- ── LEFT: content ── -->
@@ -1745,30 +1631,6 @@ footer .fw{position:relative;z-index:2}
 
 <!-- ══ PROBLEMA ══════════════════════════════════════════════════════ -->
 <section id="problema" aria-labelledby="problema-h2">
-  <svg class="prob-geo" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden">
-    <defs>
-      <linearGradient id="pgGrad1" x1="0%" y1="100%" x2="100%" y2="0%">
-        <stop offset="0%"   stop-color="#92152A" stop-opacity=".7"/>
-        <stop offset="45%"  stop-color="#CE3920" stop-opacity=".5"/>
-        <stop offset="100%" stop-color="#EC6608" stop-opacity=".15"/>
-      </linearGradient>
-      <linearGradient id="pgGrad2" x1="0%" y1="100%" x2="100%" y2="0%">
-        <stop offset="0%"   stop-color="#CE3920" stop-opacity=".5"/>
-        <stop offset="100%" stop-color="#EC6608" stop-opacity=".1"/>
-      </linearGradient>
-      <linearGradient id="pgGrad3" x1="100%" y1="0%" x2="0%" y2="100%">
-        <stop offset="0%"   stop-color="#EC6608" stop-opacity=".35"/>
-        <stop offset="100%" stop-color="#D5DCDC" stop-opacity=".08"/>
-      </linearGradient>
-    </defs>
-    <!-- origin of the arc — large, burgundy, bottom-left -->
-    <circle cx="-40" cy="108%" r="220" fill="none" stroke="url(#pgGrad1)" stroke-width="28"/>
-    <!-- arc rises — medium, chili, mid-left -->
-    <circle cx="18%" cy="78%" r="120" fill="none" stroke="url(#pgGrad2)" stroke-width="20"/>
-    <!-- arc peaks — smaller, orange, centre -->
-    <circle cx="44%" cy="42%" r="68" fill="none" stroke="url(#pgGrad2)" stroke-width="14"/>
-    <!-- arc fades out — small, near-transparent, upper-right -->
-  </svg>
   <div class="prob-in">
     <div class="prob-header">
       <span class="slabel fu">Il problema</span>
@@ -1840,13 +1702,6 @@ footer .fw{position:relative;z-index:2}
 <!-- ══ SOLUZIONE ═════════════════════════════════════════════════════ -->
 <section id="soluzione" aria-labelledby="soluzione-h2">
 
-  <div class="rib" style="bottom:-40px;left:0;width:100%;height:320px;z-index:1" aria-hidden="true">
-    <svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg" fill="none" preserveAspectRatio="xMidYMax meet" style="width:100%;height:100%">
-      <path d="M 1520,300 C 1360,240 1260,148 1180,128 C 1100,108 1026,130 1012,176 C 998,222 1030,262 1072,272 C 1114,282 1156,258 1160,228 C 1164,198 1136,178 1100,182 C 1035,190 910,238 710,288 C 530,332 330,352 -60,362"
-            stroke="rgba(236,102,8,0.45)" stroke-width="28" stroke-linecap="round" fill="none"/>
-    </svg>
-  </div>
-
   <div class="sol-in">
 
     <!-- Left: all text content -->
@@ -1905,31 +1760,6 @@ footer .fw{position:relative;z-index:2}
 
 <!-- ══ AREE ══════════════════════════════════════════════════════════ -->
 <section id="aree" aria-labelledby="aree-h2">
-  <svg class="aree-geo" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden">
-    <defs>
-      <linearGradient id="agGrad1" x1="100%" y1="0%" x2="0%" y2="100%">
-        <stop offset="0%"   stop-color="#EC6608" stop-opacity=".65"/>
-        <stop offset="50%"  stop-color="#CE3920" stop-opacity=".4"/>
-        <stop offset="100%" stop-color="#92152A" stop-opacity=".12"/>
-      </linearGradient>
-      <linearGradient id="agGrad2" x1="100%" y1="0%" x2="0%" y2="100%">
-        <stop offset="0%"   stop-color="#CE3920" stop-opacity=".45"/>
-        <stop offset="100%" stop-color="#92152A" stop-opacity=".08"/>
-      </linearGradient>
-      <linearGradient id="agGrad3" x1="100%" y1="0%" x2="0%" y2="100%">
-        <stop offset="0%"   stop-color="#EC6608" stop-opacity=".28"/>
-        <stop offset="100%" stop-color="#D5DCDC" stop-opacity=".06"/>
-      </linearGradient>
-    </defs>
-    <!-- origin top-right — large, orange, thick -->
-    <circle cx="108%" cy="-8%" r="230" fill="none" stroke="url(#agGrad1)" stroke-width="28"/>
-    <!-- arc descends — medium, chili, mid-right -->
-    <circle cx="82%" cy="25%" r="118" fill="none" stroke="url(#agGrad2)" stroke-width="20"/>
-    <!-- arc peaks — smaller, centre -->
-    <circle cx="54%" cy="54%" r="66" fill="none" stroke="url(#agGrad2)" stroke-width="14"/>
-    <!-- arc fades — small dashed, lower-left -->
-    <circle cx="20%" cy="82%" r="38" fill="none" stroke="url(#agGrad3)" stroke-width="10" stroke-dasharray="14 8"/>
-  </svg>
   <div class="aree-in">
 
     <div class="aree-header">
@@ -2109,13 +1939,6 @@ footer .fw{position:relative;z-index:2}
 <!-- ══ CTA ORANGE ════════════════════════════════════════════════════ -->
 <section id="ctamid" aria-label="Chiamata all'azione">
 
-  <div class="rib" style="top:-60px;left:0;width:100%;height:380px;z-index:1" aria-hidden="true">
-    <svg viewBox="0 0 1440 380" xmlns="http://www.w3.org/2000/svg" fill="none" preserveAspectRatio="xMidYMid meet" style="width:100%;height:100%">
-      <path d="M -80,340 C 80,268 180,168 255,148 C 330,128 404,152 418,198 C 432,244 400,288 358,298 C 316,308 274,284 270,254 C 266,224 294,204 330,208 C 395,216 520,268 720,320 C 900,366 1100,390 1500,398"
-            stroke="rgba(255,255,255,0.12)" stroke-width="34" stroke-linecap="round" fill="none"/>
-    </svg>
-  </div>
-
   <div class="ctamid-in">
     <span class="ctamid-kicker fu">Studio Legale Bortolotti · Milano</span>
     <h2 class="fu d1">Vuoi capire se <em>AgiLex</em><br>è adatto alla tua azienda?</h2>
@@ -2136,31 +1959,6 @@ footer .fw{position:relative;z-index:2}
 
 <!-- ══ PERCHÉ ════════════════════════════════════════════════════════ -->
 <section id="diff" aria-labelledby="diff-h2">
-  <svg class="diff-geo" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden">
-    <defs>
-      <linearGradient id="dgGrad1" x1="100%" y1="100%" x2="0%" y2="0%">
-        <stop offset="0%"   stop-color="#EC6608" stop-opacity=".6"/>
-        <stop offset="50%"  stop-color="#CE3920" stop-opacity=".38"/>
-        <stop offset="100%" stop-color="#92152A" stop-opacity=".1"/>
-      </linearGradient>
-      <linearGradient id="dgGrad2" x1="100%" y1="100%" x2="0%" y2="0%">
-        <stop offset="0%"   stop-color="#CE3920" stop-opacity=".42"/>
-        <stop offset="100%" stop-color="#92152A" stop-opacity=".07"/>
-      </linearGradient>
-      <linearGradient id="dgGrad3" x1="100%" y1="100%" x2="0%" y2="0%">
-        <stop offset="0%"   stop-color="#EC6608" stop-opacity=".25"/>
-        <stop offset="100%" stop-color="#D5DCDC" stop-opacity=".05"/>
-      </linearGradient>
-    </defs>
-    <!-- origin bottom-right -->
-    <circle cx="110%" cy="110%" r="220" fill="none" stroke="url(#dgGrad1)" stroke-width="28"/>
-    <!-- arc rises -->
-    <circle cx="84%"  cy="80%"  r="115" fill="none" stroke="url(#dgGrad2)" stroke-width="20"/>
-    <!-- arc centre -->
-    <circle cx="56%"  cy="50%"  r="65"  fill="none" stroke="url(#dgGrad2)" stroke-width="14"/>
-    <!-- arc fades top-left -->
-    <circle cx="18%"  cy="18%"  r="36"  fill="none" stroke="url(#dgGrad3)" stroke-width="10" stroke-dasharray="14 8"/>
-  </svg>
   <div class="diff-in">
     <div>
       <span class="slabel fu">Il vantaggio AgiLex</span>
@@ -2211,27 +2009,6 @@ footer .fw{position:relative;z-index:2}
 
 <!-- ══ TARGET ════════════════════════════════════════════════════════ -->
 <section id="target" aria-labelledby="target-h2">
-<svg class="tgt-geo" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden">
-  <defs>
-    <linearGradient id="tgGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%"   stop-color="#92152A" stop-opacity=".6"/>
-      <stop offset="50%"  stop-color="#CE3920" stop-opacity=".38"/>
-      <stop offset="100%" stop-color="#EC6608" stop-opacity=".1"/>
-    </linearGradient>
-    <linearGradient id="tgGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%"   stop-color="#CE3920" stop-opacity=".42"/>
-      <stop offset="100%" stop-color="#EC6608" stop-opacity=".07"/>
-    </linearGradient>
-    <linearGradient id="tgGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%"   stop-color="#92152A" stop-opacity=".22"/>
-      <stop offset="100%" stop-color="#D5DCDC" stop-opacity=".05"/>
-    </linearGradient>
-  </defs>
-  <circle cx="-8%"  cy="-8%"  r="220" fill="none" stroke="url(#tgGrad1)" stroke-width="28"/>
-  <circle cx="18%"  cy="20%"  r="115" fill="none" stroke="url(#tgGrad2)" stroke-width="20"/>
-  <circle cx="48%"  cy="50%"  r="65"  fill="none" stroke="url(#tgGrad2)" stroke-width="14"/>
-  <circle cx="82%"  cy="82%"  r="36"  fill="none" stroke="url(#tgGrad3)" stroke-width="10" stroke-dasharray="14 8"/>
-</svg>
   <div class="tgt-in">
     <span class="slabel fu">A chi è pensato</span>
     <h2 class="tgt-h2 fu d1" id="target-h2">AgiLex è pensato per chi<br>fa impresa sul <em>serio.</em></h2>
@@ -2267,40 +2044,6 @@ footer .fw{position:relative;z-index:2}
 
 <!-- ══ CONTATTI ══════════════════════════════════════════════════════ -->
 <section id="contatti" aria-labelledby="contatti-h2">
-
-  <!-- Decorative ribbon -->
-  <div class="rib" style="top:-50px;right:0;width:550px;height:360px;z-index:0" aria-hidden="true">
-    <svg viewBox="0 0 550 360" xmlns="http://www.w3.org/2000/svg" fill="none" preserveAspectRatio="xMaxYMid meet" style="width:100%;height:100%">
-      <defs>
-        <linearGradient id="cntRibGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stop-color="#EC6608"/>
-          <stop offset="55%" stop-color="#CE3920"/>
-          <stop offset="100%" stop-color="#92152A"/>
-        </linearGradient>
-      </defs>
-      <path d="M 630,340 C 510,268 410,168 335,148 C 260,128 186,152 172,198 C 158,244 190,288 232,298 C 274,308 316,284 320,254 C 324,224 296,204 260,208 C 195,216 70,268 -130,330"
-            stroke="url(#cntRibGrad)" stroke-width="38" stroke-linecap="round" fill="none" opacity=".18"/>
-    </svg>
-  </div>
-
-  <!-- Decorative circles: dark section, warm tones along TR→BL arc -->
-  <svg aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden">
-    <defs>
-      <linearGradient id="cntGrad1" x1="100%" y1="0%" x2="0%" y2="100%">
-        <stop offset="0%"   stop-color="#EC6608" stop-opacity=".14"/>
-        <stop offset="50%"  stop-color="#CE3920" stop-opacity=".08"/>
-        <stop offset="100%" stop-color="#92152A" stop-opacity=".02"/>
-      </linearGradient>
-      <linearGradient id="cntGrad2" x1="100%" y1="0%" x2="0%" y2="100%">
-        <stop offset="0%"   stop-color="#EC6608" stop-opacity=".09"/>
-        <stop offset="100%" stop-color="#CE3920" stop-opacity=".02"/>
-      </linearGradient>
-    </defs>
-    <circle cx="108%" cy="-12%" r="240" fill="none" stroke="url(#cntGrad1)" stroke-width="26"/>
-    <circle cx="78%"  cy="18%"  r="120" fill="none" stroke="url(#cntGrad2)" stroke-width="18"/>
-    <circle cx="48%"  cy="52%"  r="65"  fill="none" stroke="url(#cntGrad2)" stroke-width="12"/>
-    <circle cx="18%"  cy="88%"  r="34"  fill="none" stroke="url(#cntGrad2)" stroke-width="8" stroke-dasharray="12 7"/>
-  </svg>
 
   <div class="cont-in">
 
