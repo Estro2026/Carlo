@@ -631,9 +631,14 @@
     /* light background — breaks the dark run after #soluzione */
     #aree{
       padding:var(--py) var(--px);position:relative;overflow:hidden;
-      background:
-        url("elementi%20grafici/Senza%20titolo-1-05.webp") left -5% bottom -40% / 38% auto no-repeat,
-        #F2F4F5;
+      background:#F2F4F5;
+    }
+    #aree::before{
+      content:'';position:absolute;left:-5%;bottom:-10%;
+      width:38%;padding-bottom:38%;
+      background:url("elementi%20grafici/Senza%20titolo-1-05.webp") center center / contain no-repeat;
+      transform:rotate(-90deg);
+      pointer-events:none;z-index:0;
     }
     #aree .aree-in{position:relative;z-index:1}
     .aree-in{max-width:1280px;margin:0 auto}
