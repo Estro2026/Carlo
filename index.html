@@ -413,7 +413,7 @@
     }
     .prob-h2{
       font-size:clamp(2rem,4.5vw,3.8rem);font-weight:900;
-      color:rgba(18,16,13,.9);line-height:1.02;letter-spacing:-.025em;text-wrap:balance;
+      color:rgba(18,16,13,.9);line-height:1.02;letter-spacing:-.025em;white-space:nowrap;
     }
     .prob-h2 em{font-style:italic;color:var(--or)}
     .prob-aside{
@@ -518,6 +518,7 @@
     @media(max-width:680px){
       .prob-header{flex-direction:column;align-items:flex-start}
       .prob-aside{max-width:100%}
+      .prob-h2{white-space:normal}
     }
 
     /* ── SOLUZIONE ────────────────────────────────────────────────── */
